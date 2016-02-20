@@ -180,7 +180,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11423790, guid: a951093dc3657dd41b7ef4e0fe636f9b, type: 2}
       propertyPath: smugglingGroups.Array.size
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 452366, guid: a951093dc3657dd41b7ef4e0fe636f9b, type: 2}
       propertyPath: m_LocalPosition.x
@@ -221,12 +221,12 @@ Prefab:
     - target: {fileID: 11423790, guid: a951093dc3657dd41b7ef4e0fe636f9b, type: 2}
       propertyPath: smugglingGroups.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 3b2e62bac1c8a4349b4db0ef0ca4586e,
+      objectReference: {fileID: 11400000, guid: b1929489d2ef402418af94d56920c711,
         type: 2}
     - target: {fileID: 11423790, guid: a951093dc3657dd41b7ef4e0fe636f9b, type: 2}
       propertyPath: smugglingGroups.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 3b2e62bac1c8a4349b4db0ef0ca4586e,
+      objectReference: {fileID: 11400000, guid: 92031d35fd7c2e64686953733ab8fbe0,
         type: 2}
     - target: {fileID: 11423790, guid: a951093dc3657dd41b7ef4e0fe636f9b, type: 2}
       propertyPath: smugglingGroups.Array.data[2]

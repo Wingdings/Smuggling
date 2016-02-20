@@ -25,7 +25,9 @@ public struct ClientStats
 
 public abstract class ClientModifier : ScriptableObject
 {
-    public abstract ClientStats CalculateModifier(SmugglingGroup group, Client client);
+    public string modifierId;
+
+    public abstract ClientStats CalculateModifier(SmugglingGroup group, Client client, int clientId);
 }
 
 [CreateAssetMenu(fileName = "MyClient", menuName = "Smuggling/Client", order = 1)]
@@ -41,14 +43,14 @@ public class Client : ScriptableObject
         return client;
     }
 
-    public ClientStats CalculateStats(SmugglingGroup group)
+    public ClientStats CalculateStats(SmugglingGroup group, int clientId)
     {
         ClientStats result = stats;
         if (modifiers != null)
         {
             foreach (var modifier in modifiers)
             {
-                result = result + modifier.CalculateModifier(group, this);
+                result = result + modifier.CalculateModifier(group, this, clientId);
             }
         }
 
@@ -66,9 +68,10 @@ public class SmugglingGroup : ScriptableObject
     public ClientStats CalculateStats()
     {
         ClientStats result = new ClientStats(0, 0, 0, 0);
-        foreach (var client in clients)
+        for (var i = 0; i < clients.Count; ++i)
         {
-            result = result + client.CalculateStats(this);
+            var client = clients[i];
+            result = result + client.CalculateStats(this, i);
         }
 
         return result;
