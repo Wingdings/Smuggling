@@ -1,26 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class ClientStats : ScriptableObject
+[System.Serializable]
+public struct ClientStats
 {
-    public double suspicion = 0.0;
-    public double noteriety = 0.0;
-    public double sickness = 0.0;
-    public double desparation = 0.0;
+    public double suspicion;
+    public double noteriety;
+    public double sickness;
+    public double desparation;
 
-    public static ClientStats Create(double suspicion = 0.0, double noteriety = 0.0, double sickness = 0.0, double desparation = 0.0)
+    public ClientStats(double suspicion = 0.0, double noteriety = 0.0, double sickness = 0.0, double desparation = 0.0)
     {
-        ClientStats stats = ScriptableObject.CreateInstance<ClientStats>();
-        stats.suspicion = suspicion;
-        stats.noteriety = noteriety;
-        stats.sickness = sickness;
-        stats.desparation = desparation;
-        return stats;
+        this.suspicion = suspicion;
+        this.noteriety = noteriety;
+        this.sickness = sickness;
+        this.desparation = desparation;
     }
 
     public static ClientStats operator +(ClientStats a, ClientStats b)
     {
-        return Create(a.suspicion + b.suspicion, a.noteriety + b.noteriety, a.sickness + b.sickness, a.desparation + b.desparation);
+        return new ClientStats(a.suspicion + b.suspicion, a.noteriety + b.noteriety, a.sickness + b.sickness, a.desparation + b.desparation);
     }
 }
 
@@ -38,7 +37,7 @@ public class Client : ScriptableObject
     public static Client Create(double suspicion = 0.0, double noteriety = 0.0, double sickness = 0.0, double desparation = 0.0)
     {
         Client client = ScriptableObject.CreateInstance<Client>();
-        client.stats = ClientStats.Create(suspicion, noteriety, sickness, desparation);
+        client.stats = new ClientStats(suspicion, noteriety, sickness, desparation);
         return client;
     }
 
@@ -65,7 +64,7 @@ public class SmugglingGroup : ScriptableObject
 
     public ClientStats CalculateStats()
     {
-        ClientStats result = ClientStats.Create(0, 0, 0, 0);
+        ClientStats result = new ClientStats(0, 0, 0, 0);
         foreach (var client in clients)
         {
             result = result + client.CalculateStats(this);
