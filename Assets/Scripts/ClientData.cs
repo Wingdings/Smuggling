@@ -28,7 +28,7 @@ public abstract class ClientModifier : ScriptableObject
     public abstract ClientStats CalculateModifier(SmugglingGroup group, Client client);
 }
 
-[CreateAssetMenu(fileName = "client", menuName = "Game/Client", order = 1)]
+[CreateAssetMenu(fileName = "MyClient", menuName = "Smuggling/Client", order = 1)]
 public class Client : ScriptableObject
 {
     public ClientStats stats;
@@ -56,6 +56,7 @@ public class Client : ScriptableObject
     }
 }
 
+[CreateAssetMenu(fileName = "MySmugglingGroup", menuName = "Smuggling/Group", order = 2)]
 public class SmugglingGroup : ScriptableObject
 {
     public List<Client> clients = new List<Client>();
