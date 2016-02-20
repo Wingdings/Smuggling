@@ -15,6 +15,6 @@ MonoBehaviour:
     suspicion: 2
     noteriety: 1
     sickness: 0
-    desparation: 6
+    desperation: 3
   modifiers:
   - {fileID: 11400000, guid: 0df1f485b3ef5f74c8c769ead04435f5, type: 2}

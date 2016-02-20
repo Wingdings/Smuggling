@@ -15,5 +15,5 @@ MonoBehaviour:
     suspicion: 3
     noteriety: 3
     sickness: 9
-    desparation: 7
+    desperation: 8
   modifiers: []

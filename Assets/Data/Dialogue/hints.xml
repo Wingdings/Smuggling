@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hints>
+  <hint>
+    <attribute min="6" max="8">notoriety</attribute>
+    <text>You recognize them from somewhere, but you can't place just where.</text>
+    <text>They seem familiar, maybe from last night's news?</text>
+  </hint>
+  <hint>
+    <attribute min="9">notoriety</attribute>
+    <text>You've definitely seen this person before.</text>
+    <text>This person was on television last night!</text>
+  </hint>
+  <hint>
+    <attribute min="6" max="8">desparation</attribute>
+    <text>They seem nervous.</text>
+    <text>They're a bit jittery.</text>
+  </hint>
+  <hint>
+    <attribute min="9">desperation</attribute>
+    <text>They are incredibly jumpy.</text>
+    <text>They look famished and tired.</text>
+  </hint>
+  <hint>
+    <attribute max="3">desperation</attribute>
+    <text>They seem calm and collected.</text>
+  </hint>
+</hints>
