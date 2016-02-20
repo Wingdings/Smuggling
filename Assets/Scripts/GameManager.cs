@@ -13,6 +13,9 @@ public struct SmugglingResult
 public class GameManager : MonoBehaviour {
 
     public List<SmugglingGroup> smugglingGroups = new List<SmugglingGroup>();
+    public List<Client> clientQueue = new List<Client>();
+
+    public bool useRandomClients = false;
     public bool doSimulationTest = false;
 
     public System.Random rand = new System.Random();
@@ -20,6 +23,12 @@ public class GameManager : MonoBehaviour {
     public static double CalculateChance(ClientStats stats, int groupSize)
     {
         return (100 - System.Math.Pow(((stats.suspicion + stats.noteriety + stats.sickness + stats.desparation) / groupSize), 2) / 20.0 - (System.Math.Pow(groupSize, 2) / 5.0))/100.0;
+    }
+
+    void Start()
+    {
+        if (doSimulationTest)
+            Simulate();
     }
 
     public SmugglingResult[] Simulate()
@@ -51,9 +60,18 @@ public class GameManager : MonoBehaviour {
         return results;
     }
 
-    void Start()
+    public Client GetNextClient()
     {
-        if (doSimulationTest)
-            Simulate();
+        if (useRandomClients)
+        {
+            throw new System.NotImplementedException("Random client generation is not yet implemented!");
+        }
+
+        if (clientQueue.Count == 0)
+            return null;
+
+        Client next = clientQueue[0];
+        clientQueue.RemoveAt(0);
+        return next;
     }
 }
