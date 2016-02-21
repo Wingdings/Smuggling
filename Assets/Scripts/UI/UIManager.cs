@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour {
 
     Queue _flowQueue;
     List<GameObject> _screens;
+    GameObject _game;
 
 	// Use this for initialization
 	void Start () {
@@ -33,9 +34,11 @@ public class UIManager : MonoBehaviour {
             switch ((FLOW_EVENT) _flowQueue.Dequeue())
             {
                 case FLOW_EVENT.FLOW_PLAY_GAME:
+                    loadGame();
                     changeScreenTo("ScreenHUD");
                     break;
                 case FLOW_EVENT.FLOW_QUIT_GAME:
+                    destroyGame();
                     changeScreenTo("ScreenSplash");
                     break;
                 case FLOW_EVENT.FLOW_PAUSE_MENU_OPEN:
@@ -60,6 +63,20 @@ public class UIManager : MonoBehaviour {
             }
         }
 	}
+
+    void loadGame()
+    {
+        if (_game == null)
+            _game = Instantiate((GameObject)Resources.Load("GameManager"));
+    }
+
+    void destroyGame()
+    {
+        if (_game != null)
+            Destroy(_game);
+        _game = null;
+    }
+
 
     public void DoFlowEvent(FLOW_EVENT f)
     {

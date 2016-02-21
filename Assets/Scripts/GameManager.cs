@@ -43,6 +43,16 @@ public class GameManager : MonoBehaviour
         Debug.Log(string.Format("Hello, my name is {0} {1} and I am {2}", testName.first, testName.last, testName.gender));
 
         HintGen = new HintGenerator(hintsAsset);
+        ClientStats testStats = new ClientStats(7, 9, 3, 6);
+        SeparationModifier testMod = ScriptableObject.CreateInstance<SeparationModifier>();
+        testMod.modifierId = "very_angry";
+        testMod.searchForId = "very_angry";
+        ClientModifier[] testMods = new ClientModifier[] { testMod };
+        List<string> testHints = HintGen.GenerateHints(ref testStats, testMods);
+        foreach (var hint in testHints)
+        {
+            Debug.Log("Hint: " + hint);
+        }
     }
 
     public SmugglingResult[] Simulate()
@@ -72,5 +82,10 @@ public class GameManager : MonoBehaviour
         }
 
         return results;
+    }
+
+    public Client GenerateNextClient()
+    {
+        throw new System.NotImplementedException("Not yet implemented!");
     }
 }

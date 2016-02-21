@@ -194,6 +194,9 @@ public class HintGenerator
                             match.max = double.Parse(child.Attributes["max"].Value);
                         }
 
+                        if (match.min > match.max)
+                            throw new System.Exception("min > max for an attribute");
+
                         data.attributes.Add(match);
                         break;
 
@@ -212,5 +215,63 @@ public class HintGenerator
 
             hints.Add(data);
         }
+    }
+
+    public List<string> GenerateHints(ref ClientStats stats, ClientModifier[] modifiers, int count = 4)
+    {
+        System.Random rand = GameManager.rand;
+
+        List<string> generated = new List<string>();
+        List<HintData> options = new List<HintData>();
+
+        foreach (var hint in hints)
+        {
+            bool ok = true;
+            foreach (var match in hint.attributes)
+            {
+                var value = stats.GetAttribute(match.attribute);
+                if (value < match.min || value > match.max)
+                {
+                    ok = false;
+                    break;
+                }
+            }
+
+            if (!ok)
+                continue;
+
+            foreach (var id in hint.modifiers)
+            {
+                var hasMod = false;
+                foreach (var mod in modifiers)
+                {
+                    if (mod.modifierId == id)
+                    {
+                        hasMod = true;
+                        break;
+                    }
+                }
+
+                if (!hasMod)
+                {
+                    ok = false;
+                    break;
+                }
+            }
+
+            if (!ok)
+                continue;
+
+            options.Add(hint);
+        }
+
+        for (var i = 0; i < count && options.Count > 0; ++i)
+        {
+            HintData hint = options[rand.Next(options.Count)];
+            options.Remove(hint);
+            generated.Add(hint.texts[rand.Next(hint.texts.Count)]);
+        }
+
+        return generated;
     }
 }
