@@ -5,15 +5,13 @@ using System.Collections;
 public struct CountryStats
 {
 	public string name;
-	public string policies; //field for difficulty to enter country?
 	public string currentNews;
 	public int population;
 	public int percentSick; // percent of people in country that are sick
 		
-	public CountryStats(string _name = "EMPTY", string _policies = "EMPTY", string _currentNews = "EMPTY", int _population = 0, int _percentSick = 0)
+	public CountryStats(string _name = "EMPTY", string _currentNews = "EMPTY", int _population = 0, int _percentSick = 0)
 	{
 		name = _name;
-		policies = _policies;
 		currentNews = _currentNews;
 		population = _population;
 		percentSick = _percentSick;
@@ -25,10 +23,10 @@ public class Country : ScriptableObject
 {
 	public CountryStats stats;
 	
-	public static Country Create(string _name = "EMPTY", string _policies = "EMPTY", string _currentNews = "EMPTY", int _population = 0, int _percentSick = 0)
+	public static Country Create(string _name = "EMPTY", string _currentNews = "EMPTY", int _population = 0, int _percentSick = 0)
 	{
 		Country country = ScriptableObject.CreateInstance<Country>();
-		country.stats = new CountryStats(_name, _policies, _currentNews, _population, _percentSick);
+		country.stats = new CountryStats(_name, _currentNews, _population, _percentSick);
 		return country;
 	}
 
@@ -37,9 +35,11 @@ public class Country : ScriptableObject
 		this.stats.population += _num;
 	}
 
+	//method for handling news events after a certain smuggling group comes in
+
+
 	public void printStats(){
 		Debug.Log (this.stats.name);
-		Debug.Log (this.stats.policies);
 		Debug.Log (this.stats.currentNews);
 		Debug.Log (this.stats.population);
 		Debug.Log (this.stats.percentSick);
