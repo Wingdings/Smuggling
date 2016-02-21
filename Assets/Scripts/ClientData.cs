@@ -5,21 +5,21 @@ using System.Collections.Generic;
 public struct ClientStats
 {
     public double suspicion;
-    public double noteriety;
+    public double notoriety;
     public double sickness;
     public double desperation;
 
-    public ClientStats(double suspicion = 0.0, double noteriety = 0.0, double sickness = 0.0, double desperation = 0.0)
+    public ClientStats(double suspicion = 0.0, double notoriety = 0.0, double sickness = 0.0, double desperation = 0.0)
     {
         this.suspicion = suspicion;
-        this.noteriety = noteriety;
+        this.notoriety = notoriety;
         this.sickness = sickness;
         this.desperation = desperation;
     }
 
     public static ClientStats operator +(ClientStats a, ClientStats b)
     {
-        return new ClientStats(a.suspicion + b.suspicion, a.noteriety + b.noteriety, a.sickness + b.sickness, a.desperation + b.desperation);
+        return new ClientStats(a.suspicion + b.suspicion, a.notoriety + b.notoriety, a.sickness + b.sickness, a.desperation + b.desperation);
     }
 }
 
@@ -37,10 +37,10 @@ public class Client : ScriptableObject
     public ClientStats stats;
     public ClientModifier[] modifiers;
 
-    public static Client Create(double suspicion = 0.0, double noteriety = 0.0, double sickness = 0.0, double desperation = 0.0)
+    public static Client Create(double suspicion = 0.0, double notoriety = 0.0, double sickness = 0.0, double desperation = 0.0)
     {
         Client client = ScriptableObject.CreateInstance<Client>();
-        client.stats = new ClientStats(suspicion, noteriety, sickness, desperation);
+        client.stats = new ClientStats(suspicion, notoriety, sickness, desperation);
         return client;
     }
 
