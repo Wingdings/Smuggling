@@ -5,6 +5,8 @@
     Multiple attributes can be specified for a single set of hints. Specifying multiple attributes will make it so the hints
     will only appear if all of the specified attributes match. If you don't specify a min or max, then that side of the
     randomization is unbounded (well, clamped to 0 and 10).
+    
+    All matches are >= or <=
     -->
     <attr min="6" max="8">notoriety</attr>
     <text>You recognize them from somewhere, but you can't place just where.</text>
@@ -16,7 +18,7 @@
     <text>This person was on television last night!</text>
   </hint>
   <hint>
-    <attr min="6" max="8">desparation</attr>
+    <attr min="6" max="8">desperation</attr>
     <text>They seem nervous.</text>
     <text>They're a bit jittery.</text>
   </hint>
@@ -28,5 +30,13 @@
   <hint>
     <attr max="3">desperation</attr>
     <text>They seem calm and collected.</text>
+  </hint>
+  <hint>
+    <!--
+    You can match on modifiers by specifying their id. Feel free to combine modifiers and attributes.
+    -->
+    <mod>very_angry</mod>
+    <text>They are incredibly angry for some reason, though the anger doesn't seem to be directed at you.</text>
+    <text>They are seething for some reason.</text>
   </hint>
 </hints>

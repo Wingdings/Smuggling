@@ -1,6 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+public enum ClientAttribute
+{
+    Suspicion,
+    Notoriety,
+    Sickness,
+    Desperation
+}
+
 [System.Serializable]
 public struct ClientStats
 {
@@ -17,9 +25,72 @@ public struct ClientStats
         this.desperation = desperation;
     }
 
+    public double GetAttribute(ClientAttribute attr)
+    {
+        switch (attr)
+        {
+            case ClientAttribute.Suspicion:
+                return suspicion;
+
+            case ClientAttribute.Notoriety:
+                return notoriety;
+
+            case ClientAttribute.Sickness:
+                return sickness;
+
+            case ClientAttribute.Desperation:
+                return desperation;
+        }
+
+        return double.MinValue;
+    }
+
+    public void SetAttribute(ClientAttribute attr, double value)
+    {
+        switch (attr)
+        {
+            case ClientAttribute.Suspicion:
+                suspicion = value;
+                break;
+
+            case ClientAttribute.Notoriety:
+                notoriety = value;
+                break;
+
+            case ClientAttribute.Sickness:
+                sickness = value;
+                break;
+
+            case ClientAttribute.Desperation:
+                desperation = value;
+                break;
+        }
+    }
+
     public static ClientStats operator +(ClientStats a, ClientStats b)
     {
         return new ClientStats(a.suspicion + b.suspicion, a.notoriety + b.notoriety, a.sickness + b.sickness, a.desperation + b.desperation);
+    }
+
+    public static ClientAttribute? StringToAttribute(string name)
+    {
+        switch (name.ToLower())
+        {
+            case "suspicion":
+                return ClientAttribute.Suspicion;
+
+            case "notoriety":
+                return ClientAttribute.Notoriety;
+
+            case "sickness":
+                return ClientAttribute.Sickness;
+
+            case "desperation":
+                return ClientAttribute.Desperation;
+
+            default:
+                return null;
+        }
     }
 }
 
@@ -31,9 +102,12 @@ public abstract class ClientModifier : ScriptableObject
     public abstract string[] GetHintStrings();
 }
 
-[CreateAssetMenu(fileName = "MyClient", menuName = "Smuggling/Client", order = 1)]
 public class Client : ScriptableObject
 {
+    public NameData nameData;
+    public string bio;
+    public List<string> hints;
+
     public ClientStats stats;
     public ClientModifier[] modifiers;
 
@@ -59,7 +133,6 @@ public class Client : ScriptableObject
     }
 }
 
-[CreateAssetMenu(fileName = "MySmugglingGroup", menuName = "Smuggling/Group", order = 2)]
 public class SmugglingGroup : ScriptableObject
 {
     public List<Client> clients = new List<Client>();

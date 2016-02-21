@@ -40,9 +40,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smugglingGroups: []
-  clientQueue: []
-  useRandomClients: 1
-  doSimulationTest: 0
+  namesAsset: {fileID: 4900000, guid: 38dbebe658bc1bd4b9c82a2d666f42ca, type: 3}
+  hintsAsset: {fileID: 4900000, guid: 22162362c980c1c468c955bdb95cee88, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -58,6 +57,14 @@ Prefab:
       propertyPath: useRandomClients
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: namesAsset
+      value: 
+      objectReference: {fileID: 4900000, guid: 38dbebe658bc1bd4b9c82a2d666f42ca, type: 3}
+    - target: {fileID: 0}
+      propertyPath: hintsAsset
+      value: 
+      objectReference: {fileID: 4900000, guid: 22162362c980c1c468c955bdb95cee88, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 170480}

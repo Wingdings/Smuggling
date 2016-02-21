@@ -18,13 +18,16 @@ public class GameManager : MonoBehaviour
         private set;
     }
 
-    public List<SmugglingGroup> smugglingGroups = new List<SmugglingGroup>();
-    public List<Client> clientQueue = new List<Client>();
+    public HintGenerator HintGen
+    {
+        get;
+        private set;
+    }
 
-    public bool useRandomClients = false;
-    public bool doSimulationTest = false;
+    public List<SmugglingGroup> smugglingGroups = new List<SmugglingGroup>();
 
     public TextAsset namesAsset;
+    public TextAsset hintsAsset;
 
     public static System.Random rand = new System.Random();
 
@@ -39,8 +42,7 @@ public class GameManager : MonoBehaviour
         NameData testName = NameGen.ChooseName();
         Debug.Log(string.Format("Hello, my name is {0} {1} and I am {2}", testName.first, testName.last, testName.gender));
 
-        if (doSimulationTest)
-            Simulate();
+        HintGen = new HintGenerator(hintsAsset);
     }
 
     public SmugglingResult[] Simulate()
@@ -70,20 +72,5 @@ public class GameManager : MonoBehaviour
         }
 
         return results;
-    }
-
-    public Client GetNextClient()
-    {
-        if (useRandomClients)
-        {
-            throw new System.NotImplementedException("Random client generation is not yet implemented!");
-        }
-
-        if (clientQueue.Count == 0)
-            return null;
-
-        Client next = clientQueue[0];
-        clientQueue.RemoveAt(0);
-        return next;
     }
 }

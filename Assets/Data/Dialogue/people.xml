@@ -8,5 +8,8 @@
     <attr min="5" max="8">notoriety</attr>
     <attr min="0" max="4">sickness</attr>
     <attr min="8">desperation</attr>
+    
+    <!-- Modifiers will never be applied unless you specify them. If you do not specify "optional", it will be set to false. -->
+    <mod optional="true">very_angry</mod>
   </person>
 </people>

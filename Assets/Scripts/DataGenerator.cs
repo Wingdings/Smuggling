@@ -125,3 +125,92 @@ public class NameGenerator
         return name;
     }
 }
+
+public class HintGenerator
+{
+    protected class AttributeMatch
+    {
+        public ClientAttribute attribute;
+        public double min = 0;
+        public double max = 10;
+    }
+
+    protected class HintData
+    {
+        public List<AttributeMatch> attributes = new List<AttributeMatch>();
+        public List<string> modifiers = new List<string>();
+        public List<string> texts = new List<string>();
+    }
+
+    private List<HintData> hints = new List<HintData>();
+
+    public HintGenerator(TextAsset asset)
+    {
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.LoadXml(asset.text);
+        var root = xmlDoc.DocumentElement;
+        if (root.Name != "hints")
+            throw new System.Exception("Invalid hints asset");
+
+        for (var i = 0; i < root.ChildNodes.Count; ++i)
+        {
+            var node = root.ChildNodes[i];
+            if (node.NodeType != XmlNodeType.Element)
+                continue;
+
+            if (node.Name != "hint")
+                throw new System.Exception("Invalid top-level node '" + node.Name + "'");
+
+            HintData data = new HintData();
+
+            for (var j = 0; j < node.ChildNodes.Count; ++j)
+            {
+                var child = node.ChildNodes[j];
+                if (child.NodeType != XmlNodeType.Element)
+                    continue;
+
+                switch (child.Name)
+                {
+                    case "text":
+                        data.texts.Add(child.InnerText);
+                        break;
+
+                    case "attr":
+                    case "attribute":
+                        AttributeMatch match = new AttributeMatch();
+                        ClientAttribute? attr = ClientStats.StringToAttribute(child.InnerText);
+                        if (!attr.HasValue)
+                            throw new System.Exception("Unknown attribute " + child.InnerText);
+
+                        match.attribute = attr.Value;
+
+                        if (child.Attributes["min"] != null)
+                        {
+                            match.min = double.Parse(child.Attributes["min"].Value);
+                        }
+
+                        if (child.Attributes["max"] != null)
+                        {
+                            match.max = double.Parse(child.Attributes["max"].Value);
+                        }
+
+                        data.attributes.Add(match);
+                        break;
+
+                    case "mod":
+                    case "modifier":
+                        data.modifiers.Add(child.InnerText);
+                        break;
+
+                    default:
+                        throw new System.Exception("Invalid hint definition with node " + child.Name);
+                }
+            }
+
+            if (data.texts.Count == 0 || (data.modifiers.Count == 0 && data.attributes.Count == 0))
+                throw new System.Exception("A hint is missing text or attributes/modifiers to match!");
+
+            hints.Add(data);
+        }
+    }
+}
