@@ -4,14 +4,15 @@
   <first gender="male">
     <name>John</name>
     <name>Joe</name>
-    <name>Obama</name>
-    <name>Sam</name>
-    <name>Alex</name>
   </first>
   <first gender="female">
     <name>Jenny</name>
     <name>Shannon</name>
     <name>Jane</name>
+    <name>Michelle</name>
+  </first>
+  <first gender="all">
+    <name>Sam</name>
     <name>Alex</name>
   </first>
   <last gender="all">
@@ -20,5 +21,6 @@
     <name>Doe</name>
     <name>Decker</name>
     <name>Greenberg</name>
+    <name>Obama</name>
   </last>
 </names>

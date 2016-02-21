@@ -10,7 +10,13 @@ public struct SmugglingResult
     public double roll;
 }
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
+    public NameGenerator NameGen
+    {
+        get;
+        private set;
+    }
 
     public List<SmugglingGroup> smugglingGroups = new List<SmugglingGroup>();
     public List<Client> clientQueue = new List<Client>();
@@ -18,7 +24,9 @@ public class GameManager : MonoBehaviour {
     public bool useRandomClients = false;
     public bool doSimulationTest = false;
 
-    public System.Random rand = new System.Random();
+    public TextAsset namesAsset;
+
+    public static System.Random rand = new System.Random();
 
     public static double CalculateChance(ClientStats stats, int groupSize)
     {
@@ -27,6 +35,10 @@ public class GameManager : MonoBehaviour {
 
     void Start()
     {
+        NameGen = new NameGenerator(namesAsset);
+        NameData testName = NameGen.ChooseName();
+        Debug.Log(string.Format("Hello, my name is {0} {1} and I am {2}", testName.first, testName.last, testName.gender));
+
         if (doSimulationTest)
             Simulate();
     }
