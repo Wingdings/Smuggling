@@ -18,8 +18,7 @@ public class UIManager : MonoBehaviour {
         _flowQueue = new Queue();
         _screens = new List<GameObject>();
         openScreen("ScreenSplash");
-
-
+		
     }
 	
 	// Update is called once per frame
