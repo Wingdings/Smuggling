@@ -73,4 +73,9 @@ public class GameManager : MonoBehaviour
 
         return results;
     }
+
+    public Client GenerateNextClient()
+    {
+        throw new System.NotImplementedException("Not yet implemented!");
+    }
 }
