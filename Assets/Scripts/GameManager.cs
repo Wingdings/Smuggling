@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
     {
         SmugglingResult[] results = new SmugglingResult[smugglingGroups.Count];
         Debug.Log("Simulating smuggling operation...");
-		c.printStats ();
+
         for (var i = 0; i < smugglingGroups.Count; ++i)
         {
             var group = smugglingGroups[i];
