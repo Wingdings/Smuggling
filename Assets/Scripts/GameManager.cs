@@ -24,10 +24,19 @@ public class GameManager : MonoBehaviour
         private set;
     }
 
+    public ClientGenerator ClientGen
+    {
+        get;
+        private set;
+    }
+
     public List<SmugglingGroup> smugglingGroups = new List<SmugglingGroup>();
 
     public TextAsset namesAsset;
     public TextAsset hintsAsset;
+    public TextAsset peopleAsset;
+
+    public ClientModifier[] modifierList;
 
     public static System.Random rand = new System.Random();
 
@@ -39,19 +48,16 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         NameGen = new NameGenerator(namesAsset);
-        NameData testName = NameGen.ChooseName();
-        Debug.Log(string.Format("Hello, my name is {0} {1} and I am {2}", testName.first, testName.last, testName.gender));
-
         HintGen = new HintGenerator(hintsAsset);
-        ClientStats testStats = new ClientStats(7, 9, 3, 6);
-        SeparationModifier testMod = ScriptableObject.CreateInstance<SeparationModifier>();
-        testMod.modifierId = "very_angry";
-        testMod.searchForId = "very_angry";
-        ClientModifier[] testMods = new ClientModifier[] { testMod };
-        List<string> testHints = HintGen.GenerateHints(ref testStats, testMods);
-        foreach (var hint in testHints)
+        ClientGen = new ClientGenerator(peopleAsset, modifierList);
+
+        Client testClient = ClientGen.GenerateClient(NameGen, HintGen);
+        Debug.LogFormat("Name: {0} {1} ({2})", testClient.nameData.first, testClient.nameData.last, testClient.nameData.gender);
+        Debug.LogFormat("Bio: {0}", testClient.bio);
+        Debug.LogFormat("Stats: suspicion={0}, notoriety={1}, sickness={2}, desperation={3}", testClient.stats.suspicion, testClient.stats.notoriety, testClient.stats.sickness, testClient.stats.desperation);
+        foreach (var hint in testClient.hints)
         {
-            Debug.Log("Hint: " + hint);
+            Debug.LogFormat("Hint: {0}", hint);
         }
     }
 
@@ -86,6 +92,6 @@ public class GameManager : MonoBehaviour
 
     public Client GenerateNextClient()
     {
-        throw new System.NotImplementedException("Not yet implemented!");
+        return ClientGen.GenerateClient(NameGen, HintGen);
     }
 }

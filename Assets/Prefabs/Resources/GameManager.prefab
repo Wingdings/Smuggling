@@ -42,6 +42,9 @@ MonoBehaviour:
   smugglingGroups: []
   namesAsset: {fileID: 4900000, guid: 38dbebe658bc1bd4b9c82a2d666f42ca, type: 3}
   hintsAsset: {fileID: 4900000, guid: 22162362c980c1c468c955bdb95cee88, type: 3}
+  peopleAsset: {fileID: 4900000, guid: 3b98b084f52f2d647957b2302568fc26, type: 3}
+  modifierList:
+  - {fileID: 11400000, guid: 0df1f485b3ef5f74c8c769ead04435f5, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -49,6 +52,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: modifierList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: smugglingGroups.Array.size
       value: 0
@@ -65,6 +72,11 @@ Prefab:
       propertyPath: hintsAsset
       value: 
       objectReference: {fileID: 4900000, guid: 22162362c980c1c468c955bdb95cee88, type: 3}
+    - target: {fileID: 0}
+      propertyPath: modifierList.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0df1f485b3ef5f74c8c769ead04435f5,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 170480}

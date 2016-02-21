@@ -217,7 +217,7 @@ public class HintGenerator
         }
     }
 
-    public List<string> GenerateHints(ref ClientStats stats, ClientModifier[] modifiers, int count = 4)
+    public List<string> GenerateHints(ref ClientStats stats, ClientModifier[] modifiers, int maxCount = 4)
     {
         System.Random rand = GameManager.rand;
 
@@ -265,7 +265,7 @@ public class HintGenerator
             options.Add(hint);
         }
 
-        for (var i = 0; i < count && options.Count > 0; ++i)
+        for (var i = 0; i < maxCount && options.Count > 0; ++i)
         {
             HintData hint = options[rand.Next(options.Count)];
             options.Remove(hint);
@@ -273,5 +273,182 @@ public class HintGenerator
         }
 
         return generated;
+    }
+}
+
+public class ClientGenerator
+{
+    protected struct ModifierGenData
+    {
+        public ClientModifier modifier;
+        public double chance;
+    }
+
+    protected class ClientGenData
+    {
+        public string gender = "all";
+        public string bio;
+
+        public ClientStats min = new ClientStats();
+        public ClientStats max = new ClientStats();
+
+        public List<ModifierGenData> modifiers = new List<ModifierGenData>();
+
+        public ClientGenData()
+        {
+            min.suspicion = 0;
+            min.notoriety = 0;
+            min.sickness = 0;
+            min.desperation = 0;
+
+            max.suspicion = 10;
+            max.notoriety = 10;
+            max.sickness = 10;
+            max.desperation = 10;
+        }
+    }
+
+    private List<ClientGenData> generators = new List<ClientGenData>();
+    private Dictionary<string, ClientModifier> modifiers = new Dictionary<string, ClientModifier>();
+
+    public ClientGenerator(TextAsset asset, ClientModifier[] mods)
+    {
+        foreach (ClientModifier mod in mods)
+        {
+            if (string.IsNullOrEmpty(mod.modifierId))
+            {
+                Debug.LogWarning("Found modifier without id, skipping");
+                continue;
+            }
+
+            modifiers.Add(mod.modifierId, mod);
+        }
+
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.LoadXml(asset.text);
+        var root = xmlDoc.DocumentElement;
+        if (root.Name != "people")
+            throw new System.Exception("Invalid people asset");
+
+        for (var i = 0; i < root.ChildNodes.Count; ++i)
+        {
+            var node = root.ChildNodes[i];
+            if (node.NodeType != XmlNodeType.Element)
+                continue;
+
+            if (node.Name != "person")
+                throw new System.Exception("Invalid top-level node '" + node.Name + "'");
+
+            ClientGenData data = new ClientGenData();
+            if (node.Attributes["gender"] != null)
+            {
+                data.gender = node.Attributes["gender"].Value;
+            }
+            else
+            {
+                data.gender = "all";
+            }
+
+            for (var j = 0; j < node.ChildNodes.Count; ++j)
+            {
+                var child = node.ChildNodes[j];
+                if (child.NodeType != XmlNodeType.Element)
+                    continue;
+
+                switch (child.Name)
+                {
+                    case "bio":
+                    case "biography":
+                        data.bio = child.InnerText;
+                        break;
+
+                    case "attr":
+                    case "attribute":
+                        ClientAttribute? attr = ClientStats.StringToAttribute(child.InnerText);
+                        if (!attr.HasValue)
+                            throw new System.Exception("Invalid attribute type " + child.InnerText);
+
+                        if (child.Attributes["min"] != null)
+                        {
+                            data.min.SetAttribute(attr.Value, double.Parse(child.Attributes["min"].Value));
+                        }
+
+                        if (child.Attributes["max"] != null)
+                        {
+                            data.max.SetAttribute(attr.Value, double.Parse(child.Attributes["max"].Value));
+                        }
+
+                        if (data.min.GetAttribute(attr.Value) > data.max.GetAttribute(attr.Value))
+                        {
+                            throw new System.Exception("min > max for " + attr.Value.ToString());
+                        }
+
+                        break;
+
+                    case "mod":
+                    case "modifier":
+                        ModifierGenData modData = new ModifierGenData();
+                        var modId = child.InnerText;
+                        ClientModifier mod = null;
+                        if (!modifiers.TryGetValue(modId, out mod))
+                        {
+                            throw new System.Exception("Unknown modifier id " + modId);
+                        }
+
+                        modData.modifier = mod;
+                        modData.chance = 1;
+                        if (child.Attributes["chance"] != null)
+                            modData.chance = double.Parse(child.Attributes["chance"].Value);
+
+                        data.modifiers.Add(modData);
+                        break;
+
+                    default:
+                        throw new System.Exception("Invalid person definition with node " + child.Name);
+                }
+            }
+
+            generators.Add(data);
+        }
+    }
+
+    public Client GenerateClient(NameGenerator nameGen, HintGenerator hintGen)
+    {
+        System.Random rand = GameManager.rand;
+        var generator = generators[rand.Next(generators.Count)];
+
+        var client = Client.Create();
+        client.bio = generator.bio;
+        client.nameData = nameGen.ChooseName(generator.gender);
+
+        // ignore visual studio giving errors on these lines, THEY AREN'T ACTUALLY ERRORS!
+        // for some reason it doesn't pick up the extension method in MathUtil.cs
+        client.stats.suspicion = rand.NextDouble(generator.min.suspicion, generator.max.suspicion);
+        client.stats.notoriety = rand.NextDouble(generator.min.notoriety, generator.max.notoriety);
+        client.stats.sickness = rand.NextDouble(generator.min.sickness, generator.max.sickness);
+        client.stats.desperation = rand.NextDouble(generator.min.desperation, generator.max.desperation);
+
+        List<ClientModifier> mods = new List<ClientModifier>();
+        foreach (var modData in generator.modifiers)
+        {
+            if (modData.chance >= 1 || rand.NextDouble() <= modData.chance)
+            {
+                mods.Add(modData.modifier);
+            }
+        }
+
+        client.modifiers = mods.ToArray();
+
+        // hints must be set last, as stats + modifiers change what hints are available
+        client.hints = hintGen.GenerateHints(ref client.stats, client.modifiers);
+
+        // finally, replace some stuff in bio + hints
+        client.bio = Client.ReplaceStringData(client, client.bio);
+        for (var i = 0; i < client.hints.Count; ++i)
+        {
+            client.hints[i] = Client.ReplaceStringData(client, client.hints[i]);
+        }
+
+        return client;
     }
 }

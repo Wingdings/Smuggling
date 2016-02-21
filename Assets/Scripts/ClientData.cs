@@ -118,6 +118,15 @@ public class Client : ScriptableObject
         return client;
     }
 
+    public static string ReplaceStringData(Client client, string input)
+    {
+        string result = input.Replace("%name%", client.nameData.first + " " + client.nameData.last);
+        result = result.Replace("%first%", client.nameData.first);
+        result = result.Replace("%last%", client.nameData.last);
+        result = result.Replace("%destination%", "SOME COUNTRY"); // TODO!
+        return result;
+    }
+
     public ClientStats CalculateStats(SmugglingGroup group, int clientId)
     {
         ClientStats result = stats;
