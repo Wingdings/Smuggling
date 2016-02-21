@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Client
   stats:
     suspicion: 8
-    noteriety: 9
+    notoriety: 9
     sickness: 0
     desperation: 4
   modifiers: []

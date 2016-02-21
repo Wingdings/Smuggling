@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<names>
+  <!-- There are no predefined genders, except for "all" which matches on all genders. -->
+  <first gender="male">
+    <name>John</name>
+    <name>Joe</name>
+    <name>Obama</name>
+    <name>Sam</name>
+    <name>Alex</name>
+  </first>
+  <first gender="female">
+    <name>Jenny</name>
+    <name>Shannon</name>
+    <name>Jane</name>
+    <name>Alex</name>
+  </first>
+  <last gender="all">
+    <name>Joeson</name>
+    <name>Johnson</name>
+    <name>Doe</name>
+    <name>Decker</name>
+    <name>Greenberg</name>
+  </last>
+</names>

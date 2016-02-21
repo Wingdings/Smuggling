@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <people>
-
+  <person gender="all">
+    <bio>Hi, uh, my name is %name%. I'm, well, uh, wanting to go to %destination%. I'm, uh, kind of on the run. I really need some, uh, help.</bio>
+    
+    <!-- Any unspecified attributes will be completely randomized. The format of specification is the same as hints.xml -->
+    <attr min="3" max="6">suspicion</attr>
+    <attr min="5" max="8">notoriety</attr>
+    <attr min="0" max="4">sickness</attr>
+    <attr min="8">desperation</attr>
+  </person>
 </people>

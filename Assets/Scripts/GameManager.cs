@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour {
 
     public static double CalculateChance(ClientStats stats, int groupSize)
     {
-        return (100 - System.Math.Pow(((stats.suspicion + stats.noteriety + stats.sickness + stats.desperation) / groupSize), 2) / 20.0 - (System.Math.Pow(groupSize, 2) / 5.0))/100.0;
+        return (100 - System.Math.Pow(((stats.suspicion + stats.notoriety + stats.sickness + stats.desperation) / groupSize), 2) / 20.0 - (System.Math.Pow(groupSize, 2) / 5.0))/100.0;
     }
 
     void Start()
