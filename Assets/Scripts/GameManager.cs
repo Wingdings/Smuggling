@@ -8,6 +8,7 @@ public struct SmugglingResult
     public bool success;
     public double chance;
     public double roll;
+    public double money;
 }
 
 public class GameManager : MonoBehaviour
@@ -56,7 +57,7 @@ public class GameManager : MonoBehaviour
         Client testClient = ClientGen.GenerateClient(NameGen, HintGen);
         Debug.LogFormat("Name: {0} {1} ({2})", testClient.nameData.first, testClient.nameData.last, testClient.nameData.gender);
         Debug.LogFormat("Bio: {0}", testClient.bio);
-        Debug.LogFormat("Stats: suspicion={0}, notoriety={1}, sickness={2}, desperation={3}", testClient.stats.suspicion, testClient.stats.notoriety, testClient.stats.sickness, testClient.stats.desperation);
+        Debug.LogFormat("Stats: suspicion={0}, notoriety={1}, sickness={2}, desperation={3}, money={4}", testClient.stats.suspicion, testClient.stats.notoriety, testClient.stats.sickness, testClient.stats.desperation, testClient.stats.money);
         foreach (var hint in testClient.hints)
         {
             Debug.LogFormat("Hint: {0}", hint);
@@ -84,6 +85,8 @@ public class GameManager : MonoBehaviour
             {
                 result.success = true;
             }
+
+            result.money = stats.money;
 
             results[i] = result;
             Debug.Log(string.Format("Group #{0}: {1:F2}% chance, rolled {2:F2}, result is {3}", i, result.chance * 100, result.roll * 100, result.success ? "success" : "failure"));

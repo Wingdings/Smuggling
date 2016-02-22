@@ -6,6 +6,7 @@
     <bio>Hi, uh, my name is %name%. I'm, well, uh, wanting to go to %destination%. I'm, uh, kind of on the run. I really need some, uh, help.</bio>
     
     <!-- Any unspecified attributes will be completely randomized. The format of specification is the same as hints.xml -->
+    <!-- NOTE: Money has a min of 0 and a max of 1000 by default.-->
     <attr min="3" max="6">suspicion</attr>
     <attr min="5" max="8">notoriety</attr>
     <attr min="0" max="4">sickness</attr>
