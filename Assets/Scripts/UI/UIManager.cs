@@ -9,6 +9,10 @@ public enum FLOW_EVENT
     FLOW_QUIT_GAME,
     FLOW_PAUSE_MENU_OPEN,
     FLOW_PAUSE_MENU_CLOSE,
+    FLOW_DIALOG_OPEN,
+    FLOW_DIALOG_CLOSE,
+    FLOW_GROUP_SELECT_OPEN,
+    FLOW_GROUP_SELECT_CLOSE,
 }
 
 public class UIManager : MonoBehaviour {
@@ -28,6 +32,12 @@ public class UIManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //DEBUG DELETE
+        if (Input.GetKeyDown("g"))
+        {
+            DoFlowEvent(FLOW_EVENT.FLOW_DIALOG_OPEN);
+        }
+
 	    //Clear flow queue
         while (_flowQueue.Count > 0)
         {
@@ -46,6 +56,12 @@ public class UIManager : MonoBehaviour {
                     break;
                 case FLOW_EVENT.FLOW_PAUSE_MENU_CLOSE:
                     closeScreen("ScreenPauseMenu");
+                    break;
+                case FLOW_EVENT.FLOW_DIALOG_OPEN:
+                    openScreen("ScreenDialog");
+                    break;
+                case FLOW_EVENT.FLOW_DIALOG_CLOSE:
+                    closeScreen("ScreenDialog");
                     break;
                 default:
                     break;

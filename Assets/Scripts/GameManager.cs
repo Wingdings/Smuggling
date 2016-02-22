@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
         private set;
     }
 
+    public Client referencedClient;
+
     public List<SmugglingGroup> smugglingGroups = new List<SmugglingGroup>();
 
     public TextAsset namesAsset;

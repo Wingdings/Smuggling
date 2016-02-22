@@ -7,9 +7,13 @@ public class ScreenBase : MonoBehaviour {
     protected bool _open;
     protected bool _closed;
     protected UIManager _ui;
+    protected GameManager _game;
     // Use this for initialization
     public virtual void Start() {
         _ui = (UIManager) GameObject.Find("UIManager").GetComponent("UIManager");
+        GameObject tObject = GameObject.Find("GameManager(Clone)");
+        if (tObject != null)
+            _game = (GameManager)tObject.GetComponent("GameManager");
         _closed = false;
     }
 
@@ -28,6 +32,21 @@ public class ScreenBase : MonoBehaviour {
             if (b.gameObject.name == name)
             {
                 return b;
+            }
+        }
+        return null;
+    }
+
+    protected Text getTextByName(string name)
+    {
+        //GameObject b = transform.Find(name).gameObject;
+        //return b.GetComponent<Button>();
+        Text[] texts = GetComponentsInChildren<Text>();
+        foreach (Text t in texts)
+        {
+            if (t.gameObject.name == name)
+            {
+                return t;
             }
         }
         return null;
