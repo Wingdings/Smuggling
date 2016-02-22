@@ -40,4 +40,9 @@
     <text>They are incredibly angry for some reason, though the anger doesn't seem to be directed at you.</text>
     <text>They are seething for some reason.</text>
   </hint>
+  <hint>
+    <attr max="1000">money</attr>
+    <text>They seem poor.</text>
+    <text>They don't seem to have much money.</text>
+  </hint>
 </hints>

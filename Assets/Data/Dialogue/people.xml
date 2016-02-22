@@ -10,6 +10,7 @@
     <attr min="5" max="8">notoriety</attr>
     <attr min="0" max="4">sickness</attr>
     <attr min="8">desperation</attr>
+    <attr min="100" max="1500">money</attr>
     
     <!-- Modifiers will never be applied unless you specify them. If you don't specify chance, it'll be set to 1. -->
     <mod chance="0.5">very_angry</mod>

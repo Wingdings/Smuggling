@@ -6,7 +6,8 @@ public enum ClientAttribute
     Suspicion,
     Notoriety,
     Sickness,
-    Desperation
+    Desperation,
+    Money
 }
 
 [System.Serializable]
@@ -16,13 +17,15 @@ public struct ClientStats
     public double notoriety;
     public double sickness;
     public double desperation;
+    public double money;
 
-    public ClientStats(double suspicion = 0.0, double notoriety = 0.0, double sickness = 0.0, double desperation = 0.0)
+    public ClientStats(double suspicion = 0.0, double notoriety = 0.0, double sickness = 0.0, double desperation = 0.0, double money = 0.0)
     {
         this.suspicion = suspicion;
         this.notoriety = notoriety;
         this.sickness = sickness;
         this.desperation = desperation;
+        this.money = money;
     }
 
     public double GetAttribute(ClientAttribute attr)
@@ -40,6 +43,9 @@ public struct ClientStats
 
             case ClientAttribute.Desperation:
                 return desperation;
+
+            case ClientAttribute.Money:
+                return money;
         }
 
         return double.MinValue;
@@ -64,12 +70,16 @@ public struct ClientStats
             case ClientAttribute.Desperation:
                 desperation = value;
                 break;
+
+            case ClientAttribute.Money:
+                money = value;
+                break;
         }
     }
 
     public static ClientStats operator +(ClientStats a, ClientStats b)
     {
-        return new ClientStats(a.suspicion + b.suspicion, a.notoriety + b.notoriety, a.sickness + b.sickness, a.desperation + b.desperation);
+        return new ClientStats(a.suspicion + b.suspicion, a.notoriety + b.notoriety, a.sickness + b.sickness, a.desperation + b.desperation, a.money + b.money);
     }
 
     public static ClientAttribute? StringToAttribute(string name)
@@ -87,6 +97,9 @@ public struct ClientStats
 
             case "desperation":
                 return ClientAttribute.Desperation;
+
+            case "money":
+                return ClientAttribute.Money;
 
             default:
                 return null;
@@ -111,7 +124,7 @@ public class Client : ScriptableObject
     public ClientStats stats;
     public ClientModifier[] modifiers;
 
-    public static Client Create(double suspicion = 0.0, double notoriety = 0.0, double sickness = 0.0, double desperation = 0.0)
+    public static Client Create(double suspicion = 0.0, double notoriety = 0.0, double sickness = 0.0, double desperation = 0.0, double money = 0.0)
     {
         Client client = ScriptableObject.CreateInstance<Client>();
         client.stats = new ClientStats(suspicion, notoriety, sickness, desperation);
