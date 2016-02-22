@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <people>
-  <person gender="all">
+  <person gender="all"> <!-- Fugitive -->
     <!-- if gender is blank, it defaults to all -->
     
     <bio>Hi, uh, my name is %name%. I'm, well, uh, wanting to go to %destination%. I'm, uh, kind of on the run. I really need some, uh, help.</bio>
@@ -16,4 +16,17 @@
     <!-- Modifiers will never be applied unless you specify them. If you don't specify chance, it'll be set to 1. -->
     <mod chance="0.5">very_angry</mod>
   </person>
+  
+  <person gender="male"> <!-- Gangbanger -->
+
+    <bio>Yo, I'm %name%. I need to get to %destination%, pronto. Like, yesterday, man.</bio>
+  
+    <attr min="5" max="8">suspicion</attr>
+    <attr min="3" max="4">notoriety</attr>
+    <attr min="0" max="3">sickness</attr>
+    <attr min="9">desperation</attr>
+    <attr min="0" max="800">money</attr>
+
+    <mod>very_angry</mod>
+  </person>"
 </people>
