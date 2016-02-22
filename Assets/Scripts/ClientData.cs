@@ -82,6 +82,12 @@ public struct ClientStats
         return new ClientStats(a.suspicion + b.suspicion, a.notoriety + b.notoriety, a.sickness + b.sickness, a.desperation + b.desperation, a.money + b.money);
     }
 
+    public static ClientStats operator *(ClientStats a, double b)
+    {
+        return new ClientStats(a.suspicion * b, a.notoriety * b, a.sickness * b, a.desperation * b, a.money);
+    }
+
+
     public static ClientAttribute? StringToAttribute(string name)
     {
         switch (name.ToLower())
@@ -112,7 +118,6 @@ public abstract class ClientModifier : ScriptableObject
     public string modifierId;
 
     public abstract ClientStats CalculateModifier(SmugglingGroup group, Client client, int clientId);
-    public abstract string[] GetHintStrings();
 }
 
 public class Client : ScriptableObject
@@ -155,11 +160,19 @@ public class Client : ScriptableObject
     }
 }
 
-public class SmugglingGroup : ScriptableObject
+public enum TransportType
+{
+    LAND,
+    AIR,
+    SEA
+}
+
+public class SmugglingGroup : MonoBehaviour
 {
     public List<Client> clients = new List<Client>();
-
-    //TODO: Some representation of destination
+    public double difficulty = 1; // should be close to 1
+    public double cost = 3000;
+    public TransportType transport = TransportType.LAND;
 
     public ClientStats CalculateStats()
     {
@@ -170,6 +183,6 @@ public class SmugglingGroup : ScriptableObject
             result = result + client.CalculateStats(this, i);
         }
 
-        return result;
+        return result * difficulty;
     }
 }

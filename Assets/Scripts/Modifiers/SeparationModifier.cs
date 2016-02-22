@@ -8,8 +8,6 @@ using System;
 [CreateAssetMenu(fileName = "MySeparationModifier", menuName = "Smuggling/Modifiers/Separation", order = 2)]
 public class SeparationModifier : ClientModifier
 {
-    public string[] hintStrings;
-
     [Tooltip("The modifier id to search for. This will exclude this modifier.")]
     public string searchForId;
 
@@ -44,10 +42,5 @@ public class SeparationModifier : ClientModifier
         }
 
         return separationBonus;
-    }
-
-    public override string[] GetHintStrings()
-    {
-        return hintStrings;
     }
 }
