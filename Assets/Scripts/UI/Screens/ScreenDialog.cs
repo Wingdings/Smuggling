@@ -18,8 +18,14 @@ public class ScreenDialog : ScreenBase {
             _ui.DoFlowEvent(FLOW_EVENT.FLOW_DIALOG_CLOSE);
         });
 
-        Text t; //= getTextByName("NameText");
-        //t.text = _client.nameData.first + " " + _client.nameData.last;
+        Text t = getTextByName("HintText");
+        string tString = "";
+        foreach (string hint in _client.hints)
+        {
+            tString += hint;
+            tString += "\n";
+        }
+        t.text = tString;
         t = getTextByName("BioText");
         t.text = _client.bio;
     }
