@@ -123,7 +123,7 @@ public class Client : ScriptableObject
         string result = input.Replace("%name%", client.nameData.first + " " + client.nameData.last);
         result = result.Replace("%first%", client.nameData.first);
         result = result.Replace("%last%", client.nameData.last);
-        result = result.Replace("%destination%", "SOME COUNTRY"); // TODO!
+        result = result.Replace("%destination%", "Gastesal"); // TODO!
         return result;
     }
 
