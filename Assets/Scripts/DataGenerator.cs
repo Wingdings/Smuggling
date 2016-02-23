@@ -131,8 +131,8 @@ public class HintGenerator
     protected class AttributeMatch
     {
         public ClientAttribute attribute;
-        public double min = 0;
-        public double max = 10;
+        public double min = double.MinValue;
+        public double max = double.MaxValue;
     }
 
     protected class HintData

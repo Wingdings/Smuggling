@@ -38,11 +38,32 @@
     -->
     <mod>very_angry</mod>
     <text>They are incredibly angry for some reason, though the anger doesn't seem to be directed at you.</text>
-    <text>They are seething for some reason.</text>
+    <text>They look as if they are about to bite your head off.</text>
   </hint>
   <hint>
-    <attr max="1000">money</attr>
+    <attr max="800">money</attr>
     <text>They seem poor.</text>
     <text>They don't seem to have much money.</text>
+  </hint>
+  <hint>
+    <attr min="3000">money</attr>
+    <attr min="7">notoriety</attr>
+    <text>You recognize them! They were on a reality show!</text>
+    <text>You recognize them, they're from an affluent family.</text>
+  </hint>
+  <hint>
+    <attr min="6" max="8">sickness</attr>
+    <text>They're coughing and sputtering all over the place.</text>
+    <text>They don't look too good.</text>
+  </hint>
+  <hint>
+    <attr min="9">sickness</attr>
+    <text>They really don't look well.</text>
+    <text>They look like they could use a doctor.</text>
+  </hint>
+  <hint>
+    <attr min="4000">money</attr>
+    <text>They flash some money in front of your face.</text>
+    <text>They promise you quite a bit of money.</text>
   </hint>
 </hints>
