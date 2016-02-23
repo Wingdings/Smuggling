@@ -15,11 +15,13 @@ MonoBehaviour:
   searchForId: very_angry
   separationBonus:
     suspicion: 0
-    noteriety: 0
+    notoriety: 0
     sickness: 0
-    desparation: 0
+    desperation: 0
+    money: 0
   togetherBonus:
     suspicion: 4
-    noteriety: 0
+    notoriety: 0
     sickness: 0
-    desparation: 4
+    desperation: 4
+    money: 0
