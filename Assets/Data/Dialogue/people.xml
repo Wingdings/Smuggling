@@ -1,12 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <people>
-  <person gender="all"> <!-- Fugitive -->
+  <person gender="all"> <!-- Generic Client 1 -->
     <!-- if gender is blank, it defaults to all -->
     
+  	<!-- Generic clients are designed as filler clients for groups. They aren't supposed to be terribly interesting
+  		or impactful, so their stats are very simple. There are a few different generic clients with different
+  		bios so that the player won't see the same dialogue a hundred times. -->
+  	<bio>I was told you were the person to see about getting to %destination%.</bio>
+  
+  	<!-- Any unspecified attributes will be completely randomized. The format of specification is the same as hints.xml -->
+    <!-- NOTE: Money has a min of 0 and a max of 1000 by default.-->
+  	<attr max="4">suspicion</attr>
+  	<attr max="4">notoriety</attr>
+  	<attr max="4">sickness</attr>
+  	<attr max="4">desperation</attr>
+  	<attr min="400" max="700">money</attr>
+  </person>
+  
+  <person gender="all"> <!-- Generic Client 2 -->
+  	<bio>I need to get to %destination%. You can get me there?</bio>
+  	
+  	<attr max="4">suspicion</attr>
+  	<attr max="4">notoriety</attr>
+  	<attr max="4">sickness</attr>
+  	<attr max="4">desperation</attr>
+  	<attr min="400" max="700">money</attr>
+  </person>
+  
+  <person gender="all"> <!-- Generic Client 3 -->
+  	<bio>I've heard you've been getting people over to %destination%.</bio>
+  	
+  	<attr max="4">suspicion</attr>
+  	<attr max="4">notoriety</attr>
+  	<attr max="4">sickness</attr>
+  	<attr max="4">desperation</attr>
+  	<attr min="400" max="700">money</attr>
+  </person>
+  
+  <person gender="all"> <!-- Generic Client 4 -->
+  	<bio>I'm in the market for... transportation to %destination%.</bio>
+  	
+  	<attr max="4">suspicion</attr>
+  	<attr max="4">notoriety</attr>
+  	<attr max="4">sickness</attr>
+  	<attr max="4">desperation</attr>
+  	<attr min="400" max="700">money</attr>
+  </person>
+  
+  <person gender="all"> <!-- Generic Client 5 -->
+  	<bio>They say you know how to get past the border to %destination%.</bio>
+  	
+  	<attr max="4">suspicion</attr>
+  	<attr max="4">notoriety</attr>
+  	<attr max="4">sickness</attr>
+  	<attr max="4">desperation</attr>
+  	<attr min="400" max="700">money</attr>
+  </person>
+	
+  <person gender="all"> <!-- Fugitive -->
     <bio>Hi, uh, my name is %name%. I'm, well, uh, wanting to go to %destination%. I'm, uh, kind of on the run. I really need some, uh, help.</bio>
     
-    <!-- Any unspecified attributes will be completely randomized. The format of specification is the same as hints.xml -->
-    <!-- NOTE: Money has a min of 0 and a max of 1000 by default.-->
     <attr min="3" max="6">suspicion</attr>
     <attr min="5" max="8">notoriety</attr>
     <attr min="0" max="4">sickness</attr>
@@ -18,7 +71,6 @@
   </person>
   
   <person gender="male"> <!-- Gangbanger -->
-
     <bio>Yo, I'm %name%. I need to get to %destination%, pronto. Like, yesterday, man.</bio>
   
     <attr min="5" max="8">suspicion</attr>
@@ -29,6 +81,7 @@
 
     <mod>very_angry</mod>
   </person>
+  
   <person gender="all"> <!-- Rich, possibly very sick -->
     <bio>I need to get to %destination%. You'll be well rewarded for getting me there quietly.</bio>
 
