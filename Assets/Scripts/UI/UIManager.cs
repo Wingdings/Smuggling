@@ -13,6 +13,8 @@ public enum FLOW_EVENT
     FLOW_DIALOG_CLOSE,
     FLOW_GROUP_SELECT_OPEN,
     FLOW_GROUP_SELECT_CLOSE,
+    FLOW_RESULTS_OPEN,
+    FLOW_RESULTS_CLOSE,
 }
 
 public class UIManager : MonoBehaviour {
@@ -62,6 +64,19 @@ public class UIManager : MonoBehaviour {
                     break;
                 case FLOW_EVENT.FLOW_DIALOG_CLOSE:
                     closeScreen("ScreenDialog");
+                    break;
+                case FLOW_EVENT.FLOW_GROUP_SELECT_OPEN:
+                    openScreen("ScreenGroupSelect");
+                    break;
+                case FLOW_EVENT.FLOW_GROUP_SELECT_CLOSE:
+                    closeScreen("ScreenGroupSelect");
+                    closeScreen("ScreenDialog");
+                    break;
+                case FLOW_EVENT.FLOW_RESULTS_OPEN:
+                    openScreen("ScreenResults");
+                    break;
+                case FLOW_EVENT.FLOW_RESULTS_CLOSE:
+                    closeScreen("ScreenResults");
                     break;
                 default:
                     break;

@@ -62,6 +62,11 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogFormat("Hint: {0}", hint);
         }
+
+        //TODO default groups
+        smugglingGroups.Add(new SmugglingGroup());
+        smugglingGroups.Add(new SmugglingGroup());
+        smugglingGroups.Add(new SmugglingGroup());
     }
 
     public SmugglingResult[] Simulate()
@@ -93,6 +98,18 @@ public class GameManager : MonoBehaviour
         }
 
         return results;
+    }
+
+    public int GetClientGroup(Client c)
+    {
+        for (int i = 0; i < smugglingGroups.Count; i++)
+        {
+            if (smugglingGroups[i].ContainsClient(c))
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public Client GenerateNextClient()

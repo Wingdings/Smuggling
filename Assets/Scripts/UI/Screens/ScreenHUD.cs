@@ -8,6 +8,7 @@ public class ScreenHUD : ScreenBase {
     {
         base.Start();
         getButtonByName("PauseButton").onClick.AddListener(delegate () { _ui.DoFlowEvent(FLOW_EVENT.FLOW_PAUSE_MENU_OPEN); });
+        getButtonByName("SimulateButton").onClick.AddListener(delegate() { _ui.DoFlowEvent(FLOW_EVENT.FLOW_RESULTS_OPEN); });
     }
 
     // Update is called once per frame

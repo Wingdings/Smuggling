@@ -52,6 +52,21 @@ public class ScreenBase : MonoBehaviour {
         return null;
     }
 
+    protected Image getImageByName(string name)
+    {
+        //GameObject b = transform.Find(name).gameObject;
+        //return b.GetComponent<Button>();
+        Image[] images = GetComponentsInChildren<Image>();
+        foreach (Image i in images)
+        {
+            if (i.gameObject.name == name)
+            {
+                return i;
+            }
+        }
+        return null;
+    }
+
     public virtual void OpenScreen()
     {
         //do open animations

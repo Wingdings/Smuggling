@@ -28,6 +28,8 @@ public class ScreenDialog : ScreenBase {
         t.text = tString;
         t = getTextByName("BioText");
         t.text = _client.bio;
+        t = getTextByName("NameText");
+        t.text = _client.nameData.first + "\n" + _client.nameData.last;
     }
 
     // Update is called once per frame

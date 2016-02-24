@@ -132,7 +132,7 @@ public class Client : ScriptableObject
     public static Client Create(double suspicion = 0.0, double notoriety = 0.0, double sickness = 0.0, double desperation = 0.0, double money = 0.0)
     {
         Client client = ScriptableObject.CreateInstance<Client>();
-        client.stats = new ClientStats(suspicion, notoriety, sickness, desperation);
+        client.stats = new ClientStats(suspicion, notoriety, sickness, desperation, money);
         return client;
     }
 
@@ -167,12 +167,17 @@ public enum TransportType
     SEA
 }
 
-public class SmugglingGroup : MonoBehaviour
+public class SmugglingGroup
 {
     public List<Client> clients = new List<Client>();
     public double difficulty = 1; // should be close to 1
     public double cost = 3000;
     public TransportType transport = TransportType.LAND;
+
+    public SmugglingGroup()
+    {
+
+    }
 
     public ClientStats CalculateStats()
     {
@@ -184,5 +189,20 @@ public class SmugglingGroup : MonoBehaviour
         }
 
         return result * difficulty;
+    }
+
+    public void AddClient(Client c)
+    {
+        clients.Add(c);
+    }
+
+    public bool ContainsClient(Client c)
+    {
+        return clients.Contains(c);
+    }
+
+    public void SetTransportType(TransportType t)
+    {
+        transport = t;
     }
 }
