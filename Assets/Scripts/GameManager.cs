@@ -95,7 +95,11 @@ public class GameManager : MonoBehaviour
 
             results[i] = result;
             Debug.Log(string.Format("Group #{0}: {1:F2}% chance, rolled {2:F2}, result is {3}", i, result.chance * 100, result.roll * 100, result.success ? "success" : "failure"));
+
+            group.clients.Clear();
         }
+
+
 
         return results;
     }
