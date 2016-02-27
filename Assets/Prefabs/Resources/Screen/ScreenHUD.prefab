@@ -28,6 +28,7 @@ GameObject:
   - 224: {fileID: 22460404}
   - 222: {fileID: 22287628}
   - 114: {fileID: 11464866}
+  - 114: {fileID: 11410442}
   m_Layer: 5
   m_Name: MoneyText
   m_TagString: Untagged
@@ -81,6 +82,7 @@ GameObject:
   - 224: {fileID: 22457300}
   - 222: {fileID: 22263812}
   - 114: {fileID: 11413932}
+  - 114: {fileID: 11456144}
   m_Layer: 5
   m_Name: BoatGroupText
   m_TagString: Untagged
@@ -134,6 +136,7 @@ GameObject:
   - 224: {fileID: 22442060}
   - 222: {fileID: 22253520}
   - 114: {fileID: 11406520}
+  - 114: {fileID: 11458406}
   m_Layer: 5
   m_Name: ReputationText
   m_TagString: Untagged
@@ -220,6 +223,7 @@ GameObject:
   - 224: {fileID: 22477430}
   - 222: {fileID: 22297582}
   - 114: {fileID: 11434262}
+  - 114: {fileID: 11417410}
   m_Layer: 5
   m_Name: BorderGroupText
   m_TagString: Untagged
@@ -237,6 +241,7 @@ GameObject:
   - 224: {fileID: 22499120}
   - 222: {fileID: 22272666}
   - 114: {fileID: 11444340}
+  - 114: {fileID: 11416032}
   m_Layer: 5
   m_Name: PlaneGroupText
   m_TagString: Untagged
@@ -345,6 +350,20 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11410442
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 105896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!114 &11413932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -357,7 +376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -378,6 +397,34 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 0
+--- !u!114 &11416032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
+--- !u!114 &11417410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 188760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!114 &11419120
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -417,7 +464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -477,7 +524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -498,6 +545,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 0
+--- !u!114 &11456144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!114 &11456410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -539,6 +600,20 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &11458406
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 167634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!114 &11460516
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1002,7 +1077,7 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -162.3, y: 14.9}
+  m_AnchoredPosition: {x: -303, y: -30}
   m_SizeDelta: {x: 46.285, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22411862
@@ -1038,7 +1113,7 @@ RectTransform:
   m_RootOrder: 5
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.7, y: -194}
+  m_AnchoredPosition: {x: 3.4, y: -135}
   m_SizeDelta: {x: 46.285, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22423472
@@ -1126,7 +1201,7 @@ RectTransform:
   m_RootOrder: 3
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -110.4, y: 148}
+  m_AnchoredPosition: {x: -102, y: 148}
   m_SizeDelta: {x: 46.285, y: 46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22457300
@@ -1143,8 +1218,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.7, y: 1.2}
-  m_SizeDelta: {x: -4.3, y: -2.4}
+  m_AnchoredPosition: {x: -3.2999992, y: 1.2}
+  m_SizeDelta: {x: -5.5, y: -2.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22460404
 RectTransform:
@@ -1177,8 +1252,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.9, y: 1.6}
-  m_SizeDelta: {x: -3.8, y: -3.1}
+  m_AnchoredPosition: {x: -2.4, y: 1.2}
+  m_SizeDelta: {x: -4.7, y: -2.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &22495596
 RectTransform:
@@ -1212,8 +1287,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.3, y: 1.7}
-  m_SizeDelta: {x: -4.6, y: -2.4}
+  m_AnchoredPosition: {x: -1.9, y: 1.7}
+  m_SizeDelta: {x: -5.9, y: -2.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &100100000
 Prefab:

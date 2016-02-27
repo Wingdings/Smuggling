@@ -19,14 +19,17 @@ public enum FLOW_EVENT
 
 public class UIManager : MonoBehaviour {
 
+    Dictionary<string, GameObject> _resources;
     Queue _flowQueue;
     List<GameObject> _screens;
     GameObject _game;
 
 	// Use this for initialization
 	void Start () {
+        _resources = new Dictionary<string, GameObject>();
         _flowQueue = new Queue();
         _screens = new List<GameObject>();
+        loadResources();
         openScreen("ScreenSplash");
 
 
@@ -95,10 +98,23 @@ public class UIManager : MonoBehaviour {
         }
 	}
 
+    void loadResources()
+    {
+        //Add prefabs here
+        _resources.Add("ScreenDialog", Resources.Load<GameObject>("Screen/ScreenDialog"));
+        _resources.Add("ScreenGroupSelect", Resources.Load<GameObject>("Screen/ScreenGroupSelect"));
+        _resources.Add("ScreenHUD", Resources.Load<GameObject>("Screen/ScreenHUD"));
+        _resources.Add("ScreenPauseMenu", Resources.Load<GameObject>("Screen/ScreenPauseMenu"));
+        _resources.Add("ScreenResults", Resources.Load<GameObject>("Screen/ScreenResults"));
+        _resources.Add("ScreenSplash", Resources.Load<GameObject>("Screen/ScreenSplash"));
+
+        _resources.Add("GameManager", Resources.Load<GameObject>("GameManager"));
+    }
+
     void loadGame()
     {
         if (_game == null)
-            _game = Instantiate((GameObject)Resources.Load("GameManager"));
+            _game = Instantiate(_resources["GameManager"]);
     }
 
     void destroyGame()
@@ -118,7 +134,7 @@ public class UIManager : MonoBehaviour {
     {
         GameObject canvas = GameObject.Find("Canvas");
         
-        GameObject newScreen = Instantiate((GameObject) Resources.Load("Screen/"+name));
+        GameObject newScreen = Instantiate(_resources[name]);
         RectTransform t = newScreen.GetComponent<RectTransform>();
         t.SetParent(canvas.transform, false);
         newScreen.GetComponent<ScreenBase>().OpenScreen();

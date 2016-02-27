@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   referencedClient: {fileID: 0}
-  smugglingGroups: []
+  player: {fileID: 0}
   namesAsset: {fileID: 4900000, guid: 38dbebe658bc1bd4b9c82a2d666f42ca, type: 3}
   hintsAsset: {fileID: 4900000, guid: 22162362c980c1c468c955bdb95cee88, type: 3}
   peopleAsset: {fileID: 4900000, guid: 3b98b084f52f2d647957b2302568fc26, type: 3}
@@ -101,7 +101,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 84b5ca2252a131e48b4839ab5f4398f7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1d445d53bd6ae9b40a706586dd6b14ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
