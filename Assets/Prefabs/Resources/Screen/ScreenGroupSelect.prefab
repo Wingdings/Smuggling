@@ -900,7 +900,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tunnel
+  m_Text: Shipping Container
 --- !u!114 &11475882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -933,7 +933,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Illicit Airfare
+  m_Text: Private Aircraft
 --- !u!114 &11478324
 MonoBehaviour:
   m_ObjectHideFlags: 1
