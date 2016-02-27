@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     }
 
     public Client referencedClient;
+    public Player player;
 
     public List<SmugglingGroup> smugglingGroups = new List<SmugglingGroup>();
 
@@ -62,6 +63,8 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogFormat("Hint: {0}", hint);
         }
+
+        player = ScriptableObject.CreateInstance<Player>();
 
         //TODO default groups
         smugglingGroups.Add(new SmugglingGroup());
