@@ -200,6 +200,7 @@ public class GameManager : MonoBehaviour
     }
 
 	public void ChangePlayerStatsFailedRun(SmugglingGroup group){
+		player.changeMoney(-player.calculateTransportCosts(group.GetTransportType(), group.clients.Count));
 		player.increaseRunsFailed ();
 		for (int i = 0; i < group.clients.Count; i++) {
 			Client tempClient = group.clients[i];
@@ -220,10 +221,8 @@ public class GameManager : MonoBehaviour
 			Debug.Log(group.GetTransportType() + "");
 			Debug.Log(wantedTransportType + "");
 			Debug.Log(-player.calculateTransportCosts(group.GetTransportType(), group.clients.Count) + "");
-			player.changeMoney(-player.calculateTransportCosts(group.GetTransportType(), group.clients.Count));
-			if(group.GetTransportType() == TransportType.BRIBE){
-				player.changeMoney(-(1000 * group.clients.Count - 1));
-			}
+
+
 			if(group.GetTransportType() != wantedTransportType && wantedTransportType != TransportType.NONE){
 				player.changeReputation(-2);
 			}else if(wantedTransportType == TransportType.NONE || wantedTransportType == group.GetTransportType()){
@@ -233,6 +232,9 @@ public class GameManager : MonoBehaviour
 	}
 
 	public void ChangePlayerStatsSucceededRun(SmugglingGroup group){
+		//update costs of travel
+		player.changeMoney(-player.calculateTransportCosts(group.GetTransportType(), group.clients.Count));
+
 		for (int i = 0; i < group.clients.Count; i++) {
 			Client tempClient = group.clients[i];
 			
@@ -255,13 +257,11 @@ public class GameManager : MonoBehaviour
 			Debug.Log(-player.calculateTransportCosts(group.GetTransportType(), group.clients.Count) + "");
 
 			//we can remove this line if we want it to be so that clients who make it pay off their transport costs
-			/*
-			player.changeMoney(-player.calculateTransportCosts(group.GetTransportType(), group.clients.Count));
 
-			if(group.GetTransportType() == TransportType.BRIBE){
-					player.changeMoney(-(1000 * group.clients.Count - 1));
-		    }
-			 */
+
+
+
+			 
 			if(group.GetTransportType() != wantedTransportType && wantedTransportType != TransportType.NONE){
 				player.changeReputation(+1);
 			}else if(wantedTransportType == TransportType.NONE || wantedTransportType == group.GetTransportType()){
