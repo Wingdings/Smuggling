@@ -110,10 +110,13 @@ public class GameManager : MonoBehaviour
     }
 
 	void Update(){
+		if (Input.GetKeyDown ("g")) {
+			clientsWaiting.Add(GenerateNextClient());
+		}
 		if (Time.time > timeBetweenClients) {
 			timeBetweenClients += Random.Range(10,25);
 			clientsWaiting.Add(GenerateNextClient());
-			Debug.Log(clientsWaiting.Count);
+			//Debug.Log(clientsWaiting.Count);
 		}
 	}
 

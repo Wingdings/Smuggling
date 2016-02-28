@@ -60,7 +60,7 @@ public class Player : ScriptableObject
 		} else if (type == TransportType.AIR) {
 			return airTransportCost * 1;
 		} else if (type == TransportType.BRIBE) {
-			return (bribeTransportCost * numClients);
+			return (bribeTransportCost) + ((numClients - 1) * 1000);
 		} else {
 			return 0;
 		}
