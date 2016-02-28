@@ -31,6 +31,10 @@ public class GameManager : MonoBehaviour
         private set;
     }
 
+	public int timeBetweenClients = 5;
+
+	public List<Client> clientsWaiting;
+
     public Client referencedClient;
     public SmugglingGroup referencedGroup;
 
@@ -55,6 +59,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+		clientsWaiting = new List<Client> ();
         NameGen = new NameGenerator(namesAsset);
         HintGen = new HintGenerator(hintsAsset);
         ClientGen = new ClientGenerator(peopleAsset, modifierList);
@@ -103,6 +108,18 @@ public class GameManager : MonoBehaviour
         smugglingGroups.Add(seaTransportGroup);
         smugglingGroups.Add(airTransportGroup);
     }
+
+	void Update(){
+		if (Time.time > timeBetweenClients) {
+			timeBetweenClients += Random.Range(10,25);
+			clientsWaiting.Add(GenerateNextClient());
+			Debug.Log(clientsWaiting.Count);
+		}
+	}
+
+	public List<Client> GetClientsWaiting(){
+		return clientsWaiting;
+	}
 
     public SmugglingResult SimulateGroup(SmugglingGroup g)
     {

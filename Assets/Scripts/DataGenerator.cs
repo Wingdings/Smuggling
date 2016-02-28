@@ -430,7 +430,7 @@ public class ClientGenerator
         client.stats.notoriety = rand.NextDouble(generator.min.notoriety, generator.max.notoriety);
         client.stats.sickness = rand.NextDouble(generator.min.sickness, generator.max.sickness);
         client.stats.desperation = rand.NextDouble(generator.min.desperation, generator.max.desperation);
-        client.stats.money = rand.NextDouble(1000, 3000);
+        client.stats.money = rand.NextDouble(generator.min.money, generator.max.money);
 
         List<ClientModifier> mods = new List<ClientModifier>();
         foreach (var modData in generator.modifiers)
