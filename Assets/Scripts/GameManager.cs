@@ -71,19 +71,19 @@ public class GameManager : MonoBehaviour
 		player.changeReputation(50);
 
         //TODO default groups
-        smugglingGroups.Add(new SmugglingGroup());
-        smugglingGroups.Add(new SmugglingGroup());
-        smugglingGroups.Add(new SmugglingGroup());
+		SmugglingGroup seaTransportGroup = new SmugglingGroup();
+		SmugglingGroup trainTransportGroup = new SmugglingGroup();
+		SmugglingGroup airTransportGroup = new SmugglingGroup();
+		SmugglingGroup bribeTransportGroup = new SmugglingGroup();
+		seaTransportGroup.SetTransportType (TransportType.SEA);
+		airTransportGroup.SetTransportType (TransportType.AIR);
+		bribeTransportGroup.SetTransportType (TransportType.BRIBE);
+		trainTransportGroup.SetTransportType (TransportType.TRAIN);
 
-		for (int i = 0; i < smugglingGroups.Count; i++) {
-			if( i == 0){
-				smugglingGroups[i].SetTransportType(TransportType.AIR);
-			}else if( i == 1){
-				smugglingGroups[i].SetTransportType(TransportType.SEA);
-			}else if( i == 2){
-				smugglingGroups[i].SetTransportType(TransportType.TRAIN);
-			}
-		}
+		//need to add train, havent implemented yet
+        smugglingGroups.Add(bribeTransportGroup);
+        smugglingGroups.Add(seaTransportGroup);
+        smugglingGroups.Add(airTransportGroup);
     }
 
     public SmugglingResult[] Simulate()
@@ -157,9 +157,13 @@ public class GameManager : MonoBehaviour
 			}else if(tempClient.stats.transportTypeNum == 4){
 				wantedTransportType = TransportType.BRIBE;
 			}
+			Debug.Log(group.GetTransportType() + "");
 			Debug.Log(wantedTransportType + "");
-			Debug.Log(player.calculateTransportCosts(wantedTransportType, group.clients.Count) + "");
-			player.changeMoney(-player.calculateTransportCosts(wantedTransportType, group.clients.Count));
+			Debug.Log(-player.calculateTransportCosts(group.GetTransportType(), group.clients.Count) + "");
+			player.changeMoney(-player.calculateTransportCosts(group.GetTransportType(), group.clients.Count));
+			if(group.GetTransportType() == TransportType.BRIBE){
+				player.changeMoney(-(1000 * group.clients.Count - 1));
+			}
 			if(group.GetTransportType() != wantedTransportType && wantedTransportType != TransportType.NONE){
 				player.changeReputation(-2);
 			}else if(wantedTransportType == TransportType.NONE || wantedTransportType == group.GetTransportType()){
@@ -187,13 +191,17 @@ public class GameManager : MonoBehaviour
 			}
 			Debug.Log(group.GetTransportType() + "");
 			Debug.Log(wantedTransportType + "");
-			Debug.Log(player.calculateTransportCosts(wantedTransportType, group.clients.Count) + "");
-			player.changeMoney(player.calculateTransportCosts(wantedTransportType, group.clients.Count));
+			Debug.Log(-player.calculateTransportCosts(group.GetTransportType(), group.clients.Count) + "");
+			player.changeMoney(-player.calculateTransportCosts(group.GetTransportType(), group.clients.Count));
+			if(group.GetTransportType() == TransportType.BRIBE){
+					player.changeMoney(-(1000 * group.clients.Count - 1));
+		    }
 			if(group.GetTransportType() != wantedTransportType && wantedTransportType != TransportType.NONE){
 				player.changeReputation(+1);
 			}else if(wantedTransportType == TransportType.NONE || wantedTransportType == group.GetTransportType()){
 				player.changeReputation(+2);
 			}
+			player.changeMoney((int)tempClient.stats.money);
 		}
 	}
 }
