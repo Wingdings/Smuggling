@@ -7,6 +7,7 @@ public struct PlayerStats
 	public string name;
 	public int money;
 	public int reputation;
+	public int totalRuns;
 	public int runsFailed; // if player fails too many runs they have a chance of being caught
 		
 	public PlayerStats(string _name = "EMPTY", int _money = 0, int _reputation = 0, int _runsFailed = 0)
@@ -15,6 +16,7 @@ public struct PlayerStats
 		money = _money;
 		reputation = _reputation;
 		runsFailed = _runsFailed;
+		totalRuns = 0;
 	}
 }
 	
@@ -24,10 +26,10 @@ public class Player : ScriptableObject
 	public PlayerStats stats;
 
 	//holds money data for different tranportation
-	public const int trainTransportCost = 8000;
-	public const int seaTransportCost = 3000;
-	public const int airTransportCost = 10000;
-	public const int bribeTransportCost = 2000;
+	public int trainTransportCost = 8000;
+	public int seaTransportCost = 3000;
+	public int airTransportCost = 10000;
+	public int bribeTransportCost = 2000;
 
 	public static Player Create(string _name = "EMPTY", int _money = 0, int _reputation = 0, int _runsFailed = 0)
 	{
@@ -66,9 +68,33 @@ public class Player : ScriptableObject
 		}
 	}
 
+	public int getTotalRuns(){
+		return this.stats.totalRuns;
+	}
+
+	public void updateTotalRuns(){
+		this.stats.totalRuns++;
+	}
+
 	public void setStartingStats(){
 		changeMoney (100000);
 		changeReputation (50);
+	}
+
+	public void setTrainTransportCost(int _num){
+		trainTransportCost = _num;
+	}
+
+	public void setSeaTransportCost(int _num){
+		seaTransportCost = _num;
+	}
+
+	public void setBribeTransportCost(int _num){
+		bribeTransportCost = _num;
+	}
+
+	public void setAirTransportCost(int _num){
+		airTransportCost = _num;
 	}
 		
 	public void printStats(){

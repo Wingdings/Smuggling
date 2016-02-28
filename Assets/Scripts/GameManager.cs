@@ -143,6 +143,8 @@ public class GameManager : MonoBehaviour
             ChangePlayerStatsSucceededRun(group);
             result.success = true;
         }
+
+		player.updateTotalRuns();
 		/*
         Debug.Log(country1.getName() + "");
         Debug.Log(country1.getPopulation() + "");
@@ -159,50 +161,7 @@ public class GameManager : MonoBehaviour
         return result;
     }
 
-    public SmugglingResult[] Simulate()
-    {
-        SmugglingResult[] results = new SmugglingResult[smugglingGroups.Count];
-        Debug.Log("Simulating smuggling operation...");
-
-        for (var i = 0; i < smugglingGroups.Count; ++i)
-        {
-            var group = smugglingGroups[i];
-            SmugglingResult result = new SmugglingResult();
-            ClientStats stats = group.CalculateStats();
-            result.chance = CalculateChance(stats, group.clients.Count);
-
-            result.roll = rand.NextDouble();
-            if (result.roll > result.chance)
-            {
-				ChangePlayerStatsFailedRun(group);
-                result.success = false;
-            }
-            else
-            {
-				ChangeCountryStatsSucceededRun(group);
-				ChangePlayerStatsSucceededRun(group);
-                result.success = true;
-            }
-
-			/*
-			Debug.Log(country1.getName() + "");
-			Debug.Log(country1.getPopulation() + "");
-			Debug.Log(country2.getName() + "");
-			Debug.Log(country2.getPopulation() + "");
-			*/
-            result.money = stats.money;
-
-            results[i] = result;
-            Debug.Log(string.Format("Group #{0}: {1:F2}% chance, rolled {2:F2}, result is {3}", i, result.chance * 100, result.roll * 100, result.success ? "success" : "failure"));
-
-            group.clients.Clear();
-        }
-
-
-
-        return results;
-    }
-
+   
     public int GetClientGroup(Client c)
     {
         for (int i = 0; i < smugglingGroups.Count; i++)
