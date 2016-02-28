@@ -454,6 +454,7 @@ public class ClientGenerator
         }
 
 		client.stats.transportTypeNum = ChooseTransportType ();
+		client.stats.countryOrigin = ChooseCountryOrigin ();
 
         return client;
     }
@@ -467,6 +468,14 @@ public class ClientGenerator
 		transportList.Add (3);
 		transportList.Add(4);
 		return transportList [rand.Next (transportList.Count)];
+	}
+
+	public int ChooseCountryOrigin(){
+		System.Random rand = GameManager.rand;
+		List<int> countryList = new List<int> ();
+		countryList.Add (0);
+		countryList.Add (1);
+		return countryList [rand.Next (countryList.Count)];
 	}
 
 }

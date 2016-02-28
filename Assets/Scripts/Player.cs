@@ -36,6 +36,10 @@ public class Player : ScriptableObject
 		return player;
 	}
 
+	public void increaseRunsFailed(){
+		this.stats.runsFailed++;
+	}
+
 	//handles money changes -- use negative to subtract
 	public void changeMoney(int _num){
 		this.stats.money += _num;

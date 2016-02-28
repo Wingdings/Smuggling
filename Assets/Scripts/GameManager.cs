@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
 
     public Client referencedClient;
     public Player player;
+	public Country country1;
+	public Country country2;
 
     public List<SmugglingGroup> smugglingGroups = new List<SmugglingGroup>();
 
@@ -65,8 +67,18 @@ public class GameManager : MonoBehaviour
         }
 
         player = ScriptableObject.CreateInstance<Player>();
+		country1 = ScriptableObject.CreateInstance<Country> ();
+		country2 = ScriptableObject.CreateInstance<Country> ();
 
-		//setting startibg values manually for testing purposes, will move to method
+		//setting country stats
+		country1.setPopulation (1000000);
+		country2.setPopulation (1000000);
+		country1.setCountryName ("Country A"); //for now until names are assigned
+		country2.setCountryName ("Country B");
+		country1.setPercentSick(0);
+		country2.setPercentSick (0);
+
+		//setting starting values manually for testing purposes, will move to method
 		player.changeMoney (100000);
 		player.changeReputation(50);
 
@@ -106,10 +118,16 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+				ChangeCountryStatsSucceededRun(group);
 				ChangePlayerStatsSucceededRun(group);
                 result.success = true;
             }
-			
+
+			Debug.Log(country1.getName() + "");
+			Debug.Log(country1.getPopulation() + "");
+			Debug.Log(country2.getName() + "");
+			Debug.Log(country2.getPopulation() + "");
+
             result.money = stats.money;
 
             results[i] = result;
@@ -141,6 +159,7 @@ public class GameManager : MonoBehaviour
     }
 
 	public void ChangePlayerStatsFailedRun(SmugglingGroup group){
+		player.increaseRunsFailed ();
 		for (int i = 0; i < group.clients.Count; i++) {
 			Client tempClient = group.clients[i];
 
@@ -189,19 +208,40 @@ public class GameManager : MonoBehaviour
 			}else if(tempClient.stats.transportTypeNum == 4){
 				wantedTransportType = TransportType.BRIBE;
 			}
+
 			Debug.Log(group.GetTransportType() + "");
 			Debug.Log(wantedTransportType + "");
 			Debug.Log(-player.calculateTransportCosts(group.GetTransportType(), group.clients.Count) + "");
+
+			//we can remove this line if we want it to be so that clients who make it pay off their transport costs
+			/*
 			player.changeMoney(-player.calculateTransportCosts(group.GetTransportType(), group.clients.Count));
+
 			if(group.GetTransportType() == TransportType.BRIBE){
 					player.changeMoney(-(1000 * group.clients.Count - 1));
 		    }
+			 */
 			if(group.GetTransportType() != wantedTransportType && wantedTransportType != TransportType.NONE){
 				player.changeReputation(+1);
 			}else if(wantedTransportType == TransportType.NONE || wantedTransportType == group.GetTransportType()){
 				player.changeReputation(+2);
 			}
+
 			player.changeMoney((int)tempClient.stats.money);
+		}
+	}
+
+	public void ChangeCountryStatsSucceededRun(SmugglingGroup group){
+		for (int i = 0; i < group.clients.Count; i++) {
+			Client tempClient = group.clients [i];
+
+			if(tempClient.stats.countryOrigin == 0){
+				country1.changePopulation(-1);
+				country2.changePopulation(1);
+			}else if(tempClient.stats.countryOrigin == 1){
+				country1.changePopulation(1);
+				country2.changePopulation(-1);
+			}
 		}
 	}
 }

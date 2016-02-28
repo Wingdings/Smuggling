@@ -9,7 +9,8 @@ public enum ClientAttribute
     Desperation,
     Money,
 	TransportTypeNum,
-	MinRepRequired
+	MinRepRequired, 
+	CountryOrigin
 }
 
 [System.Serializable]
@@ -23,6 +24,7 @@ public struct ClientStats
 	public int minRepRequired;
 	public TransportType wantedTransportType;
 	public double transportTypeNum;
+	public double countryOrigin;
 
     public ClientStats(double suspicion = 0.0, double notoriety = 0.0, double sickness = 0.0, double desperation = 0.0, double money = 0.0, TransportType wantedTransportType = TransportType.NONE,int minRepRequired = 0)
     {
@@ -34,6 +36,7 @@ public struct ClientStats
 		this.wantedTransportType = wantedTransportType;
 		this.minRepRequired = minRepRequired;
 		transportTypeNum = 0;
+		countryOrigin = -1;
     }
 
     public double GetAttribute(ClientAttribute attr)
@@ -60,6 +63,9 @@ public struct ClientStats
 
 			case ClientAttribute.MinRepRequired:
 				return minRepRequired;
+
+			case ClientAttribute.CountryOrigin:
+				return countryOrigin;
         }
 
         return double.MinValue;
@@ -115,6 +121,10 @@ public struct ClientStats
 			case ClientAttribute.MinRepRequired:
 				minRepRequired = (int)Mathf.Floor((float)value);
 				break;
+
+			case ClientAttribute.CountryOrigin:
+				countryOrigin = value;
+				break;
         }
     }
 
@@ -153,6 +163,9 @@ public struct ClientStats
 
 			case "minRepRequired":
 				return ClientAttribute.MinRepRequired;
+
+			case "countryOrigin":
+				return ClientAttribute.CountryOrigin;
 
             default:
                 return null;
