@@ -289,6 +289,7 @@ public class ClientGenerator
         public string gender = "all";
         public string bio;
 
+
         public ClientStats min = new ClientStats();
         public ClientStats max = new ClientStats();
 
@@ -452,6 +453,20 @@ public class ClientGenerator
             client.hints[i] = Client.ReplaceStringData(client, client.hints[i]);
         }
 
+		client.stats.transportTypeNum = ChooseTransportType ();
+
         return client;
     }
+
+	public int ChooseTransportType(){
+		System.Random rand = GameManager.rand;
+		List<int> transportList = new List<int> ();
+		transportList.Add (0);
+		transportList.Add (1);
+		transportList.Add (2);
+		transportList.Add (3);
+		transportList.Add(4);
+		return transportList [rand.Next (transportList.Count)];
+	}
+
 }

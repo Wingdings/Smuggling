@@ -23,6 +23,12 @@ public class Player : ScriptableObject
 {
 	public PlayerStats stats;
 
+	//holds money data for different tranportation
+	public const int trainTransportCost = 8000;
+	public const int seaTransportCost = 3000;
+	public const int airTransportCost = 10000;
+	public const int bribeTransportCost = 2000;
+
 	public static Player Create(string _name = "EMPTY", int _money = 0, int _reputation = 0, int _runsFailed = 0)
 	{
 		Player player = ScriptableObject.CreateInstance<Player>();
@@ -38,6 +44,22 @@ public class Player : ScriptableObject
 	//handles reputation changes -- use negative to subtract
 	public void changeReputation(int _num){
 		this.stats.reputation += _num;
+	}
+
+	public int calculateTransportCosts (TransportType type, int numClients){
+		if (type == TransportType.NONE) {
+			return 0;
+		} else if (type == TransportType.SEA) {
+			return seaTransportCost * 1;
+		} else if (type == TransportType.TRAIN) {
+			return trainTransportCost * 1;
+		} else if (type == TransportType.AIR) {
+			return airTransportCost * 1;
+		} else if (type == TransportType.BRIBE) {
+			return bribeTransportCost * 1;
+		} else {
+			return 0;
+		}
 	}
 		
 	public void printStats(){

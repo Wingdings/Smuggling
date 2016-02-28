@@ -7,7 +7,9 @@ public enum ClientAttribute
     Notoriety,
     Sickness,
     Desperation,
-    Money
+    Money,
+	TransportTypeNum,
+	MinRepRequired
 }
 
 [System.Serializable]
@@ -18,14 +20,20 @@ public struct ClientStats
     public double sickness;
     public double desperation;
     public double money;
+	public int minRepRequired;
+	public TransportType wantedTransportType;
+	public double transportTypeNum;
 
-    public ClientStats(double suspicion = 0.0, double notoriety = 0.0, double sickness = 0.0, double desperation = 0.0, double money = 0.0)
+    public ClientStats(double suspicion = 0.0, double notoriety = 0.0, double sickness = 0.0, double desperation = 0.0, double money = 0.0, TransportType wantedTransportType = TransportType.NONE,int minRepRequired = 0)
     {
         this.suspicion = suspicion;
         this.notoriety = notoriety;
         this.sickness = sickness;
         this.desperation = desperation;
         this.money = money;
+		this.wantedTransportType = wantedTransportType;
+		this.minRepRequired = minRepRequired;
+		transportTypeNum = 0;
     }
 
     public double GetAttribute(ClientAttribute attr)
@@ -46,6 +54,12 @@ public struct ClientStats
 
             case ClientAttribute.Money:
                 return money;
+
+			case ClientAttribute.TransportTypeNum:
+				return transportTypeNum;
+
+			case ClientAttribute.MinRepRequired:
+				return minRepRequired;
         }
 
         return double.MinValue;
@@ -74,6 +88,33 @@ public struct ClientStats
             case ClientAttribute.Money:
                 money = value;
                 break;
+
+			case ClientAttribute.TransportTypeNum:
+				if(value == 0){
+					wantedTransportType = TransportType.NONE;
+					transportTypeNum = 0;
+				}
+				else if(value == 1){
+					wantedTransportType = TransportType.SEA;
+					transportTypeNum = 1;
+				}
+				else if(value == 2){
+					wantedTransportType = TransportType.TRAIN;
+					transportTypeNum = 2;	
+				}
+				else if(value == 3){
+					wantedTransportType = TransportType.AIR;
+					transportTypeNum = 3;
+				}
+				else if(value == 4){
+					wantedTransportType = TransportType.BRIBE;
+					transportTypeNum = 4;
+				}
+				break;
+
+			case ClientAttribute.MinRepRequired:
+				minRepRequired = (int)Mathf.Floor((float)value);
+				break;
         }
     }
 
@@ -107,6 +148,12 @@ public struct ClientStats
             case "money":
                 return ClientAttribute.Money;
 
+			case "transportTypeNum":
+				return ClientAttribute.TransportTypeNum;
+
+			case "minRepRequired":
+				return ClientAttribute.MinRepRequired;
+
             default:
                 return null;
         }
@@ -129,10 +176,10 @@ public class Client : ScriptableObject
     public ClientStats stats;
     public ClientModifier[] modifiers;
 
-    public static Client Create(double suspicion = 0.0, double notoriety = 0.0, double sickness = 0.0, double desperation = 0.0, double money = 0.0)
+	public static Client Create(double suspicion = 0.0, double notoriety = 0.0, double sickness = 0.0, double desperation = 0.0, double money = 0.0, TransportType wantedTransportType = TransportType.NONE,int minRepRequired = 0)
     {
         Client client = ScriptableObject.CreateInstance<Client>();
-        client.stats = new ClientStats(suspicion, notoriety, sickness, desperation, money);
+        client.stats = new ClientStats(suspicion, notoriety, sickness, desperation, money, wantedTransportType, minRepRequired);
         return client;
     }
 
@@ -162,9 +209,11 @@ public class Client : ScriptableObject
 
 public enum TransportType
 {
-    LAND,
+    TRAIN,
+	BRIBE,
     AIR,
-    SEA
+    SEA,
+	NONE
 }
 
 public class SmugglingGroup
@@ -172,7 +221,7 @@ public class SmugglingGroup
     public List<Client> clients = new List<Client>();
     public double difficulty = 1; // should be close to 1
     public double cost = 3000;
-    public TransportType transport = TransportType.LAND;
+    public TransportType transport = TransportType.NONE;
 
     public SmugglingGroup()
     {
@@ -205,4 +254,9 @@ public class SmugglingGroup
     {
         transport = t;
     }
+
+	public TransportType GetTransportType()
+	{
+		return transport;
+	}
 }

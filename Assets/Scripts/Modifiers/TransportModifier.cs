@@ -10,7 +10,7 @@ public class TransportModifier : ClientModifier
 {
     public string[] hintStrings;
 
-    public TransportType transport = TransportType.LAND;
+    public TransportType transport = TransportType.NONE;
 
     [Tooltip("The bonus to stats when without the specified transport.")]
     public ClientStats withBonus;
