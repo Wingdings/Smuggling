@@ -9,12 +9,12 @@
   	<bio>I was told you were the person to see about getting to %destination%.</bio>
   
   	<!-- Any unspecified attributes will be completely randomized. The format of specification is the same as hints.xml -->
-    <!-- NOTE: Money has a min of 0 and a max of 1000 by default.-->
+    <!-- NOTE: Money has a min of 1000 and a max of 3000 by default.-->
   	<attr max="4">suspicion</attr>
   	<attr max="4">notoriety</attr>
   	<attr max="4">sickness</attr>
   	<attr max="4">desperation</attr>
-  	<attr min="400" max="700">money</attr>
+  	<attr min="1500" max="2500">money</attr>
   </person>
   
   <person gender="all"> <!-- Generic Client 2 -->
@@ -24,7 +24,7 @@
   	<attr max="4">notoriety</attr>
   	<attr max="4">sickness</attr>
   	<attr max="4">desperation</attr>
-  	<attr min="400" max="700">money</attr>
+  	<attr min="1500" max="2500">money</attr>
   </person>
   
   <person gender="all"> <!-- Generic Client 3 -->
@@ -34,7 +34,7 @@
   	<attr max="4">notoriety</attr>
   	<attr max="4">sickness</attr>
   	<attr max="4">desperation</attr>
-  	<attr min="400" max="700">money</attr>
+  	<attr min="1500" max="2500">money</attr>
   </person>
   
   <person gender="all"> <!-- Generic Client 4 -->
@@ -44,7 +44,7 @@
   	<attr max="4">notoriety</attr>
   	<attr max="4">sickness</attr>
   	<attr max="4">desperation</attr>
-  	<attr min="400" max="700">money</attr>
+  	<attr min="1500" max="2500">money</attr>
   </person>
   
   <person gender="all"> <!-- Generic Client 5 -->
@@ -54,7 +54,7 @@
   	<attr max="4">notoriety</attr>
   	<attr max="4">sickness</attr>
   	<attr max="4">desperation</attr>
-  	<attr min="400" max="700">money</attr>
+  	<attr min="1500" max="2500">money</attr>
   </person>
 	
   <person gender="all"> <!-- Fugitive -->
@@ -64,7 +64,7 @@
     <attr min="5" max="8">notoriety</attr>
     <attr min="0" max="4">sickness</attr>
     <attr min="8">desperation</attr>
-    <attr min="100" max="1500">money</attr>
+    <attr min="1000" max="2000">money</attr>
     
     <!-- Modifiers will never be applied unless you specify them. If you don't specify chance, it'll be set to 1. -->
     <mod chance="0.5">very_angry</mod>
@@ -77,7 +77,7 @@
     <attr min="3" max="4">notoriety</attr>
     <attr min="0" max="3">sickness</attr>
     <attr min="9">desperation</attr>
-    <attr min="100" max="1500">money</attr>
+    <attr min="1000" max="2000">money</attr>
 
     <mod>very_angry</mod>
   </person>
