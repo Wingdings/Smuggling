@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     }
 
     public Client referencedClient;
+    public SmugglingGroup referencedGroup;
+
     public Player player;
 	public Country country1;
 	public Country country2;
@@ -88,14 +90,53 @@ public class GameManager : MonoBehaviour
 		SmugglingGroup airTransportGroup = new SmugglingGroup();
 		SmugglingGroup bribeTransportGroup = new SmugglingGroup();
 		seaTransportGroup.SetTransportType (TransportType.SEA);
+        seaTransportGroup.name = "Sea Transport Group";
 		airTransportGroup.SetTransportType (TransportType.AIR);
+        airTransportGroup.name = "Air Transport Group";
 		bribeTransportGroup.SetTransportType (TransportType.BRIBE);
+        bribeTransportGroup.name = "Bribe Transport Group";
 		trainTransportGroup.SetTransportType (TransportType.TRAIN);
+        trainTransportGroup.name = "Train Transport Group";
 
 		//need to add train, havent implemented yet
         smugglingGroups.Add(bribeTransportGroup);
         smugglingGroups.Add(seaTransportGroup);
         smugglingGroups.Add(airTransportGroup);
+    }
+
+    public SmugglingResult SimulateGroup(SmugglingGroup g)
+    {
+        var group = g;
+        SmugglingResult result = new SmugglingResult();
+        ClientStats stats = group.CalculateStats();
+        result.chance = CalculateChance(stats, group.clients.Count);
+
+        result.roll = rand.NextDouble();
+        if (result.roll > result.chance)
+        {
+            ChangePlayerStatsFailedRun(group);
+            result.success = false;
+        }
+        else
+        {
+            ChangeCountryStatsSucceededRun(group);
+            ChangePlayerStatsSucceededRun(group);
+            result.success = true;
+        }
+
+        Debug.Log(country1.getName() + "");
+        Debug.Log(country1.getPopulation() + "");
+        Debug.Log(country2.getName() + "");
+        Debug.Log(country2.getPopulation() + "");
+
+        result.money = stats.money;
+
+        //results[i] = result;
+        //Debug.Log(string.Format("Group #{0}: {1:F2}% chance, rolled {2:F2}, result is {3}", i, result.chance * 100, result.roll * 100, result.success ? "success" : "failure"));
+
+        group.clients.Clear();
+
+        return result;
     }
 
     public SmugglingResult[] Simulate()

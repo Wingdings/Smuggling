@@ -6,41 +6,41 @@ public class ScreenResults : ScreenBase {
 
     public Sprite passSprite;
     public Sprite failSprite;
+
+    private SmugglingGroup _group;
     // Use this for initialization
     public override void Start()
     {
         base.Start();
+
+        _group = _game.referencedGroup;
+
         getButtonByName("CloseButton").onClick.AddListener(delegate()
         {
             _ui.DoFlowEvent(FLOW_EVENT.FLOW_RESULTS_CLOSE);
         });
 
-        SmugglingResult[] results = _game.Simulate();
+        int prevFunds = _game.player.stats.money;
+        int prevRep = _game.player.stats.reputation;
 
-        if (results[0].success){
-            getImageByName("Group1Image").sprite = passSprite;
+        SmugglingResult results = _game.SimulateGroup(_group);
+
+        if (results.success){
+            getImageByName("GroupImage").sprite = passSprite;
         }
         else
         {
-            getImageByName("Group1Image").sprite = failSprite;
+            getImageByName("GroupImage").sprite = failSprite;
         }
-        if (results[1].success)
-        {
-            getImageByName("Group2Image").sprite = passSprite;
-        }
-        else
-        {
-            getImageByName("Group2Image").sprite = failSprite;
-        }
-        if (results[2].success)
-        {
-            getImageByName("Group3Image").sprite = passSprite;
-        }
-        else
-        {
-            getImageByName("Group3Image").sprite = failSprite;
-        }
-       
+
+        Text t = getTextByName("ProfitText");
+        t.text = "Net Profit: " + (_game.player.stats.money - prevFunds);
+        t = getTextByName("ReputationText");
+        t.text = "Net Reputation: " + (_game.player.stats.reputation - prevRep);
+
+        t = getTextByName("GroupText");
+        t.text = _group.name;
+
     }
 
     // Update is called once per frame

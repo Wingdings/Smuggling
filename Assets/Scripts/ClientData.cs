@@ -235,6 +235,7 @@ public class SmugglingGroup
     public double difficulty = 1; // should be close to 1
     public double cost = 3000;
     public TransportType transport = TransportType.NONE;
+    public string name;
 
     public SmugglingGroup()
     {

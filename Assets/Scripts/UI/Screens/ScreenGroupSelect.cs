@@ -22,7 +22,12 @@ public class ScreenGroupSelect : ScreenBase {
         getButtonByName("AddButton").onClick.AddListener(delegate()
         {
             _game.referencedClient = null;
-            //TODO add to group
+
+            if (g != -1)
+            {
+                _game.smugglingGroups[g].clients.Remove(_client);
+            }
+            
             Toggle selectedGroup = GetComponentsInChildren<ToggleGroup>()[0].ActiveToggles().FirstOrDefault();
             switch (selectedGroup.name)
             {

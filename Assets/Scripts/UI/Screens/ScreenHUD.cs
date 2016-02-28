@@ -16,10 +16,18 @@ public class ScreenHUD : ScreenBase {
     {
         base.Start();
         getButtonByName("PauseButton").onClick.AddListener(delegate () { _ui.DoFlowEvent(FLOW_EVENT.FLOW_PAUSE_MENU_OPEN); });
-        getButtonByName("SimulateButton").onClick.AddListener(delegate() { _ui.DoFlowEvent(FLOW_EVENT.FLOW_RESULTS_OPEN); });
-        getButtonByName("BorderGroupButton").onClick.AddListener(delegate () { _ui.DoFlowEvent(FLOW_EVENT.FLOW_RESULTS_OPEN); });
-        getButtonByName("BoatGroupButton").onClick.AddListener(delegate () { _ui.DoFlowEvent(FLOW_EVENT.FLOW_RESULTS_OPEN); });
-        getButtonByName("PlaneGroupButton").onClick.AddListener(delegate () { _ui.DoFlowEvent(FLOW_EVENT.FLOW_RESULTS_OPEN); });
+        //getButtonByName("SimulateButton").onClick.AddListener(delegate() { _ui.DoFlowEvent(FLOW_EVENT.FLOW_RESULTS_OPEN); });
+        getButtonByName("BorderGroupButton").onClick.AddListener(delegate () {
+            _game.referencedGroup = _game.smugglingGroups[0];
+            _ui.DoFlowEvent(FLOW_EVENT.FLOW_GROUP_PREVIEW_OPEN); });
+        getButtonByName("BoatGroupButton").onClick.AddListener(delegate () {
+            _game.referencedGroup = _game.smugglingGroups[1];
+            _ui.DoFlowEvent(FLOW_EVENT.FLOW_GROUP_PREVIEW_OPEN);
+        });
+        getButtonByName("PlaneGroupButton").onClick.AddListener(delegate () {
+            _game.referencedGroup = _game.smugglingGroups[2];
+            _ui.DoFlowEvent(FLOW_EVENT.FLOW_GROUP_PREVIEW_OPEN);
+        });
 
 
         _moneyText = getTextByName("MoneyText");

@@ -15,6 +15,8 @@ public enum FLOW_EVENT
     FLOW_GROUP_SELECT_CLOSE,
     FLOW_RESULTS_OPEN,
     FLOW_RESULTS_CLOSE,
+    FLOW_GROUP_PREVIEW_OPEN,
+    FLOW_GROUP_PREVIEW_CLOSE,
 }
 
 public class UIManager : MonoBehaviour {
@@ -81,6 +83,12 @@ public class UIManager : MonoBehaviour {
                 case FLOW_EVENT.FLOW_RESULTS_CLOSE:
                     closeScreen("ScreenResults");
                     break;
+                case FLOW_EVENT.FLOW_GROUP_PREVIEW_OPEN:
+                    openScreen("ScreenGroupPreview");
+                    break;
+                case FLOW_EVENT.FLOW_GROUP_PREVIEW_CLOSE:
+                    closeScreen("ScreenGroupPreview");
+                    break;
                 default:
                     break;
             }
@@ -107,8 +115,15 @@ public class UIManager : MonoBehaviour {
         _resources.Add("ScreenPauseMenu", Resources.Load<GameObject>("Screen/ScreenPauseMenu"));
         _resources.Add("ScreenResults", Resources.Load<GameObject>("Screen/ScreenResults"));
         _resources.Add("ScreenSplash", Resources.Load<GameObject>("Screen/ScreenSplash"));
+        _resources.Add("ScreenGroupPreview", Resources.Load<GameObject>("Screen/ScreenGroupPreview"));
 
+        _resources.Add("ClientButton", Resources.Load<GameObject>("ClientButton"));
         _resources.Add("GameManager", Resources.Load<GameObject>("GameManager"));
+    }
+
+    public GameObject getResource(string name)
+    {
+        return _resources[name];
     }
 
     void loadGame()
