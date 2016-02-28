@@ -50,13 +50,13 @@ public class Player : ScriptableObject
 		if (type == TransportType.NONE) {
 			return 0;
 		} else if (type == TransportType.SEA) {
-			return seaTransportCost * 1;
+			return seaTransportCost;
 		} else if (type == TransportType.TRAIN) {
-			return trainTransportCost * 1;
+			return trainTransportCost;
 		} else if (type == TransportType.AIR) {
 			return airTransportCost * 1;
 		} else if (type == TransportType.BRIBE) {
-			return bribeTransportCost * 1;
+			return (bribeTransportCost * 1) + (1000 * (numClients-1));
 		} else {
 			return 0;
 		}

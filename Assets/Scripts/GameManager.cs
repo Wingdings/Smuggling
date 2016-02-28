@@ -74,6 +74,16 @@ public class GameManager : MonoBehaviour
         smugglingGroups.Add(new SmugglingGroup());
         smugglingGroups.Add(new SmugglingGroup());
         smugglingGroups.Add(new SmugglingGroup());
+
+		for (int i = 0; i < smugglingGroups.Count; i++) {
+			if( i == 0){
+				smugglingGroups[i].SetTransportType(TransportType.AIR);
+			}else if( i == 1){
+				smugglingGroups[i].SetTransportType(TransportType.SEA);
+			}else if( i == 2){
+				smugglingGroups[i].SetTransportType(TransportType.TRAIN);
+			}
+		}
     }
 
     public SmugglingResult[] Simulate()
@@ -175,7 +185,7 @@ public class GameManager : MonoBehaviour
 			}else if(tempClient.stats.transportTypeNum == 4){
 				wantedTransportType = TransportType.BRIBE;
 			}
-
+			Debug.Log(group.GetTransportType() + "");
 			Debug.Log(wantedTransportType + "");
 			Debug.Log(player.calculateTransportCosts(wantedTransportType, group.clients.Count) + "");
 			player.changeMoney(player.calculateTransportCosts(wantedTransportType, group.clients.Count));
