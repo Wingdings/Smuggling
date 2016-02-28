@@ -8,8 +8,13 @@ public class ScreenPauseMenu : ScreenBase
     public override void Start()
     {
         base.Start();
-        getButtonByName("ResumeButton").onClick.AddListener(delegate () { _ui.DoFlowEvent(FLOW_EVENT.FLOW_PAUSE_MENU_CLOSE); });
-        getButtonByName("QuitButton").onClick.AddListener(delegate () { _ui.DoFlowEvent(FLOW_EVENT.FLOW_QUIT_GAME); });
+        Time.timeScale = 0;
+        getButtonByName("ResumeButton").onClick.AddListener(delegate () {
+            Time.timeScale = 1;
+            _ui.DoFlowEvent(FLOW_EVENT.FLOW_PAUSE_MENU_CLOSE); });
+        getButtonByName("QuitButton").onClick.AddListener(delegate () {
+            Time.timeScale = 1;
+            _ui.DoFlowEvent(FLOW_EVENT.FLOW_QUIT_GAME); });
     }
 
     // Update is called once per frame

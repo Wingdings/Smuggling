@@ -9,7 +9,8 @@ public class ScreenDialog : ScreenBase {
     public override void Start()
     {
         base.Start();
-        _client = _game.GenerateNextClient();
+        _client = _game.GetClientsWaiting()[0];
+        _game.GetClientsWaiting().RemoveAt(0);
         getButtonByName("AcceptButton").onClick.AddListener(delegate() {
             _game.referencedClient = _client;
             _ui.DoFlowEvent(FLOW_EVENT.FLOW_GROUP_SELECT_OPEN); });

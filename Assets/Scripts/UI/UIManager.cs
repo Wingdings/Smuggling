@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour {
         //DEBUG DELETE
         if (Input.GetKeyDown("g"))
         {
-            DoFlowEvent(FLOW_EVENT.FLOW_DIALOG_OPEN);
+            //DoFlowEvent(FLOW_EVENT.FLOW_DIALOG_OPEN);
         }
 
 	    //Clear flow queue

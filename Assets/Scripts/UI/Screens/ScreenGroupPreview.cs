@@ -35,10 +35,7 @@ public class ScreenGroupPreview : ScreenBase {
             t.text = "Risk: High";
         t = getTextByName("CostText");
         double cost = _game.player.calculateTransportCosts(_group.GetTransportType(), _group.clients.Count);
-        if (_group.GetTransportType() == TransportType.BRIBE)
-        {
-            cost += (1000 * _group.clients.Count - 1);
-        }
+        
         t.text = "Cost: $"+cost;
 
         refreshClientList();
