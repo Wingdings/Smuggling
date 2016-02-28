@@ -81,6 +81,13 @@ public class Country : ScriptableObject
 	public void calcPercentSick(){
 
 	}
+
+	public void setStartingStats(){
+		//setting country stats
+		setPopulation (1000000);
+		setPercentSick(0);
+	}
+
 	//method for handling news events after a certain smuggling group comes in
 
 

@@ -65,6 +65,11 @@ public class Player : ScriptableObject
 			return 0;
 		}
 	}
+
+	public void setStartingStats(){
+		changeMoney (100000);
+		changeReputation (50);
+	}
 		
 	public void printStats(){
 		Debug.Log (this.stats.name);

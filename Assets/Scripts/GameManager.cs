@@ -140,12 +140,12 @@ public class GameManager : MonoBehaviour
             ChangePlayerStatsSucceededRun(group);
             result.success = true;
         }
-
+		/*
         Debug.Log(country1.getName() + "");
         Debug.Log(country1.getPopulation() + "");
         Debug.Log(country2.getName() + "");
         Debug.Log(country2.getPopulation() + "");
-
+		*/
         result.money = stats.money;
 
         //results[i] = result;
@@ -181,11 +181,12 @@ public class GameManager : MonoBehaviour
                 result.success = true;
             }
 
+			/*
 			Debug.Log(country1.getName() + "");
 			Debug.Log(country1.getPopulation() + "");
 			Debug.Log(country2.getName() + "");
 			Debug.Log(country2.getPopulation() + "");
-
+			*/
             result.money = stats.money;
 
             results[i] = result;
@@ -235,10 +236,11 @@ public class GameManager : MonoBehaviour
 			}else if(tempClient.stats.transportTypeNum == 4){
 				wantedTransportType = TransportType.BRIBE;
 			}
+			/*
 			Debug.Log(group.GetTransportType() + "");
 			Debug.Log(wantedTransportType + "");
 			Debug.Log(-player.calculateTransportCosts(group.GetTransportType(), group.clients.Count) + "");
-
+			*/
 
 			if(group.GetTransportType() != wantedTransportType && wantedTransportType != TransportType.NONE){
 				player.changeReputation(-2);
@@ -269,16 +271,12 @@ public class GameManager : MonoBehaviour
 				wantedTransportType = TransportType.BRIBE;
 			}
 
+			/*
 			Debug.Log(group.GetTransportType() + "");
 			Debug.Log(wantedTransportType + "");
 			Debug.Log(-player.calculateTransportCosts(group.GetTransportType(), group.clients.Count) + "");
 
-			//we can remove this line if we want it to be so that clients who make it pay off their transport costs
-
-
-
-
-			 
+			*/
 			if(group.GetTransportType() != wantedTransportType && wantedTransportType != TransportType.NONE){
 				player.changeReputation(+1);
 			}else if(wantedTransportType == TransportType.NONE || wantedTransportType == group.GetTransportType()){
