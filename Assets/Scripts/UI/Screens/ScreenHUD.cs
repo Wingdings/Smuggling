@@ -26,23 +26,23 @@ public class ScreenHUD : ScreenBase {
         getButtonByName("PauseButton").onClick.AddListener(delegate () { _ui.DoFlowEvent(FLOW_EVENT.FLOW_PAUSE_MENU_OPEN); });
         getButtonByName("ClientWaitingButton").onClick.AddListener(delegate() { _ui.DoFlowEvent(FLOW_EVENT.FLOW_DIALOG_OPEN); });
         getButtonByName("BorderGroupButton").onClick.AddListener(delegate () {
-            _game.referencedGroup = _game.smugglingGroups[0];
+            _game.referencedGroup = _game.smugglingGroups[2];
             _ui.DoFlowEvent(FLOW_EVENT.FLOW_GROUP_PREVIEW_OPEN); });
         getButtonByName("BoatGroupButton").onClick.AddListener(delegate () {
-            _game.referencedGroup = _game.smugglingGroups[1];
+            _game.referencedGroup = _game.smugglingGroups[0];
             _ui.DoFlowEvent(FLOW_EVENT.FLOW_GROUP_PREVIEW_OPEN);
         });
         getButtonByName("PlaneGroupButton").onClick.AddListener(delegate () {
-            _game.referencedGroup = _game.smugglingGroups[2];
+            _game.referencedGroup = _game.smugglingGroups[1];
             _ui.DoFlowEvent(FLOW_EVENT.FLOW_GROUP_PREVIEW_OPEN);
         });
 
 
         _moneyText = getTextByName("MoneyText");
         _reputationText = getTextByName("ReputationText");
-        _group1Count = getTextByName("BorderGroupText");
-        _group2Count = getTextByName("BoatGroupText");
-        _group3Count = getTextByName("PlaneGroupText");
+        _group1Count = getTextByName("BoatGroupText");
+        _group2Count = getTextByName("PlaneGroupText");
+        _group3Count = getTextByName("BorderGroupText");
     }
 
     // Update is called once per frame
@@ -68,12 +68,14 @@ public class ScreenHUD : ScreenBase {
     void Hide(GameObject g)
     {
         g.GetComponent<CanvasGroup>().alpha = 0;
+        g.GetComponent<CanvasGroup>().interactable = false;
         _hidden = true;
     }
 
     void Show(GameObject g)
     {
         g.GetComponent<CanvasGroup>().alpha = 1;
+        g.GetComponent<CanvasGroup>().interactable = true;
         _hidden = false;
     }
 

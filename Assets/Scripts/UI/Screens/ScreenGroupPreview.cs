@@ -38,6 +38,11 @@ public class ScreenGroupPreview : ScreenBase {
         
         t.text = "Cost: $"+cost;
 
+        if (cost > _game.player.stats.money)
+        {
+            getButtonByName("SendButton").interactable = false;
+        }
+
         refreshClientList();
     }
 
@@ -72,6 +77,7 @@ public class ScreenGroupPreview : ScreenBase {
     public override void Update()
     {
         base.Update();
+        //Debug.Log(_prevSize + " " + _group.clients.Count);
         if (_prevSize != _group.clients.Count)
         {
             refreshClientList();

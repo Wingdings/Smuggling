@@ -45,6 +45,10 @@ public class Player : ScriptableObject
 	//handles money changes -- use negative to subtract
 	public void changeMoney(int _num){
 		this.stats.money += _num;
+        if (this.stats.money < 0)
+        {
+            this.stats.money = 0;
+        }
 	}
 		
 	//handles reputation changes -- use negative to subtract

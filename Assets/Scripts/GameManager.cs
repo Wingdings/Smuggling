@@ -95,9 +95,10 @@ public class GameManager : MonoBehaviour
         trainTransportGroup.name = "Train Transport Group";
 
 		//need to add train, havent implemented yet
-        smugglingGroups.Add(bribeTransportGroup);
+        
         smugglingGroups.Add(seaTransportGroup);
         smugglingGroups.Add(airTransportGroup);
+        smugglingGroups.Add(bribeTransportGroup);
     }
 
 	void Update(){
