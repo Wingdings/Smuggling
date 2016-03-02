@@ -8,8 +8,6 @@ using System;
 [CreateAssetMenu(fileName = "MyTransportModifier", menuName = "Smuggling/Modifiers/Transport", order = 3)]
 public class TransportModifier : ClientModifier
 {
-    public string[] hintStrings;
-
     public TransportType transport = TransportType.NONE;
 
     [Tooltip("The bonus to stats when without the specified transport.")]

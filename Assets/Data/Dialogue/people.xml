@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <people>
+  <!-- Available Modifiers:
+    very_angry
+    prefer-air
+    prefer-sea
+    prefer-bribe
+    dislike-air
+    dislike-sea
+    dislike-bribe
+  -->
+  
   <person gender="all"> <!-- Generic Client -->
     <!-- if gender is blank, it defaults to all -->
     
@@ -26,6 +36,13 @@
     <attr min="1" max="3">success-rep</attr> <!-- amount you gain in rep for success -->
     <attr min="1" max="3">fail-rep</attr> <!-- amount you lose in rep for failure -->
     <attr min="1" max="2">deny-rep</attr> <!-- amount you lose in rep for denying -->
+
+    <mod chance="0.2">prefer-air</mod>
+    <mod chance="0.2">prefer-sea</mod>
+    <mod chance="0.2">prefer-bribe</mod>
+    <mod chance="0.2">dislike-air</mod>
+    <mod chance="0.2">dislike-sea</mod>
+    <mod chance="0.2">dislike-bribe</mod>
   </person>
 	
   <person gender="all"> <!-- Fugitive -->

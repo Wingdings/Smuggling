@@ -68,13 +68,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dc78fdec9055cd4195ebae46fbf46c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeBetweenClients: 5
+  clientsWaiting: []
   referencedClient: {fileID: 0}
   player: {fileID: 0}
+  country1: {fileID: 0}
+  country2: {fileID: 0}
   namesAsset: {fileID: 4900000, guid: 38dbebe658bc1bd4b9c82a2d666f42ca, type: 3}
   hintsAsset: {fileID: 4900000, guid: 22162362c980c1c468c955bdb95cee88, type: 3}
   peopleAsset: {fileID: 4900000, guid: 3b98b084f52f2d647957b2302568fc26, type: 3}
   modifierList:
   - {fileID: 11400000, guid: 0df1f485b3ef5f74c8c769ead04435f5, type: 2}
+  - {fileID: 11400000, guid: f931f985160c0024dad21df2c927e81d, type: 2}
+  - {fileID: 11400000, guid: 3dc8564d5e67be946b7dc973c26da371, type: 2}
+  - {fileID: 11400000, guid: fa330741c67779341a6547909d66551b, type: 2}
+  - {fileID: 11400000, guid: 21a5e4bad9da5324f9dbcf06f7c4fcdf, type: 2}
+  - {fileID: 11400000, guid: bb6c4bd6fc125ed46b25c3c75f4e583d, type: 2}
+  - {fileID: 11400000, guid: 213309303461e1b4d9d2c146dc4bc372, type: 2}
 --- !u!212 &21263422
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -96,15 +106,13 @@ SpriteRenderer:
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
   m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 1d445d53bd6ae9b40a706586dd6b14ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -114,7 +122,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: modifierList.Array.size
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: smugglingGroups.Array.size
@@ -136,6 +144,36 @@ Prefab:
       propertyPath: modifierList.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: 0df1f485b3ef5f74c8c769ead04435f5,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: modifierList.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: f931f985160c0024dad21df2c927e81d,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: modifierList.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 3dc8564d5e67be946b7dc973c26da371,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: modifierList.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: fa330741c67779341a6547909d66551b,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: modifierList.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: 21a5e4bad9da5324f9dbcf06f7c4fcdf,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: modifierList.Array.data[5]
+      value: 
+      objectReference: {fileID: 11400000, guid: bb6c4bd6fc125ed46b25c3c75f4e583d,
+        type: 2}
+    - target: {fileID: 0}
+      propertyPath: modifierList.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 213309303461e1b4d9d2c146dc4bc372,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

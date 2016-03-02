@@ -75,4 +75,28 @@
     <text>They look a bit shifty.</text>
     <text>Something tells you not to trust them.</text>
   </hint>
+  <hint>
+    <mod>prefer-air</mod>
+    <text>They tell you they want to take a plane.</text>
+  </hint>
+  <hint>
+    <mod>prefer-sea</mod>
+    <text>They tell you they want to take a boat.</text>
+  </hint>
+  <hint>
+    <mod>prefer-bribe</mod>
+    <text>They tell you they need to take a land route.</text>
+  </hint>
+  <hint>
+    <mod>dislike-air</mod>
+    <text>They tell you they really don't like planes.</text>
+  </hint>
+  <hint>
+    <mod>dislike-sea</mod>
+    <text>They tell you they get really seasick.</text>
+  </hint>
+  <hint>
+    <mod>dislike-bribe</mod>
+    <text>They tell you the border patrol knows them too well.</text>
+  </hint>
 </hints>
