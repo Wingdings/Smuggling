@@ -8,9 +8,9 @@ public enum ClientAttribute
     Sickness,
     Desperation,
     Money,
-	TransportTypeNum,
-	MinRepRequired, 
-	CountryOrigin
+    SuccessRep,
+    FailRep,
+    DenyRep
 }
 
 [System.Serializable]
@@ -21,22 +21,21 @@ public struct ClientStats
     public double sickness;
     public double desperation;
     public double money;
-	public int minRepRequired;
-	public TransportType wantedTransportType;
-	public double transportTypeNum;
-	public double countryOrigin;
+    public double successRep;
+    public double failRep;
+    public double denyRep;
 
-    public ClientStats(double suspicion = 0.0, double notoriety = 0.0, double sickness = 0.0, double desperation = 0.0, double money = 0.0, TransportType wantedTransportType = TransportType.NONE,int minRepRequired = 0)
+    public ClientStats(double suspicion = 0.0, double notoriety = 0.0, double sickness = 0.0, double desperation = 0.0, double money = 0.0,
+        double successRep = 0.0, double failRep = 0.0, double denyRep = 0.0)
     {
         this.suspicion = suspicion;
         this.notoriety = notoriety;
         this.sickness = sickness;
         this.desperation = desperation;
         this.money = money;
-		this.wantedTransportType = wantedTransportType;
-		this.minRepRequired = minRepRequired;
-		transportTypeNum = 0;
-		countryOrigin = -1;
+        this.successRep = successRep;
+        this.failRep = failRep;
+        this.denyRep = denyRep;
     }
 
     public double GetAttribute(ClientAttribute attr)
@@ -58,14 +57,14 @@ public struct ClientStats
             case ClientAttribute.Money:
                 return money;
 
-			case ClientAttribute.TransportTypeNum:
-				return transportTypeNum;
+            case ClientAttribute.SuccessRep:
+                return successRep;
 
-			case ClientAttribute.MinRepRequired:
-				return minRepRequired;
+            case ClientAttribute.FailRep:
+                return failRep;
 
-			case ClientAttribute.CountryOrigin:
-				return countryOrigin;
+            case ClientAttribute.DenyRep:
+                return denyRep;
         }
 
         return double.MinValue;
@@ -95,47 +94,29 @@ public struct ClientStats
                 money = value;
                 break;
 
-			case ClientAttribute.TransportTypeNum:
-				if(value == 0){
-					wantedTransportType = TransportType.NONE;
-					transportTypeNum = 0;
-				}
-				else if(value == 1){
-					wantedTransportType = TransportType.SEA;
-					transportTypeNum = 1;
-				}
-				else if(value == 2){
-					wantedTransportType = TransportType.TRAIN;
-					transportTypeNum = 2;	
-				}
-				else if(value == 3){
-					wantedTransportType = TransportType.AIR;
-					transportTypeNum = 3;
-				}
-				else if(value == 4){
-					wantedTransportType = TransportType.BRIBE;
-					transportTypeNum = 4;
-				}
-				break;
+            case ClientAttribute.SuccessRep:
+                successRep = value;
+                break;
 
-			case ClientAttribute.MinRepRequired:
-				minRepRequired = (int)Mathf.Floor((float)value);
-				break;
+            case ClientAttribute.FailRep:
+                failRep = value;
+                break;
 
-			case ClientAttribute.CountryOrigin:
-				countryOrigin = value;
-				break;
+            case ClientAttribute.DenyRep:
+                denyRep = value;
+                break;
         }
     }
 
     public static ClientStats operator +(ClientStats a, ClientStats b)
     {
-        return new ClientStats(a.suspicion + b.suspicion, a.notoriety + b.notoriety, a.sickness + b.sickness, a.desperation + b.desperation, a.money + b.money);
+        return new ClientStats(a.suspicion + b.suspicion, a.notoriety + b.notoriety, a.sickness + b.sickness, a.desperation + b.desperation, a.money + b.money,
+            a.successRep + b.successRep, a.failRep + b.failRep, a.denyRep + b.denyRep);
     }
 
     public static ClientStats operator *(ClientStats a, double b)
     {
-        return new ClientStats(a.suspicion * b, a.notoriety * b, a.sickness * b, a.desperation * b, a.money);
+        return new ClientStats(a.suspicion * b, a.notoriety * b, a.sickness * b, a.desperation * b, a.money, a.successRep, a.failRep, a.denyRep);
     }
 
 
@@ -158,14 +139,14 @@ public struct ClientStats
             case "money":
                 return ClientAttribute.Money;
 
-			case "transportTypeNum":
-				return ClientAttribute.TransportTypeNum;
+            case "success-rep":
+                return ClientAttribute.SuccessRep;
 
-			case "minRepRequired":
-				return ClientAttribute.MinRepRequired;
+            case "fail-rep":
+                return ClientAttribute.FailRep;
 
-			case "countryOrigin":
-				return ClientAttribute.CountryOrigin;
+            case "deny-rep":
+                return ClientAttribute.DenyRep;
 
             default:
                 return null;
@@ -189,10 +170,11 @@ public class Client : ScriptableObject
     public ClientStats stats;
     public ClientModifier[] modifiers;
 
-	public static Client Create(double suspicion = 0.0, double notoriety = 0.0, double sickness = 0.0, double desperation = 0.0, double money = 0.0, TransportType wantedTransportType = TransportType.NONE,int minRepRequired = 0)
+	public static Client Create(double suspicion = 0.0, double notoriety = 0.0, double sickness = 0.0, double desperation = 0.0, double money = 0.0,
+        double successRep = 0.0, double failRep = 0.0, double denyRep = 0.0)
     {
         Client client = ScriptableObject.CreateInstance<Client>();
-        client.stats = new ClientStats(suspicion, notoriety, sickness, desperation, money, wantedTransportType, minRepRequired);
+        client.stats = new ClientStats(suspicion, notoriety, sickness, desperation, money, successRep, failRep, denyRep);
         return client;
     }
 
@@ -202,6 +184,7 @@ public class Client : ScriptableObject
         result = result.Replace("%first%", client.nameData.first);
         result = result.Replace("%last%", client.nameData.last);
         result = result.Replace("%destination%", "Gastesal");
+        result = result.Replace("%money%", client.stats.money.ToString());
         return result;
     }
 
@@ -239,7 +222,6 @@ public class SmugglingGroup
 
     public SmugglingGroup()
     {
-
     }
 
     public ClientStats CalculateStats()

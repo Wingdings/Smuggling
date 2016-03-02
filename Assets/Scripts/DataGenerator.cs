@@ -287,7 +287,7 @@ public class ClientGenerator
     protected class ClientGenData
     {
         public string gender = "all";
-        public string bio;
+        public List<string> bios = new List<string>();
 
 
         public ClientStats min = new ClientStats();
@@ -302,12 +302,18 @@ public class ClientGenerator
             min.sickness = 0;
             min.desperation = 0;
             min.money = 1000;
+            min.successRep = 1;
+            min.failRep = 1;
+            min.denyRep = 1;
 
             max.suspicion = 10;
             max.notoriety = 10;
             max.sickness = 10;
             max.desperation = 10;
             max.money = 3000;
+            max.successRep = 5;
+            max.failRep = 5;
+            max.denyRep = 2;
         }
     }
 
@@ -362,7 +368,7 @@ public class ClientGenerator
                 {
                     case "bio":
                     case "biography":
-                        data.bio = child.InnerText;
+                        data.bios.Add(child.InnerText);
                         break;
 
                     case "attr":
@@ -421,16 +427,17 @@ public class ClientGenerator
         var generator = generators[rand.Next(generators.Count)];
 
         var client = Client.Create();
-        client.bio = generator.bio;
+        client.bio = generator.bios[rand.Next(generator.bios.Count)];
         client.nameData = nameGen.ChooseName(generator.gender);
-
-        // ignore visual studio giving errors on these lines, THEY AREN'T ACTUALLY ERRORS!
-        // for some reason it doesn't pick up the extension method in MathUtil.cs
+        
         client.stats.suspicion = rand.NextDouble(generator.min.suspicion, generator.max.suspicion);
         client.stats.notoriety = rand.NextDouble(generator.min.notoriety, generator.max.notoriety);
         client.stats.sickness = rand.NextDouble(generator.min.sickness, generator.max.sickness);
         client.stats.desperation = rand.NextDouble(generator.min.desperation, generator.max.desperation);
         client.stats.money = rand.NextDouble(generator.min.money, generator.max.money);
+        client.stats.successRep = rand.NextDouble(generator.min.successRep, generator.max.successRep);
+        client.stats.failRep = rand.NextDouble(generator.min.failRep, generator.max.failRep);
+        client.stats.denyRep = rand.NextDouble(generator.min.denyRep, generator.max.denyRep);
 
         List<ClientModifier> mods = new List<ClientModifier>();
         foreach (var modData in generator.modifiers)
@@ -453,29 +460,6 @@ public class ClientGenerator
             client.hints[i] = Client.ReplaceStringData(client, client.hints[i]);
         }
 
-		client.stats.transportTypeNum = ChooseTransportType ();
-		client.stats.countryOrigin = ChooseCountryOrigin ();
-
         return client;
     }
-
-	public int ChooseTransportType(){
-		System.Random rand = GameManager.rand;
-		List<int> transportList = new List<int> ();
-		transportList.Add (0);
-		transportList.Add (1);
-		transportList.Add (2);
-		transportList.Add (3);
-		transportList.Add(4);
-		return transportList [rand.Next (transportList.Count)];
-	}
-
-	public int ChooseCountryOrigin(){
-		System.Random rand = GameManager.rand;
-		List<int> countryList = new List<int> ();
-		countryList.Add (0);
-		countryList.Add (1);
-		return countryList [rand.Next (countryList.Count)];
-	}
-
 }

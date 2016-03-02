@@ -1,60 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <people>
-  <person gender="all"> <!-- Generic Client 1 -->
+  <person gender="all"> <!-- Generic Client -->
     <!-- if gender is blank, it defaults to all -->
     
   	<!-- Generic clients are designed as filler clients for groups. They aren't supposed to be terribly interesting
   		or impactful, so their stats are very simple. There are a few different generic clients with different
   		bios so that the player won't see the same dialogue a hundred times. -->
-  	<bio>I was told you were the person to see about getting to %destination%.</bio>
-  
-  	<!-- Any unspecified attributes will be completely randomized. The format of specification is the same as hints.xml -->
+    
+    <!-- You may specify multiple bios, and one will be randomly selected -->
+    <bio>I was told you were the person to see about getting to %destination%.</bio>
+    <bio>I need to get to %destination%. You can get me there?</bio>
+    <bio>I've heard you've been getting people over to %destination%.</bio>
+    <bio>I'm in the market for... transportation to %destination%.</bio>
+    <bio>They say you know how to get past the border to %destination%.</bio>
+    <bio>Look, I need to get to %destination%. I can pay you %money% if you get me there.</bio> <!-- We can now specify %money% as a construct -->
+
+
+    <!-- Any unspecified attributes will be completely randomized. The format of specification is the same as hints.xml -->
     <!-- NOTE: Money has a min of 1000 and a max of 3000 by default.-->
-  	<attr max="4">suspicion</attr>
-  	<attr max="4">notoriety</attr>
-  	<attr max="4">sickness</attr>
-  	<attr max="4">desperation</attr>
-  	<attr min="1500" max="2500">money</attr>
-  </person>
-  
-  <person gender="all"> <!-- Generic Client 2 -->
-  	<bio>I need to get to %destination%. You can get me there?</bio>
-  	
-  	<attr max="4">suspicion</attr>
-  	<attr max="4">notoriety</attr>
-  	<attr max="4">sickness</attr>
-  	<attr max="4">desperation</attr>
-  	<attr min="1500" max="2500">money</attr>
-  </person>
-  
-  <person gender="all"> <!-- Generic Client 3 -->
-  	<bio>I've heard you've been getting people over to %destination%.</bio>
-  	
-  	<attr max="4">suspicion</attr>
-  	<attr max="4">notoriety</attr>
-  	<attr max="4">sickness</attr>
-  	<attr max="4">desperation</attr>
-  	<attr min="1500" max="2500">money</attr>
-  </person>
-  
-  <person gender="all"> <!-- Generic Client 4 -->
-  	<bio>I'm in the market for... transportation to %destination%.</bio>
-  	
-  	<attr max="4">suspicion</attr>
-  	<attr max="4">notoriety</attr>
-  	<attr max="4">sickness</attr>
-  	<attr max="4">desperation</attr>
-  	<attr min="1500" max="2500">money</attr>
-  </person>
-  
-  <person gender="all"> <!-- Generic Client 5 -->
-  	<bio>They say you know how to get past the border to %destination%.</bio>
-  	
-  	<attr max="4">suspicion</attr>
-  	<attr max="4">notoriety</attr>
-  	<attr max="4">sickness</attr>
-  	<attr max="4">desperation</attr>
-  	<attr min="1500" max="2500">money</attr>
+    <attr max="4">suspicion</attr>
+    <attr max="4">notoriety</attr>
+    <attr max="4">sickness</attr>
+    <attr max="4">desperation</attr>
+    <attr min="1500" max="2500">money</attr>
+    <attr min="1" max="3">success-rep</attr> <!-- amount you gain in rep for success -->
+    <attr min="1" max="3">fail-rep</attr> <!-- amount you lose in rep for failure -->
+    <attr min="1" max="2">deny-rep</attr> <!-- amount you lose in rep for denying -->
   </person>
 	
   <person gender="all"> <!-- Fugitive -->
@@ -65,6 +36,9 @@
     <attr min="0" max="4">sickness</attr>
     <attr min="8">desperation</attr>
     <attr min="1000" max="2000">money</attr>
+    <attr min="2" max="5">success-rep</attr>
+    <attr min="3" max="6">fail-rep</attr>
+    <attr min="0" max="2">deny-rep</attr>
     
     <!-- Modifiers will never be applied unless you specify them. If you don't specify chance, it'll be set to 1. -->
     <mod chance="0.5">very_angry</mod>
@@ -78,6 +52,9 @@
     <attr min="0" max="3">sickness</attr>
     <attr min="9">desperation</attr>
     <attr min="1000" max="2000">money</attr>
+    <attr min="2" max="5">success-rep</attr>
+    <attr min="3" max="6">fail-rep</attr>
+    <attr min="0" max="2">deny-rep</attr>
 
     <mod>very_angry</mod>
   </person>
@@ -90,7 +67,23 @@
     <attr min="3" max="10">sickness</attr>
     <attr max="5">desperation</attr>
     <attr min="2000" max="5000">money</attr>
+    <attr min="2" max="6">success-rep</attr>
+    <attr min="3" max="7">fail-rep</attr>
+    <attr min="1" max="4">deny-rep</attr>
 
     <mod chance="0.3">very_angry</mod>
+  </person>
+
+  <person gender="all"> <!-- (possible) theif -->
+    <bio>Yo man, can you, uh, get me to %destination%? I'll make sure to pay, I promise.</bio>
+
+    <attr max="5">suspicion</attr>
+    <attr min="7">notoriety</attr>
+    <attr min="3" max="10">sickness</attr>
+    <attr max="5">desperation</attr>
+    <attr min="-2000" max="300">money</attr>
+    <attr min="0" max="1">success-rep</attr>
+    <attr min="1" max="2">fail-rep</attr>
+    <attr min="0" max="0">deny-rep</attr>
   </person>
 </people>

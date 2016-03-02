@@ -8,7 +8,7 @@ public struct SmugglingResult
     public bool success;
     public double chance;
     public double roll;
-    public double money;
+    public ClientStats stats;
 }
 
 public class GameManager : MonoBehaviour
@@ -63,15 +63,6 @@ public class GameManager : MonoBehaviour
         NameGen = new NameGenerator(namesAsset);
         HintGen = new HintGenerator(hintsAsset);
         ClientGen = new ClientGenerator(peopleAsset, modifierList);
-
-        Client testClient = ClientGen.GenerateClient(NameGen, HintGen);
-        Debug.LogFormat("Name: {0} {1} ({2})", testClient.nameData.first, testClient.nameData.last, testClient.nameData.gender);
-        Debug.LogFormat("Bio: {0}", testClient.bio);
-        Debug.LogFormat("Stats: suspicion={0}, notoriety={1}, sickness={2}, desperation={3}, money={4}", testClient.stats.suspicion, testClient.stats.notoriety, testClient.stats.sickness, testClient.stats.desperation, testClient.stats.money);
-        foreach (var hint in testClient.hints)
-        {
-            Debug.LogFormat("Hint: {0}", hint);
-        }
 
         player = ScriptableObject.CreateInstance<Player>();
 		country1 = ScriptableObject.CreateInstance<Country> ();
@@ -130,28 +121,28 @@ public class GameManager : MonoBehaviour
         SmugglingResult result = new SmugglingResult();
         ClientStats stats = group.CalculateStats();
         result.chance = CalculateChance(stats, group.clients.Count);
+        result.stats = stats;
 
         result.roll = rand.NextDouble();
         if (result.roll > result.chance)
         {
-            ChangePlayerStatsFailedRun(group);
+            ChangePlayerStatsFailedRun(result);
             result.success = false;
         }
         else
         {
             ChangeCountryStatsSucceededRun(group);
-            ChangePlayerStatsSucceededRun(group);
+            ChangePlayerStatsSucceededRun(result);
             result.success = true;
         }
 
 		player.updateTotalRuns();
-		/*
+        /*
         Debug.Log(country1.getName() + "");
         Debug.Log(country1.getPopulation() + "");
         Debug.Log(country2.getName() + "");
         Debug.Log(country2.getPopulation() + "");
 		*/
-        result.money = stats.money;
 
         //results[i] = result;
         //Debug.Log(string.Format("Group #{0}: {1:F2}% chance, rolled {2:F2}, result is {3}", i, result.chance * 100, result.roll * 100, result.success ? "success" : "failure"));
@@ -176,90 +167,39 @@ public class GameManager : MonoBehaviour
 
     public Client GenerateNextClient()
     {
-        return ClientGen.GenerateClient(NameGen, HintGen);
+        var client = ClientGen.GenerateClient(NameGen, HintGen);
+        Debug.LogFormat("Name: {0} {1} ({2})", client.nameData.first, client.nameData.last, client.nameData.gender);
+        Debug.LogFormat("Bio: {0}", client.bio);
+        Debug.LogFormat("Stats: suspicion={0}, notoriety={1}, sickness={2}, desperation={3}, money={4}, success={5}, fail={6}, deny={7}", client.stats.suspicion, client.stats.notoriety,
+            client.stats.sickness, client.stats.desperation, client.stats.money, client.stats.successRep, client.stats.failRep, client.stats.denyRep);
+        foreach (var hint in client.hints)
+        {
+            Debug.LogFormat("Hint: {0}", hint);
+        }
+
+        return client;
     }
 
-	public void ChangePlayerStatsFailedRun(SmugglingGroup group){
-		player.changeMoney(-player.calculateTransportCosts(group.GetTransportType(), group.clients.Count));
-		player.increaseRunsFailed ();
-		for (int i = 0; i < group.clients.Count; i++) {
-			Client tempClient = group.clients[i];
-
-			TransportType wantedTransportType = TransportType.NONE;
-
-			if(tempClient.stats.transportTypeNum == 0){
-				wantedTransportType = TransportType.NONE;
-			}else if(tempClient.stats.transportTypeNum == 1){
-				wantedTransportType = TransportType.SEA;
-			}else if(tempClient.stats.transportTypeNum == 2){
-				wantedTransportType = TransportType.TRAIN;
-			}else if(tempClient.stats.transportTypeNum == 3){
-				wantedTransportType = TransportType.AIR;
-			}else if(tempClient.stats.transportTypeNum == 4){
-				wantedTransportType = TransportType.BRIBE;
-			}
-			/*
-			Debug.Log(group.GetTransportType() + "");
-			Debug.Log(wantedTransportType + "");
-			Debug.Log(-player.calculateTransportCosts(group.GetTransportType(), group.clients.Count) + "");
-			*/
-
-			if(group.GetTransportType() != wantedTransportType && wantedTransportType != TransportType.NONE){
-				player.changeReputation(-2);
-			}else if(wantedTransportType == TransportType.NONE || wantedTransportType == group.GetTransportType()){
-				player.changeReputation(-1);
-			}
-		}
+	public void ChangePlayerStatsFailedRun(SmugglingResult result){
+		player.changeMoney(-player.calculateTransportCosts(result.group.GetTransportType(), result.group.clients.Count));
+		player.increaseRunsFailed();
+        
+        player.changeReputation((int)System.Math.Round(-result.stats.failRep));
 	}
 
-	public void ChangePlayerStatsSucceededRun(SmugglingGroup group){
+	public void ChangePlayerStatsSucceededRun(SmugglingResult result){
 		//update costs of travel
-		player.changeMoney(-player.calculateTransportCosts(group.GetTransportType(), group.clients.Count));
+		player.changeMoney(-player.calculateTransportCosts(result.group.GetTransportType(), result.group.clients.Count));
 
-		for (int i = 0; i < group.clients.Count; i++) {
-			Client tempClient = group.clients[i];
-			
-			TransportType wantedTransportType = TransportType.NONE;
-			
-			if(tempClient.stats.transportTypeNum == 0){
-				wantedTransportType = TransportType.NONE;
-			}else if(tempClient.stats.transportTypeNum == 1){
-				wantedTransportType = TransportType.SEA;
-			}else if(tempClient.stats.transportTypeNum == 2){
-				wantedTransportType = TransportType.TRAIN;
-			}else if(tempClient.stats.transportTypeNum == 3){
-				wantedTransportType = TransportType.AIR;
-			}else if(tempClient.stats.transportTypeNum == 4){
-				wantedTransportType = TransportType.BRIBE;
-			}
-
-			/*
-			Debug.Log(group.GetTransportType() + "");
-			Debug.Log(wantedTransportType + "");
-			Debug.Log(-player.calculateTransportCosts(group.GetTransportType(), group.clients.Count) + "");
-
-			*/
-			if(group.GetTransportType() != wantedTransportType && wantedTransportType != TransportType.NONE){
-				player.changeReputation(+1);
-			}else if(wantedTransportType == TransportType.NONE || wantedTransportType == group.GetTransportType()){
-				player.changeReputation(+2);
-			}
-
-			player.changeMoney((int)tempClient.stats.money);
-		}
+        player.changeReputation((int)System.Math.Round(result.stats.successRep));
+        player.changeMoney((int)System.Math.Round(result.stats.money));
 	}
 
 	public void ChangeCountryStatsSucceededRun(SmugglingGroup group){
-		for (int i = 0; i < group.clients.Count; i++) {
-			Client tempClient = group.clients [i];
-
-			if(tempClient.stats.countryOrigin == 0){
-				country1.changePopulation(-1);
-				country2.changePopulation(1);
-			}else if(tempClient.stats.countryOrigin == 1){
-				country1.changePopulation(1);
-				country2.changePopulation(-1);
-			}
-		}
+        foreach (var client in group.clients)
+        {
+            country1.changePopulation(-1);
+            country2.changePopulation(1);
+        }
 	}
 }
