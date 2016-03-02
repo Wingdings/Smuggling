@@ -16,7 +16,7 @@ public class ScreenDialog : ScreenBase {
             _ui.DoFlowEvent(FLOW_EVENT.FLOW_GROUP_SELECT_OPEN); });
         getButtonByName("DenyButton").onClick.AddListener(delegate()
         {
-            //_game.player.changeReputation(-1 * _client.stats.desperation);
+            _game.player.changeReputation(-1 * (int)_client.stats.denyRep);
             _ui.DoFlowEvent(FLOW_EVENT.FLOW_DIALOG_CLOSE);
         });
 
