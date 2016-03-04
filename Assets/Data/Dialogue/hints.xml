@@ -71,7 +71,7 @@
     <text>They claim they are very influential.</text>
   </hint>
   <hint>
-    <attr min="-9999" max="-1">money</attr>
+    <attr max="-1">money</attr>
     <text>They look a bit shifty.</text>
     <text>Something tells you not to trust them.</text>
   </hint>

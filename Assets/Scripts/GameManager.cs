@@ -196,7 +196,8 @@ public class GameManager : MonoBehaviour
         player.changeMoney((int)System.Math.Round(result.stats.money));
 	}
 
-	public void ChangeCountryStatsSucceededRun(SmugglingGroup group){
+	public void ChangeCountryStatsSucceededRun(SmugglingGroup group)
+    {
         foreach (var client in group.clients)
         {
             country1.changePopulation(-1);
