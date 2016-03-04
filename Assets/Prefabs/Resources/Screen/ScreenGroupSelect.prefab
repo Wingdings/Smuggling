@@ -895,7 +895,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Shipping Container
+  m_Text: Private Aircraft
 --- !u!114 &11475882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -927,7 +927,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Private Aircraft
+  m_Text: Bribe Customs Official
 --- !u!114 &11478324
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -959,7 +959,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Bribe Customs Official
+  m_Text: Shipping Container
 --- !u!114 &11479876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1394,8 +1394,8 @@ RectTransform:
   m_RootOrder: 7
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 64.2750092, y: 10}
-  m_SizeDelta: {x: 160.050003, y: 20}
+  m_AnchoredPosition: {x: 72.4499969, y: 10}
+  m_SizeDelta: {x: 176.399994, y: 20}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22439866
 RectTransform:
@@ -1482,8 +1482,8 @@ RectTransform:
   m_RootOrder: 6
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 65.9000015, y: 30.0000076}
-  m_SizeDelta: {x: 163.300003, y: 20}
+  m_AnchoredPosition: {x: 72.4499512, y: 30.0000076}
+  m_SizeDelta: {x: 176.399994, y: 20}
   m_Pivot: {x: .5, y: .5}
 --- !u!224 &22481758
 RectTransform:
