@@ -190,6 +190,7 @@ GameObject:
   - 114: {fileID: 11452964}
   - 114: {fileID: 11467144}
   - 225: {fileID: 22501064}
+  - 114: {fileID: 11430920}
   m_Layer: 5
   m_Name: ClientWaitingButton
   m_TagString: Untagged
@@ -427,6 +428,17 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Pause
+--- !u!114 &11430920
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fd91f05495db824495dea2535fad3be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11435290
 MonoBehaviour:
   m_ObjectHideFlags: 1

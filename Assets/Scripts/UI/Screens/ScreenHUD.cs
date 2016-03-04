@@ -49,6 +49,15 @@ public class ScreenHUD : ScreenBase {
     public override void Update()
     {
         base.Update();
+
+        //DEBUG DELETE
+        if (Input.GetKeyDown("g"))
+        {
+            _clientWaitingButton.GetComponent<UITweener>().TweenScale(new Vector3(1.1f, 1.1f, 1.1f), 0.5f, delegate () {
+                Debug.Log("Finished Tweening");
+            });
+        }
+
         _moneyText.text = "Funds: $" + _game.player.stats.money;
         _reputationText.text = "Reputation: " + _game.player.stats.reputation;
 
