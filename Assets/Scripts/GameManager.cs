@@ -123,6 +123,7 @@ public class GameManager : MonoBehaviour
         ClientStats stats = group.CalculateStats();
         result.chance = CalculateChance(stats, group.clients.Count);
         result.stats = stats;
+        result.group = g;
 
         result.roll = rand.NextDouble();
         if (result.roll > result.chance)
