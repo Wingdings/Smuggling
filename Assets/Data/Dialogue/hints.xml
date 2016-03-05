@@ -36,6 +36,8 @@
     <text>They're acting very suspicious.</text>
     <text>They're incredibly suspicious.</text>
     <text>You're having second thoughts about talking to them.</text>
+
+    <failure>One of your clients was so suspicious that they gave themselves away!</failure>
   </hint>
   <!-- End Basic Suspicion -->
 
@@ -55,6 +57,8 @@
     <text>You've definitely seen this person before.</text>
     <text>This person was on television last night!</text>
     <text>Aren't they a celebrity?</text>
+
+    <failure>One of your clients was found and recognized by a customs official!</failure>
   </hint>
   <!-- End Basic Notoriety -->
   
@@ -76,10 +80,14 @@
     <text>They really don't look well.</text>
     <text>They look like they could use a doctor.</text>
     <text>They look as if they are about to keel over.</text>
+
+    <failure>One of your clients was found after they coughed too much.</failure>
   </hint>
   <hint>
     <attr min="9">sickness</attr>
     <text>They throw up on the floor.</text>
+
+    <failure>One of your clients died in transit, and caused a commotion as a result!</failure>
   </hint>
   <!-- End Basic Sickness -->
 
@@ -100,6 +108,8 @@
   <hint>
     <attr min="9">desperation</attr>
     <text>They emplore you to take them to %destination%.</text>
+
+    <failure>A client was so desperate to get to %destination% that they gave themselves away!</failure>
   </hint>
   <!-- End Basic Desperation -->
   
