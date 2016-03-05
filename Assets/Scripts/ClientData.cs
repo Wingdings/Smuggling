@@ -165,7 +165,9 @@ public class Client : ScriptableObject
 {
     public NameData nameData;
     public string bio;
-    public List<string> hints;
+    public List<string> hints = new List<string>();
+    public List<string> successSummaries = new List<string>();
+    public List<string> failureSummaries = new List<string>();
 
     public ClientStats stats;
     public ClientModifier[] modifiers;

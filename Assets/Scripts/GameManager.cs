@@ -9,6 +9,7 @@ public struct SmugglingResult
     public double chance;
     public double roll;
     public ClientStats stats;
+    public List<string> summary;
 }
 
 public class GameManager : MonoBehaviour
@@ -116,38 +117,39 @@ public class GameManager : MonoBehaviour
 		return clientsWaiting;
 	}
 
-    public SmugglingResult SimulateGroup(SmugglingGroup g)
+    public SmugglingResult SimulateGroup(SmugglingGroup group)
     {
-        var group = g;
         SmugglingResult result = new SmugglingResult();
         ClientStats stats = group.CalculateStats();
         result.chance = CalculateChance(stats, group.clients.Count);
         result.stats = stats;
-        result.group = g;
+        result.group = group;
+        result.summary = new List<string>();
 
         result.roll = rand.NextDouble();
         if (result.roll > result.chance)
         {
+            foreach (var client in group.clients)
+            {
+                result.summary.AddRange(client.failureSummaries);
+            }
+
             ChangePlayerStatsFailedRun(result);
             result.success = false;
         }
         else
         {
+            foreach (var client in group.clients)
+            {
+                result.summary.AddRange(client.successSummaries);
+            }
+
             ChangeCountryStatsSucceededRun(group);
             ChangePlayerStatsSucceededRun(result);
             result.success = true;
         }
 
 		player.updateTotalRuns();
-        /*
-        Debug.Log(country1.getName() + "");
-        Debug.Log(country1.getPopulation() + "");
-        Debug.Log(country2.getName() + "");
-        Debug.Log(country2.getPopulation() + "");
-		*/
-
-        //results[i] = result;
-        //Debug.Log(string.Format("Group #{0}: {1:F2}% chance, rolled {2:F2}, result is {3}", i, result.chance * 100, result.roll * 100, result.success ? "success" : "failure"));
 
         group.clients.Clear();
 
@@ -177,6 +179,16 @@ public class GameManager : MonoBehaviour
         foreach (var hint in client.hints)
         {
             Debug.LogFormat("Hint: {0}", hint);
+        }
+
+        foreach (var text in client.successSummaries)
+        {
+            Debug.LogFormat("Success: {0}", text);
+        }
+
+        foreach (var text in client.failureSummaries)
+        {
+            Debug.LogFormat("Failure: {0}", text);
         }
 
         return client;

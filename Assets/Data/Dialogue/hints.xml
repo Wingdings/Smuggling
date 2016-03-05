@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <hints>
+  <!--
+  You can now specify summaries with the <success> and <failure> tags! These will appear after a smuggling run. They do not have to
+  always be defined, as they can come from many places. In the off chance there are no summaries that are generated, that's fine too!
+  
+  As always, you can use %constructs% just like in hints and bio.
+  -->
+  
   <!-- Basic Suspicion -->
   <hint>
     <!--
@@ -101,6 +108,16 @@
     <attr max="-1">money</attr>
     <text>They look a bit shifty.</text>
     <text>Something tells you not to trust them.</text>
+
+    <success>%name% stole some of your money!</success>
+  </hint>
+  <hint>
+    <!-- Because this overlaps with another hint, we need to specify the hints again. The generator won't accept a hint definition without any text entries either! -->
+    <attr min="0" max="100">money</attr>
+    <text>They seem poor.</text>
+    <text>They don't seem to have much money.</text>
+    
+    <success>One of your clients skipped out on paying you!</success>
   </hint>
   <hint>
     <attr max="800">money</attr>
@@ -111,6 +128,8 @@
     <attr min="3000">money</attr>
     <text>They flash some money in front of your face.</text>
     <text>They promise you quite a bit of money.</text>
+
+    <success>You are handsomely rewarded for a successful operation by %name%.</success>
   </hint>
   <!-- End Basic Money-->
   
@@ -119,11 +138,15 @@
     <attr min="3">success-rep</attr>
     <text>They claim they are very influential.</text>
     <text>They say they have some influential friends.</text>
+
+    <success>Your reputation is greatly improved.</success>
   </hint>
   <hint>
     <attr min="3">fail-rep</attr>
     <text>They claim they are very influential.</text>
     <text>They say they have some influential friends.</text>
+
+    <failure>Your reputation took a big hit!</failure>
   </hint>
   <hint>
     <attr max="0">deny-rep</attr>
@@ -143,6 +166,8 @@
     <mod>very_angry</mod>
     <text>They are incredibly angry for some reason, though the anger doesn't seem to be directed at you.</text>
     <text>They look as if they are about to bite your head off.</text>
+
+    <failure>Some of the clients ended up giving themselves away when they had a heated argument.</failure>
   </hint>
   <hint>
     <mod>prefer-air</mod>

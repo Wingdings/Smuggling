@@ -140,6 +140,15 @@ public class HintGenerator
         public List<AttributeMatch> attributes = new List<AttributeMatch>();
         public List<string> modifiers = new List<string>();
         public List<string> texts = new List<string>();
+        public List<string> successSummaries = new List<string>();
+        public List<string> failureSummaries = new List<string>();
+    }
+
+    public struct HintGen
+    {
+        public List<string> hints;
+        public List<string> successSummaries;
+        public List<string> failureSummaries;
     }
 
     private List<HintData> hints = new List<HintData>();
@@ -205,6 +214,14 @@ public class HintGenerator
                         data.modifiers.Add(child.InnerText);
                         break;
 
+                    case "success":
+                        data.successSummaries.Add(child.InnerText);
+                        break;
+
+                    case "failure":
+                        data.failureSummaries.Add(child.InnerText);
+                        break;
+
                     default:
                         throw new System.Exception("Invalid hint definition with node " + child.Name);
                 }
@@ -217,11 +234,13 @@ public class HintGenerator
         }
     }
 
-    public List<string> GenerateHints(ref ClientStats stats, ClientModifier[] modifiers, int maxCount = 4)
+    public HintGen GenerateHints(ref ClientStats stats, ClientModifier[] modifiers, int maxCount = 4)
     {
         System.Random rand = GameManager.rand;
 
         List<string> generated = new List<string>();
+        List<string> successSummaries = new List<string>();
+        List<string> failureSummaries = new List<string>();
         List<HintData> options = new List<HintData>();
 
         foreach (var hint in hints)
@@ -272,7 +291,21 @@ public class HintGenerator
             generated.Add(hint.texts[rand.Next(hint.texts.Count)]);
         }
 
-        return generated;
+        foreach (var hint in options)
+        {
+            if (hint.successSummaries.Count > 0)
+                successSummaries.Add(hint.successSummaries[rand.Next(hint.successSummaries.Count)]);
+
+            if (hint.failureSummaries.Count > 0)
+                failureSummaries.Add(hint.failureSummaries[rand.Next(hint.failureSummaries.Count)]);
+        }
+
+        return new HintGen()
+        {
+            hints = generated,
+            successSummaries = successSummaries,
+            failureSummaries = failureSummaries
+        };
     }
 }
 
@@ -289,11 +322,13 @@ public class ClientGenerator
         public string gender = "all";
         public List<string> bios = new List<string>();
 
-
         public ClientStats min = new ClientStats();
         public ClientStats max = new ClientStats();
 
         public List<ModifierGenData> modifiers = new List<ModifierGenData>();
+
+        public List<string> successSummaries = new List<string>();
+        public List<string> failureSummaries = new List<string>();
 
         public ClientGenData()
         {
@@ -412,6 +447,14 @@ public class ClientGenerator
                         data.modifiers.Add(modData);
                         break;
 
+                    case "success":
+                        data.successSummaries.Add(child.InnerText);
+                        break;
+
+                    case "failure":
+                        data.failureSummaries.Add(child.InnerText);
+                        break;
+
                     default:
                         throw new System.Exception("Invalid person definition with node " + child.Name);
                 }
@@ -451,13 +494,33 @@ public class ClientGenerator
         client.modifiers = mods.ToArray();
 
         // hints must be set last, as stats + modifiers change what hints are available
-        client.hints = hintGen.GenerateHints(ref client.stats, client.modifiers);
+        var hints = hintGen.GenerateHints(ref client.stats, client.modifiers);
+        client.hints = hints.hints;
+        client.successSummaries = hints.successSummaries;
+        client.failureSummaries = hints.failureSummaries;
 
-        // finally, replace some stuff in bio + hints
+        // setup archetype summaries
+        if (generator.successSummaries.Count > 0)
+            client.successSummaries.Add(generator.successSummaries[rand.Next(generator.successSummaries.Count)]);
+
+        if (generator.failureSummaries.Count > 0)
+            client.failureSummaries.Add(generator.failureSummaries[rand.Next(generator.failureSummaries.Count)]);
+
+        // finally, replace some stuff in bio + hints + summaries
         client.bio = Client.ReplaceStringData(client, client.bio);
         for (var i = 0; i < client.hints.Count; ++i)
         {
             client.hints[i] = Client.ReplaceStringData(client, client.hints[i]);
+        }
+
+        for (var i = 0; i < client.successSummaries.Count; ++i)
+        {
+            client.successSummaries[i] = Client.ReplaceStringData(client, client.successSummaries[i]);
+        }
+
+        for (var i = 0; i < client.failureSummaries.Count; ++i)
+        {
+            client.failureSummaries[i] = Client.ReplaceStringData(client, client.failureSummaries[i]);
         }
 
         return client;
