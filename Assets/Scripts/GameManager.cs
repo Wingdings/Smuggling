@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 
     public static double CalculateChance(ClientStats stats, int groupSize)
     {
-        return (100 - System.Math.Pow(((stats.suspicion + stats.notoriety + stats.sickness + stats.desperation) / groupSize), 2) / 20.0 - (System.Math.Pow(groupSize, 2) / 5.0))/100.0;
+        return (100 - System.Math.Pow(stats.suspicion + stats.notoriety + stats.sickness + stats.desperation, 2) / 500.0 - System.Math.Pow(groupSize, 2) / 1.5) / 100.0;
     }
 
     void Start()
@@ -212,10 +212,15 @@ public class GameManager : MonoBehaviour
 
 	public void ChangeCountryStatsSucceededRun(SmugglingGroup group)
     {
+        country1.changePopulation(-group.clients.Count);
+        country2.changePopulation(group.clients.Count);
+
+        /*
         foreach (var client in group.clients)
         {
             country1.changePopulation(-1);
             country2.changePopulation(1);
         }
+        */
 	}
 }

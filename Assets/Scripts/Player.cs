@@ -27,9 +27,9 @@ public class Player : ScriptableObject
 
 	//holds money data for different tranportation
 	public int trainTransportCost = 8000;
-	public int seaTransportCost = 3000;
-	public int airTransportCost = 10000;
-	public int bribeTransportCost = 2000;
+	public int seaTransportCost = 6000;
+	public int airTransportCost = 13000;
+	public int bribeTransportCost = 4000;
 
 	public static Player Create(string _name = "EMPTY", int _money = 0, int _reputation = 0, int _runsFailed = 0)
 	{

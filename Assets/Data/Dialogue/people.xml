@@ -17,6 +17,8 @@
   		or impactful, so their stats are very simple. There are a few different generic clients with different
   		bios so that the player won't see the same dialogue a hundred times. -->
     
+    <!-- For the sake of balance, their stats are now somewhat impactful -->
+    
     <!-- You may specify multiple bios, and one will be randomly selected -->
     <bio>I was told you were the person to see about getting to %destination%.</bio>
     <bio>I need to get to %destination%. You can get me there?</bio>
@@ -28,10 +30,10 @@
 
     <!-- Any unspecified attributes will be completely randomized. The format of specification is the same as hints.xml -->
     <!-- NOTE: Money has a min of 1000 and a max of 3000 by default.-->
-    <attr max="4">suspicion</attr>
-    <attr max="4">notoriety</attr>
-    <attr max="4">sickness</attr>
-    <attr max="4">desperation</attr>
+    <attr max="8">suspicion</attr>
+    <attr max="8">notoriety</attr>
+    <attr max="8">sickness</attr>
+    <attr max="8">desperation</attr>
     <attr min="800" max="2500">money</attr>
     <attr min="1" max="3">success-rep</attr> <!-- amount you gain in rep for success -->
     <attr min="1" max="3">fail-rep</attr> <!-- amount you lose in rep for failure -->

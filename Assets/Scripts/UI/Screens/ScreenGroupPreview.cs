@@ -33,6 +33,8 @@ public class ScreenGroupPreview : ScreenBase {
             t.text = "Risk: Medium";
         else if (chance > 0)
             t.text = "Risk: High";
+        else
+            t.text = "Risk: Nope";
         t = getTextByName("CostText");
         double cost = _game.player.calculateTransportCosts(_group.GetTransportType(), _group.clients.Count);
         

@@ -186,7 +186,7 @@ public class Client : ScriptableObject
         result = result.Replace("%first%", client.nameData.first);
         result = result.Replace("%last%", client.nameData.last);
         result = result.Replace("%destination%", "Gastesal");
-        result = result.Replace("%money%", client.stats.money.ToString());
+        result = result.Replace("%money%", System.Math.Round(client.stats.money).ToString());
         return result;
     }
 
