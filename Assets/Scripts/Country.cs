@@ -8,7 +8,12 @@ public struct CountryStats
 	public string currentNews;
 	public int difficulty;
 	public int population;
+
+    // SIR Model for disease spread
+    // good base to start working with
 	public int percentSick; // percent of people in country that are sick
+    public int percentSusceptible;
+    public int percentRecovered; // if any
 		
 	public CountryStats(string _name = "EMPTY", string _currentNews = "EMPTY", int _difficulty = 0, int _population = 0, int _percentSick = 0)
 	{
@@ -17,6 +22,9 @@ public struct CountryStats
 		difficulty = _difficulty;
 		population = _population;
 		percentSick = _percentSick;
+
+        percentSusceptible = 0;
+        percentRecovered = 0;
 	}
 }
 
@@ -78,6 +86,7 @@ public class Country : ScriptableObject
 	}
 
 	//not sure how sickness is working yet
+    //perhaps the SIR model for disease spread
 	public void calcPercentSick(){
 
 	}
