@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         private set;
     }
 
-	public int timeBetweenClients = 5;
+	public float timeBetweenClients = 5;
 
 	public List<Client> clientsWaiting;
 
@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        timeBetweenClients = Time.time + 5;
 		clientsWaiting = new List<Client> ();
         NameGen = new NameGenerator(namesAsset);
         HintGen = new HintGenerator(hintsAsset);
