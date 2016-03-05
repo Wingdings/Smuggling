@@ -43,6 +43,24 @@ public class ScreenHUD : ScreenBase {
         _group1Count = getTextByName("BoatGroupText");
         _group2Count = getTextByName("PlaneGroupText");
         _group3Count = getTextByName("BorderGroupText");
+
+        StartCoroutine(BounceExclamationPoint());
+    }
+
+    IEnumerator BounceExclamationPoint()
+    {
+        while (true)
+        {
+            if (!_hidden)
+            {
+                _clientWaitingButton.GetComponent<UITweener>().BounceScale(delegate () { });
+                yield return new WaitForSeconds(2f);
+            } else
+            {
+                yield return null;
+            }
+            
+        }
     }
 
     // Update is called once per frame
@@ -51,11 +69,9 @@ public class ScreenHUD : ScreenBase {
         base.Update();
 
         //DEBUG DELETE
-        if (Input.GetKeyDown("g"))
+        if (Input.GetKeyDown("t"))
         {
-            _clientWaitingButton.GetComponent<UITweener>().TweenScale(new Vector3(1.1f, 1.1f, 1.1f), 0.5f, delegate () {
-                Debug.Log("Finished Tweening");
-            });
+           
         }
 
         _moneyText.text = "Funds: $" + _game.player.stats.money;
