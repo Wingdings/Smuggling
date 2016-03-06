@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 using UnityEngine.UI;
 
 public class ScreenDialog : ScreenBase {
@@ -22,7 +23,7 @@ public class ScreenDialog : ScreenBase {
 
         Text t = getTextByName("HintText");
         string tString = "";
-        foreach (string hint in _client.hints)
+        foreach (string hint in _client.hints.Distinct())
         {
             tString += hint;
             tString += "\n";

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Linq;
 
 public class ScreenResults : ScreenBase {
 
@@ -39,9 +40,9 @@ public class ScreenResults : ScreenBase {
         t.text = "Net Reputation: " + (_game.player.stats.reputation - prevRep);
         t = getTextByName("SummaryText");
         t.text = "";
-        foreach (string s in results.summary)
+        foreach (string s in results.summary.Distinct())
         {
-            t.text += s;
+            t.text += s + "\n";
         }
 
         t = getTextByName("GroupText");
