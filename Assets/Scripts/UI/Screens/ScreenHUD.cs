@@ -12,6 +12,9 @@ public class ScreenHUD : ScreenBase {
     Text _group3Count;
 
     GameObject _clientWaitingButton;
+    ScrollRect _ticker;
+
+    float _scrollStart;
 
     bool _hidden = true;
 
@@ -37,6 +40,8 @@ public class ScreenHUD : ScreenBase {
             _ui.DoFlowEvent(FLOW_EVENT.FLOW_GROUP_PREVIEW_OPEN);
         });
 
+        _ticker = gameObject.GetComponentInChildren<ScrollRect>();
+        _scrollStart = _ticker.content.transform.position.x;
 
         _moneyText = getTextByName("MoneyText");
         _reputationText = getTextByName("ReputationText");
@@ -87,6 +92,17 @@ public class ScreenHUD : ScreenBase {
         } else if (!_hidden && _game.GetClientsWaiting().Count == 0)
         {
             Hide(_clientWaitingButton);
+        }
+
+
+        var currentPos = _ticker.content.position.x;
+        _ticker.content.Translate(-20 * Time.fixedDeltaTime, 0, 0);
+        if (currentPos < _scrollStart - _ticker.content.rect.width)
+        {
+            //reset
+            _ticker.content.position = new Vector3(_scrollStart, 
+                                    _ticker.content.position.y, 
+                                    _ticker.content.position.z);
         }
     }
 
