@@ -290,7 +290,7 @@ public class HintGenerator
 
         for (var i = 0; i < maxCount && textOptions.Count > 0; ++i)
         {
-            HintData hint = textOptions[rand.Next(options.Count)];
+            HintData hint = textOptions[rand.Next(textOptions.Count)];
             textOptions.Remove(hint);
             generated.Add(hint.texts[rand.Next(hint.texts.Count)]);
         }
