@@ -42,7 +42,7 @@ public class ScreenResults : ScreenBase {
         t.text = "";
         foreach (string s in results.summary.Distinct())
         {
-            t.text += s;
+            t.text += s + "\n";
         }
 
         t = getTextByName("GroupText");
