@@ -48,10 +48,12 @@
     <mod chance="0.2">dislike-bribe</mod>
   </person>
 	
-  <person gender="all"> <!-- Fugitive -->
+  <person gender="all"> <!-- Guilty Fugitive -->
     <bio>Hi, uh, my name is %name%. I'm, well, uh, wanting to go to %destination%. I'm, uh, kind of on the run. I really need some, uh, help.</bio>
+    <bio>I'm innocent, I swear! You have to help me get away!</bio>
+    <bio>You're my last shot at freedom. Please help me.</bio>
     
-    <attr min="3" max="6">suspicion</attr>
+    <attr min="4" max="8">suspicion</attr>
     <attr min="5" max="8">notoriety</attr>
     <attr min="0" max="4">sickness</attr>
     <attr min="8">desperation</attr>
@@ -67,7 +69,24 @@
     <success>You successfully smuggled a fugitive!</success>
     
     <!-- Modifiers will never be applied unless you specify them. If you don't specify chance, it'll be set to 1. -->
-    <mod chance="0.5">very_angry</mod>
+    <mod chance="0.8">very_angry</mod>
+  </person>
+
+  <person gender="all"> <!-- Innocent Fugitive -->
+    <bio>Hi, uh, my name is %name%. I'm, well, uh, wanting to go to %destination%. I'm, uh, kind of on the run. I really need some, uh, help.</bio>
+    <bio>I'm innocent, I swear! You have to help me get away!</bio>
+    <bio>You're my last shot at freedom. Please help me.</bio>
+
+    <attr min="3" max="6">suspicion</attr>
+    <attr min="5" max="8">notoriety</attr>
+    <attr min="0" max="4">sickness</attr>
+    <attr min="8">desperation</attr>
+    <attr min="1000" max="2000">money</attr>
+    <attr min="3" max="6">success-rep</attr>
+    <attr min="2" max="5">fail-rep</attr>
+    <attr min="0" max="2">deny-rep</attr>
+
+    <success>You successfully smuggled a fugitive!</success>
   </person>
   
   <person gender="male"> <!-- Gangbanger -->
@@ -87,6 +106,8 @@
   
   <person gender="all"> <!-- Rich, possibly very sick -->
     <bio>I need to get to %destination%. You'll be well rewarded for getting me there quietly.</bio>
+    <bio>I have influential friends in %destination% that could be useful for you if you can get me to them.</bio>
+    <bio>I'm looking for discrete transportation. You'll be compensated, of course.</bio>
 
     <attr max="5">suspicion</attr>
     <attr min="7">notoriety</attr>
@@ -100,7 +121,7 @@
     <mod chance="0.3">very_angry</mod>
   </person>
 
-  <person gender="all"> <!-- (possible) theif -->
+  <person gender="all"> <!-- (possible) thief -->
     <bio>Yo man, can you, uh, get me to %destination%? I'll make sure to pay, I promise.</bio>
 
     <attr max="5">suspicion</attr>
@@ -113,5 +134,41 @@
     <attr min="0" max="0">deny-rep</attr>
     
     <!-- Success summary for this is done in hints.xml -->
+  </person>
+
+  <person gender="all"> <!-- Extremist -->
+    <bio>I was told you were the person to see about getting to %destination%.</bio>
+    <bio>I need to get to %destination%. You can get me there?</bio>
+    <bio>I've heard you've been getting people over to %destination%.</bio>
+    <bio>I'm in the market for... transportation to %destination%.</bio>
+    <bio>They say you know how to get past the border to %destination%.</bio>
+
+    <attr min="8">suspicion</attr>
+    <attr max="4">notoriety</attr>
+    <attr max="4">sickness</attr>
+    <attr min="5">desperation</attr>
+    <attr min="1500" max="2500">money</attr>
+    <attr min="-4" max="0">success-rep</attr>
+    <attr min="1" max="2">fail-rep</attr>
+    <attr min="0" max="0">deny-rep</attr>
+  </person>
+
+  <person gender="all"> <!-- Infected -->
+    <bio>I was told you were the person to see about getting to %destination%.</bio>
+    <bio>I need to get to %destination%. You can get me there?</bio>
+    <bio>I've heard you've been getting people over to %destination%.</bio>
+    <bio>I'm in the market for... transportation to %destination%.</bio>
+    <bio>They say you know how to get past the border to %destination%.</bio>
+    <bio>I was told the doctors in %destination% are better than the ones here. Can you get me there?</bio>
+    <bio>I need medicine that I can only get in %destination%. I'll pay you to take me there.</bio>
+
+    <attr min="4">suspicion</attr>
+    <attr max="4">notoriety</attr>
+    <attr min="8">sickness</attr>
+    <attr min="5">desperation</attr>
+    <attr min="1500" max="2500">money</attr>
+    <attr min="0" max="4">success-rep</attr>
+    <attr min="1" max="2">fail-rep</attr>
+    <attr min="1" max="4">deny-rep</attr>
   </person>
 </people>
