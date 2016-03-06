@@ -227,8 +227,8 @@ public class HintGenerator
                 }
             }
 
-            if (data.texts.Count == 0 || (data.modifiers.Count == 0 && data.attributes.Count == 0))
-                throw new System.Exception("A hint is missing text or attributes/modifiers to match!");
+            if (data.modifiers.Count == 0 && data.attributes.Count == 0)
+                throw new System.Exception("A hint is missing attributes/modifiers to match!");
 
             hints.Add(data);
         }
@@ -241,7 +241,8 @@ public class HintGenerator
         List<string> generated = new List<string>();
         List<string> successSummaries = new List<string>();
         List<string> failureSummaries = new List<string>();
-        List<HintData> options = new List<HintData>();
+        List<HintData> options = new List<HintData>(); // hints no longer _have_ to have text, so we have an "all hints" array and a "text only" array
+        List<HintData> textOptions = new List<HintData>();
 
         foreach (var hint in hints)
         {
@@ -281,13 +282,16 @@ public class HintGenerator
             if (!ok)
                 continue;
 
+            if (hint.texts.Count > 0)
+                textOptions.Add(hint);
+
             options.Add(hint);
         }
 
-        for (var i = 0; i < maxCount && options.Count > 0; ++i)
+        for (var i = 0; i < maxCount && textOptions.Count > 0; ++i)
         {
-            HintData hint = options[rand.Next(options.Count)];
-            options.Remove(hint);
+            HintData hint = textOptions[rand.Next(options.Count)];
+            textOptions.Remove(hint);
             generated.Add(hint.texts[rand.Next(hint.texts.Count)]);
         }
 

@@ -153,9 +153,6 @@
   </hint>
   <hint>
     <attr min="3">fail-rep</attr>
-    <text>They claim they are very influential.</text>
-    <text>They say they have some influential friends.</text>
-
     <failure>Your reputation took a big hit!</failure>
   </hint>
   <hint>
