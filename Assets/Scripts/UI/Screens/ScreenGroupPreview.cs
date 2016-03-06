@@ -40,7 +40,7 @@ public class ScreenGroupPreview : ScreenBase {
         
         t.text = "Cost: $"+cost;
 
-        if (cost > _game.player.stats.money)
+        if (cost > _game.player.stats.money || _group.clients.Count == 0)
         {
             getButtonByName("SendButton").interactable = false;
         }
