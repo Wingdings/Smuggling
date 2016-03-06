@@ -10,7 +10,8 @@
     dislike-bribe
   -->
   
-  <person gender="all"> <!-- Generic Client -->
+  <!-- Set count to be > 1 if you want the person to be more likely to be generated -->
+  <person gender="all" count="4"> <!-- Generic Client -->
     <!-- if gender is blank, it defaults to all -->
     
   	<!-- Generic clients are designed as filler clients for groups. They aren't supposed to be terribly interesting

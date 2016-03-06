@@ -388,6 +388,8 @@ public class ClientGenerator
                 throw new System.Exception("Invalid top-level node '" + node.Name + "'");
 
             ClientGenData data = new ClientGenData();
+            int count = 1;
+
             if (node.Attributes["gender"] != null)
             {
                 data.gender = node.Attributes["gender"].Value;
@@ -396,6 +398,14 @@ public class ClientGenerator
             {
                 data.gender = "all";
             }
+
+            if (node.Attributes["count"] != null)
+            {
+                count = int.Parse(node.Attributes["count"].Value);
+            }
+
+            if (count < 1)
+                throw new System.Exception("count cannot be < 1 on a person archetype");
 
             for (var j = 0; j < node.ChildNodes.Count; ++j)
             {
@@ -464,7 +474,10 @@ public class ClientGenerator
                 }
             }
 
-            generators.Add(data);
+            for (var c = 0; c < count; ++c)
+            {
+                generators.Add(data);
+            }
         }
     }
 
