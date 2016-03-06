@@ -37,6 +37,12 @@ public class ScreenResults : ScreenBase {
         t.text = "Net Profit: " + (_game.player.stats.money - prevFunds);
         t = getTextByName("ReputationText");
         t.text = "Net Reputation: " + (_game.player.stats.reputation - prevRep);
+        t = getTextByName("SummaryText");
+        t.text = "";
+        foreach (string s in results.summary)
+        {
+            t.text += s;
+        }
 
         t = getTextByName("GroupText");
         t.text = _group.name;

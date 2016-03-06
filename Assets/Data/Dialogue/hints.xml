@@ -107,7 +107,7 @@
   </hint>
   <hint>
     <attr min="9">desperation</attr>
-    <text>They emplore you to take them to %destination%.</text>
+    <text>They implore you to take them to %destination%.</text>
 
     <failure>A client was so desperate to get to %destination% that they gave themselves away!</failure>
   </hint>
