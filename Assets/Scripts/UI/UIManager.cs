@@ -26,9 +26,15 @@ public class UIManager : MonoBehaviour {
     List<GameObject> _screens;
     GameObject _game;
 
-	// Use this for initialization
-	void Start () {
+    Dictionary<string, Sprite[]> _malePortraits;
+    Dictionary<string, Sprite[]> _femalePortraits;
+
+    // Use this for initialization
+    void Start () {
         _resources = new Dictionary<string, GameObject>();
+        _malePortraits = new Dictionary<string, Sprite[]>();
+        _femalePortraits = new Dictionary<string, Sprite[]>();
+
         _flowQueue = new Queue();
         _screens = new List<GameObject>();
         loadResources();
@@ -119,6 +125,18 @@ public class UIManager : MonoBehaviour {
 
         _resources.Add("ClientButton", Resources.Load<GameObject>("ClientButton"));
         _resources.Add("GameManager", Resources.Load<GameObject>("GameManager"));
+
+        //var eyes = Resources.LoadAll<Sprite>("Eyes");
+        //_malePortraits.Add("eyes", eyes);
+        //_malePortraits.Add("faces", Resources.LoadAll <Sprite> ("Male/Faces"));
+        //_malePortraits.Add("hair", Resources.LoadAll<Sprite>("Male/Hair"));
+        //_malePortraits.Add("mouths", Resources.LoadAll<Sprite>("Male/Mouths"));
+
+        //_femalePortraits.Add("eyes", eyes);
+        //_femalePortraits.Add("faces", Resources.LoadAll<Sprite>("Female/Faces"));
+        //_femalePortraits.Add("hair", Resources.LoadAll<Sprite>("Female/Hair"));
+        //_femalePortraits.Add("mouths", Resources.LoadAll<Sprite>("Female/Mouths"));
+
     }
 
     public GameObject getResource(string name)
