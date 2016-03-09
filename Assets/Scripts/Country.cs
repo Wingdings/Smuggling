@@ -4,106 +4,66 @@ using System.Collections;
 [System.Serializable]
 public struct CountryStats
 {
-	public string name;
-	public string currentNews;
-	public int difficulty;
-	public int population;
+    public double deathRate;
+    public double birthRate;
+    public double healRate;
+    public double sickness; // between 0 and 1
+    public double population; // between 0 and 1
 
-    // SIR Model for disease spread
-    // good base to start working with
-	public int percentSick; // percent of people in country that are sick
-    public int percentSusceptible;
-    public int percentRecovered; // if any
-		
-	public CountryStats(string _name = "EMPTY", string _currentNews = "EMPTY", int _difficulty = 0, int _population = 0, int _percentSick = 0)
-	{
-		name = _name;
-		currentNews = _currentNews;
-		difficulty = _difficulty;
-		population = _population;
-		percentSick = _percentSick;
+    public CountryStats(double sickness, double population)
+    {
+        deathRate = 0.1;
+        birthRate = 0.1;
+        healRate = 0.05;
 
-        percentSusceptible = 0;
-        percentRecovered = 0;
-	}
+        this.sickness = sickness;
+        this.population = population;
+    }
+
+    public CountryStats TickStats(double groupSickness, int groupSize)
+    {
+        double newSickness = sickness;
+        double newPopulation = population;
+
+        if (groupSize > 0)
+        {
+            newSickness += (1 - sickness) * (groupSickness / (groupSize * 10));
+
+        }
+
+        newSickness -= newSickness * healRate;
+
+        newPopulation += newPopulation * birthRate - newPopulation * newSickness * deathRate;
+
+        Debug.LogFormat("Tick: sickness = {0}, population = {1}, newSickness = {2}, newPopulation = {3}", sickness, population, newSickness, newPopulation);
+
+        return new CountryStats(newSickness, newPopulation);
+    }
+
+    public double GetDifficulty()
+    {
+        return 1 + sickness * population * 2.5;
+    }
 }
 
 [CreateAssetMenu(fileName = "Country", menuName = "Smuggling/Country", order = 1)]
 public class Country : ScriptableObject
 {
+    public string countryName;
 	public CountryStats stats;
 	
-	public static Country Create(string _name = "EMPTY", string _currentNews = "EMPTY", int _difficulty = 0, int _population = 0, int _percentSick = 0)
+	public static Country Create(double sickness = 0.1, double population = 0.7)
 	{
 		Country country = ScriptableObject.CreateInstance<Country>();
-		country.stats = new CountryStats(_name, _currentNews,_difficulty, _population, _percentSick);
+		country.stats = new CountryStats(sickness, population);
 		return country;
 	}
 
-	public void setCountryName(string _name){
-		this.stats.name = _name;
-	}
-
-	public void setCurrentNews(string currNews){
-		this.stats.currentNews = currNews;
-	}
-
-	public void setPopulation(int _num){
-		this.stats.population = _num;
-	}
-
-	public void setPercentSick(int _num){
-		this.stats.percentSick = _num;
-	}
-
-	public void setDifficulty(int _num){
-		this.stats.difficulty = _num;
-	}
-
-	public int getDifficulty(){
-		return this.stats.difficulty;
-	}
-
-	public string getName (){
-		return this.stats.name;
-	}
-
-	public string getCurrentNews(){
-		return this.stats.currentNews;
-	}
-
-	public int getPopulation(){
-		return this.stats.population;
-	}
-
-	public int getPercentSick(){
-		return this.stats.percentSick;
-	}
-
-	//handles people traveling between countries -- use negative if you want to subtract people
-	public void changePopulation(int _num){
-		this.stats.population += _num;
-	}
-
-	//not sure how sickness is working yet
-    //perhaps the SIR model for disease spread
-	public void calcPercentSick(){
-
-	}
-
-	public void setStartingStats(){
-		//setting country stats
-		setPopulation (1000000);
-		setPercentSick(0);
-	}
-
-	//method for handling news events after a certain smuggling group comes in
-
-
-	public void printStats(){
-		Debug.Log (this.stats.name);
-		Debug.Log (this.stats.currentNews);
-		Debug.Log (this.stats.population);
-		Debug.Log (this.stats.percentSick);
-	}
+    public void TickCountry(SmugglingResult? lastResult)
+    {
+        if (!lastResult.HasValue)
+            stats.TickStats(0, 0);
+        else
+            stats = stats.TickStats(lastResult.Value.stats.sickness, lastResult.Value.group.clients.Count);
+    }
 }

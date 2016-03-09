@@ -145,6 +145,10 @@
   
   <!-- Basic Reputation -->
   <hint>
+    <attr min="-9999" max="-1">success-rep</attr>
+    <text>You have a feeling they might be dangerous.</text>
+  </hint>
+  <hint>
     <attr min="3">success-rep</attr>
     <text>They claim they are very influential.</text>
     <text>They say they have some influential friends.</text>

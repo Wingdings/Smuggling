@@ -67,16 +67,10 @@ public class GameManager : MonoBehaviour
         ClientGen = new ClientGenerator(peopleAsset, modifierList);
 
         player = ScriptableObject.CreateInstance<Player>();
-		country1 = ScriptableObject.CreateInstance<Country> ();
-		country2 = ScriptableObject.CreateInstance<Country> ();
-
-		//setting country stats
-		country1.setPopulation (1000000);
-		country2.setPopulation (1000000);
-		country1.setCountryName ("Country A"); //for now until names are assigned
-		country2.setCountryName ("Country B");
-		country1.setPercentSick(0);
-		country2.setPercentSick (0);
+        country1 = Country.Create();
+        country1.countryName = "TODO";
+        country2 = Country.Create();
+        country2.countryName = "Gastesal";
 
 		//setting starting values manually for testing purposes, will move to method
 		player.changeMoney (100000);
@@ -135,6 +129,8 @@ public class GameManager : MonoBehaviour
                 result.summary.AddRange(client.failureSummaries);
             }
 
+            TickCountries(null); // pass null if failure
+
             ChangePlayerStatsFailedRun(result);
             result.success = false;
         }
@@ -145,7 +141,8 @@ public class GameManager : MonoBehaviour
                 result.summary.AddRange(client.successSummaries);
             }
 
-            ChangeCountryStatsSucceededRun(group);
+            TickCountries(result);
+
             ChangePlayerStatsSucceededRun(result);
             result.success = true;
         }
@@ -173,7 +170,7 @@ public class GameManager : MonoBehaviour
     public Client GenerateNextClient()
     {
         var client = ClientGen.GenerateClient(NameGen, HintGen);
-        Debug.LogFormat("Name: {0} {1} ({2})", client.nameData.first, client.nameData.last, client.nameData.gender);
+        /*Debug.LogFormat("Name: {0} {1} ({2})", client.nameData.first, client.nameData.last, client.nameData.gender);
         Debug.LogFormat("Bio: {0}", client.bio);
         Debug.LogFormat("Stats: suspicion={0}, notoriety={1}, sickness={2}, desperation={3}, money={4}, success={5}, fail={6}, deny={7}", client.stats.suspicion, client.stats.notoriety,
             client.stats.sickness, client.stats.desperation, client.stats.money, client.stats.successRep, client.stats.failRep, client.stats.denyRep);
@@ -190,7 +187,7 @@ public class GameManager : MonoBehaviour
         foreach (var text in client.failureSummaries)
         {
             Debug.LogFormat("Failure: {0}", text);
-        }
+        }*/
 
         return client;
     }
@@ -210,17 +207,8 @@ public class GameManager : MonoBehaviour
         player.changeMoney((int)System.Math.Round(result.stats.money));
 	}
 
-	public void ChangeCountryStatsSucceededRun(SmugglingGroup group)
+    public void TickCountries(SmugglingResult? result)
     {
-        country1.changePopulation(-group.clients.Count);
-        country2.changePopulation(group.clients.Count);
-
-        /*
-        foreach (var client in group.clients)
-        {
-            country1.changePopulation(-1);
-            country2.changePopulation(1);
-        }
-        */
-	}
+        country2.TickCountry(result);
+    }
 }
