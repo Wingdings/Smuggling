@@ -65,6 +65,23 @@ public class ScreenGroupPreview : ScreenBase {
 
             tButton.GetComponentInChildren<Text>().text = c.nameData.first + " " + c.nameData.last;
             //TODO image
+            
+            string gender = c.nameData.gender;
+            if (gender == "male")
+            {
+                tButton.transform.FindChild("ClientButtonImageFace").GetComponent<Image>().sprite = _ui.getMaleSprites("faces")[c.portraitIndices[0]];
+                tButton.transform.FindChild("ClientButtonImageHair").GetComponent<Image>().sprite = _ui.getMaleSprites("hair")[c.portraitIndices[1]];
+                tButton.transform.FindChild("ClientButtonImageEyes").GetComponent<Image>().sprite = _ui.getMaleSprites("eyes")[c.portraitIndices[2]];
+                tButton.transform.FindChild("ClientButtonImageMouth").GetComponent<Image>().sprite = _ui.getMaleSprites("mouths")[c.portraitIndices[3]];
+            }
+            else
+            {
+                tButton.transform.FindChild("ClientButtonImageFace").GetComponent<Image>().sprite = _ui.getFemaleSprites("faces")[c.portraitIndices[0]];
+                tButton.transform.FindChild("ClientButtonImageHair").GetComponent<Image>().sprite = _ui.getFemaleSprites("hair")[c.portraitIndices[1]];
+                tButton.transform.FindChild("ClientButtonImageEyes").GetComponent<Image>().sprite = _ui.getFemaleSprites("eyes")[c.portraitIndices[2]];
+                tButton.transform.FindChild("ClientButtonImageMouth").GetComponent<Image>().sprite = _ui.getFemaleSprites("mouths")[c.portraitIndices[3]];
+            }
+
 
             tButton.GetComponent<Button>().onClick.AddListener(delegate()
             {
