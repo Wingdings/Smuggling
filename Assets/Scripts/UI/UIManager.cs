@@ -126,17 +126,26 @@ public class UIManager : MonoBehaviour {
         _resources.Add("ClientButton", Resources.Load<GameObject>("ClientButton"));
         _resources.Add("GameManager", Resources.Load<GameObject>("GameManager"));
 
-        //var eyes = Resources.LoadAll<Sprite>("Eyes");
-        //_malePortraits.Add("eyes", eyes);
-        //_malePortraits.Add("faces", Resources.LoadAll <Sprite> ("Male/Faces"));
-        //_malePortraits.Add("hair", Resources.LoadAll<Sprite>("Male/Hair"));
-        //_malePortraits.Add("mouths", Resources.LoadAll<Sprite>("Male/Mouths"));
+        var eyes = Resources.LoadAll<Sprite>("Eyes");
+        _malePortraits.Add("eyes", eyes);
+        _malePortraits.Add("faces", Resources.LoadAll <Sprite> ("Mens/Face"));
+        _malePortraits.Add("hair", Resources.LoadAll<Sprite>("Mens/Hair"));
+        _malePortraits.Add("mouths", Resources.LoadAll<Sprite>("Mens/Mouth"));
 
-        //_femalePortraits.Add("eyes", eyes);
-        //_femalePortraits.Add("faces", Resources.LoadAll<Sprite>("Female/Faces"));
-        //_femalePortraits.Add("hair", Resources.LoadAll<Sprite>("Female/Hair"));
-        //_femalePortraits.Add("mouths", Resources.LoadAll<Sprite>("Female/Mouths"));
+        _femalePortraits.Add("eyes", eyes);
+        _femalePortraits.Add("faces", Resources.LoadAll<Sprite>("Womens/Face"));
+        _femalePortraits.Add("hair", Resources.LoadAll<Sprite>("Womens/Hair"));
+        _femalePortraits.Add("mouths", Resources.LoadAll<Sprite>("Womens/Mouth"));
+    }
 
+    public Sprite[] getMaleSprites(string type)
+    {
+        return _malePortraits[type];
+    }
+
+    public Sprite[] getFemaleSprites(string type)
+    {
+        return _femalePortraits[type];
     }
 
     public GameObject getResource(string name)

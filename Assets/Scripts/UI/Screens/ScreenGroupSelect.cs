@@ -55,6 +55,22 @@ public class ScreenGroupSelect : ScreenBase {
        
         t = getTextByName("NameText");
         t.text = _client.nameData.first + "\n" + _client.nameData.last;
+
+        string gender = _client.nameData.gender;
+        if (gender == "male")
+        {
+            getImageByName("ImagePortraitFace").sprite = _ui.getMaleSprites("faces")[_client.portraitIndices[0]];
+            getImageByName("ImagePortraitHair").sprite = _ui.getMaleSprites("hair")[_client.portraitIndices[1]];
+            getImageByName("ImagePortraitEyes").sprite = _ui.getMaleSprites("eyes")[_client.portraitIndices[2]];
+            getImageByName("ImagePortraitMouth").sprite = _ui.getMaleSprites("mouths")[_client.portraitIndices[3]];
+        }
+        else
+        {
+            getImageByName("ImagePortraitFace").sprite = _ui.getFemaleSprites("faces")[_client.portraitIndices[0]];
+            getImageByName("ImagePortraitHair").sprite = _ui.getFemaleSprites("hair")[_client.portraitIndices[1]];
+            getImageByName("ImagePortraitEyes").sprite = _ui.getFemaleSprites("eyes")[_client.portraitIndices[2]];
+            getImageByName("ImagePortraitMouth").sprite = _ui.getFemaleSprites("mouths")[_client.portraitIndices[3]];
+        }
     }
 
     // Update is called once per frame
