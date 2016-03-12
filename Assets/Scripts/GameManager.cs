@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
 			clientsWaiting.Add(GenerateNextClient());
 		}
 		if (Time.time > timeBetweenClients) {
-			timeBetweenClients += Random.Range(10,25);
+			timeBetweenClients += Random.Range(5,15);
 			clientsWaiting.Add(GenerateNextClient());
 			//Debug.Log(clientsWaiting.Count);
 		}

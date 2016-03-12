@@ -51,12 +51,17 @@ public class ScreenGroupPreview : ScreenBase {
     public void refreshClientList()
     {
         GameObject clientPanel = GameObject.Find("ClientScrollContent");
-        foreach (Transform child in clientPanel.transform)
+        int count = clientPanel.transform.childCount;
+        
+        while (--count >= 0)
         {
+           
+            var child = clientPanel.transform.GetChild(count);
             GameObject.DestroyImmediate(child.gameObject);
         }
         for (int i = 0; i < _group.clients.Count; i++)
         {
+            
             Client c = _group.clients[i];
             GameObject tButton = Instantiate(_ui.getResource("ClientButton"));
             RectTransform trans = tButton.GetComponent<RectTransform>();
@@ -64,7 +69,7 @@ public class ScreenGroupPreview : ScreenBase {
             tButton.transform.Translate(0f, -(24 * i), 0f);
 
             tButton.GetComponentInChildren<Text>().text = c.nameData.first + " " + c.nameData.last;
-            //TODO image
+            
             
             string gender = c.nameData.gender;
             if (gender == "male")
@@ -90,6 +95,7 @@ public class ScreenGroupPreview : ScreenBase {
             });
         }
         double cost = _game.player.calculateTransportCosts(_group.GetTransportType(), _group.clients.Count);
+        getTextByName("CostText").text = "Cost: $" + cost;
         _prevSize = _group.clients.Count;
         if (cost > _game.player.stats.money || _group.clients.Count == 0)
         {
@@ -104,6 +110,7 @@ public class ScreenGroupPreview : ScreenBase {
         //Debug.Log(_prevSize + " " + _group.clients.Count);
         if (_prevSize != _group.clients.Count)
         {
+            
             refreshClientList();
         }
     }

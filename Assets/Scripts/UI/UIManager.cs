@@ -17,6 +17,13 @@ public enum FLOW_EVENT
     FLOW_RESULTS_CLOSE,
     FLOW_GROUP_PREVIEW_OPEN,
     FLOW_GROUP_PREVIEW_CLOSE,
+    FLOW_CREDITS_OPEN,
+    FLOW_CREDITS_CLOSE,
+    FLOW_NEWS_OPEN,
+    FLOW_NEWS_CLOSE,
+    FLOW_MID_MISSION_OPEN,
+    FLOW_MID_MISSION_CLOSE,
+    FLOW_GAME_OVER,
 }
 
 public class UIManager : MonoBehaviour {
@@ -95,6 +102,16 @@ public class UIManager : MonoBehaviour {
                 case FLOW_EVENT.FLOW_GROUP_PREVIEW_CLOSE:
                     closeScreen("ScreenGroupPreview");
                     break;
+                case FLOW_EVENT.FLOW_CREDITS_OPEN:
+                    openScreen("ScreenCredits");
+                    break;
+                case FLOW_EVENT.FLOW_CREDITS_CLOSE:
+                    closeScreen("ScreenCredits");
+                    break;
+                case FLOW_EVENT.FLOW_GAME_OVER:
+                    destroyGame();
+                    openScreen("ScreenEndGame");
+                    break;
                 default:
                     break;
             }
@@ -122,6 +139,8 @@ public class UIManager : MonoBehaviour {
         _resources.Add("ScreenResults", Resources.Load<GameObject>("Screen/ScreenResults"));
         _resources.Add("ScreenSplash", Resources.Load<GameObject>("Screen/ScreenSplash"));
         _resources.Add("ScreenGroupPreview", Resources.Load<GameObject>("Screen/ScreenGroupPreview"));
+        _resources.Add("ScreenCredits", Resources.Load<GameObject>("Screen/ScreenCredits"));
+        _resources.Add("ScreenEndGame", Resources.Load<GameObject>("Screen/ScreenEndGame"));
 
         _resources.Add("ClientButton", Resources.Load<GameObject>("ClientButton"));
         _resources.Add("GameManager", Resources.Load<GameObject>("GameManager"));
