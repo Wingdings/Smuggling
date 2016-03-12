@@ -17,6 +17,9 @@ public class ScreenGroupSelect : ScreenBase {
             //mark current group selected
             Toggle[] toggles = GetComponentsInChildren<Toggle>();
             toggles[g].isOn = true;
+        } else
+        {
+            getButtonByName("AddButton").interactable = false;
         }
 
         getButtonByName("AddButton").onClick.AddListener(delegate()
@@ -78,6 +81,11 @@ public class ScreenGroupSelect : ScreenBase {
     {
         base.Update();
 
+    }
+
+    public void EnableButton()
+    {
+        getButtonByName("AddButton").interactable = true;
     }
 
     public override void OpenScreen()

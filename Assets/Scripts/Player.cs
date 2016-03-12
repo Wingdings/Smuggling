@@ -54,7 +54,11 @@ public class Player : ScriptableObject
 	//handles reputation changes -- use negative to subtract
 	public void changeReputation(int _num){
 		this.stats.reputation += _num;
-	}
+        if (this.stats.reputation < 0)
+        {
+            this.stats.reputation = 0;
+        }
+    }
 
 	public int calculateTransportCosts (TransportType type, int numClients){
 		if (type == TransportType.NONE) {

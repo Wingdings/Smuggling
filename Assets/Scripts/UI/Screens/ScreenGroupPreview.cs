@@ -89,7 +89,12 @@ public class ScreenGroupPreview : ScreenBase {
                 _ui.DoFlowEvent(FLOW_EVENT.FLOW_GROUP_SELECT_OPEN);
             });
         }
+        double cost = _game.player.calculateTransportCosts(_group.GetTransportType(), _group.clients.Count);
         _prevSize = _group.clients.Count;
+        if (cost > _game.player.stats.money || _group.clients.Count == 0)
+        {
+            getButtonByName("SendButton").interactable = false;
+        }
     }
 
     // Update is called once per frame
