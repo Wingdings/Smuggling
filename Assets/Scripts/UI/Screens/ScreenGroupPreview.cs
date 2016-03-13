@@ -101,6 +101,17 @@ public class ScreenGroupPreview : ScreenBase {
         {
             getButtonByName("SendButton").interactable = false;
         }
+
+        double chance = GameManager.CalculateChance(_group.CalculateStats(), _group.clients.Count);
+        getTextByName("RiskText").text = "Risk: None";
+        if (chance > 0.80)
+            getTextByName("RiskText").text = "Risk: Low";
+        else if (chance > 0.50)
+            getTextByName("RiskText").text = "Risk: Medium";
+        else if (chance > 0)
+            getTextByName("RiskText").text = "Risk: High";
+        else
+            getTextByName("RiskText").text = "Risk: Nope";
     }
 
     // Update is called once per frame

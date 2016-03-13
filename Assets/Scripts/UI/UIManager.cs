@@ -127,6 +127,17 @@ public class UIManager : MonoBehaviour {
                 _screens.RemoveAt(tI);
             }
         }
+
+        //end game condition
+        if (_game != null)
+        {
+            
+            if (_game.GetComponent<GameManager>().gameOver)
+            {
+                
+                DoFlowEvent(FLOW_EVENT.FLOW_GAME_OVER);
+            }
+        }
 	}
 
     void loadResources()

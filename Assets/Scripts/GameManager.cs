@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     }
 
 	public float timeBetweenClients = 5;
+    public bool gameOver = false;
 
 	public List<Client> clientsWaiting;
 
@@ -73,7 +74,7 @@ public class GameManager : MonoBehaviour
         country2.countryName = "Gastesal";
 
 		//setting starting values manually for testing purposes, will move to method
-		player.changeMoney (100000);
+		player.changeMoney (50000);
 		player.changeReputation(50);
 
         //TODO default groups
@@ -106,6 +107,10 @@ public class GameManager : MonoBehaviour
 			clientsWaiting.Add(GenerateNextClient());
 			//Debug.Log(clientsWaiting.Count);
 		}
+        if (player.stats.money <= 4000 || player.stats.reputation <= 0)
+        {
+            gameOver = true;
+        }
 	}
 
 	public List<Client> GetClientsWaiting(){
