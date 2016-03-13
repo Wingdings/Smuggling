@@ -44,6 +44,9 @@ public class GameManager : MonoBehaviour
 	public Country country1;
 	public Country country2;
 
+    //progression of smuggling options
+    public int transportationState = 0;
+
     public List<SmugglingGroup> smugglingGroups = new List<SmugglingGroup>();
 
     public TextAsset namesAsset;

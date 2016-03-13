@@ -12,6 +12,10 @@ public class ScreenHUD : ScreenBase {
     Text _group3Count;
 
     GameObject _clientWaitingButton;
+    GameObject _boatGroupButton;
+    GameObject _planeGroupButton;
+    
+
     ScrollRect _ticker;
 
     float _scrollStart;
@@ -24,6 +28,8 @@ public class ScreenHUD : ScreenBase {
         base.Start();
 
         _clientWaitingButton = GameObject.Find("ClientWaitingButton");
+        _boatGroupButton = GameObject.Find("BoatGroupButton");
+        _planeGroupButton = GameObject.Find("PlaneGroupButton");
         Hide(_clientWaitingButton);
 
         getButtonByName("PauseButton").onClick.AddListener(delegate () { _ui.DoFlowEvent(FLOW_EVENT.FLOW_PAUSE_MENU_OPEN); });
@@ -33,11 +39,11 @@ public class ScreenHUD : ScreenBase {
             _ui.DoFlowEvent(FLOW_EVENT.FLOW_GROUP_PREVIEW_OPEN); });
         getButtonByName("BoatGroupButton").onClick.AddListener(delegate () {
             _game.referencedGroup = _game.smugglingGroups[0];
-            _ui.DoFlowEvent(FLOW_EVENT.FLOW_GROUP_PREVIEW_OPEN);
+            _ui.DoFlowEvent(FLOW_EVENT.FLOW_PURCHASE_OPEN);
         });
         getButtonByName("PlaneGroupButton").onClick.AddListener(delegate () {
             _game.referencedGroup = _game.smugglingGroups[1];
-            _ui.DoFlowEvent(FLOW_EVENT.FLOW_GROUP_PREVIEW_OPEN);
+            _ui.DoFlowEvent(FLOW_EVENT.FLOW_PURCHASE_OPEN);
         });
 
         _ticker = gameObject.GetComponentInChildren<ScrollRect>();
@@ -50,6 +56,8 @@ public class ScreenHUD : ScreenBase {
         _group3Count = getTextByName("BorderGroupText");
 
         StartCoroutine(BounceExclamationPoint());
+        StartCoroutine(BounceBoatGroup());
+        StartCoroutine(BouncePlaneGroup());
     }
 
     IEnumerator BounceExclamationPoint()
@@ -65,6 +73,54 @@ public class ScreenHUD : ScreenBase {
                 yield return null;
             }
             
+        }
+    }
+
+    IEnumerator BounceBoatGroup()
+    {
+        while (true)
+        {
+            if (_game.transportationState < 1)
+            {
+                _boatGroupButton.GetComponent<UITweener>().BounceScale(delegate () { });
+                yield return new WaitForSeconds(2f);
+            }
+            else
+            {
+                _boatGroupButton.GetComponent<Button>().onClick.RemoveAllListeners();
+                _boatGroupButton.GetComponent<Button>().onClick.AddListener(delegate ()
+                {
+                    _game.referencedGroup = _game.smugglingGroups[0];
+                    _ui.DoFlowEvent(FLOW_EVENT.FLOW_GROUP_PREVIEW_OPEN);
+                });
+                break;
+                //yield return null;
+            }
+
+        }
+    }
+
+    IEnumerator BouncePlaneGroup()
+    {
+        while (true)
+        {
+            if (_game.transportationState < 2)
+            {
+                _planeGroupButton.GetComponent<UITweener>().BounceScale(delegate () { });
+                yield return new WaitForSeconds(2f);
+            }
+            else
+            {
+                _planeGroupButton.GetComponent<Button>().onClick.RemoveAllListeners();
+                _planeGroupButton.GetComponent<Button>().onClick.AddListener(delegate ()
+                {
+                    _game.referencedGroup = _game.smugglingGroups[1];
+                    _ui.DoFlowEvent(FLOW_EVENT.FLOW_GROUP_PREVIEW_OPEN);
+                });
+                break;
+                //yield return null;
+            }
+
         }
     }
 
@@ -86,15 +142,31 @@ public class ScreenHUD : ScreenBase {
         _group2Count.text = "" + _game.smugglingGroups[1].clients.Count;
         _group3Count.text = "" + _game.smugglingGroups[2].clients.Count;
 
+        //upgrades
+        if (_game.transportationState == 0 && _game.player.getTotalRuns() == 5)
+        {
+            Show(_boatGroupButton);
+        }
+
+        if (_game.transportationState == 1 && _game.player.getTotalRuns() == 15)
+        {
+            Show(_planeGroupButton);
+        }
+
+
+        //client waiting
         if (_hidden && _game.GetClientsWaiting().Count > 0)
         {
+            _hidden = false;
             Show(_clientWaitingButton);
         } else if (!_hidden && _game.GetClientsWaiting().Count == 0)
         {
+            _hidden = true;
             Hide(_clientWaitingButton);
         }
 
 
+        //ticker
         var currentPos = _ticker.content.position.x;
         _ticker.content.Translate(-20 * Time.fixedDeltaTime, 0, 0);
         if (currentPos < _scrollStart - _ticker.content.rect.width)
@@ -110,14 +182,14 @@ public class ScreenHUD : ScreenBase {
     {
         g.GetComponent<CanvasGroup>().alpha = 0;
         g.GetComponent<CanvasGroup>().interactable = false;
-        _hidden = true;
+        
     }
 
     void Show(GameObject g)
     {
         g.GetComponent<CanvasGroup>().alpha = 1;
         g.GetComponent<CanvasGroup>().interactable = true;
-        _hidden = false;
+        
     }
 
     public override void OpenScreen()

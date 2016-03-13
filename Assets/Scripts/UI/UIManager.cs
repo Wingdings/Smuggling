@@ -23,6 +23,8 @@ public enum FLOW_EVENT
     FLOW_NEWS_CLOSE,
     FLOW_MID_MISSION_OPEN,
     FLOW_MID_MISSION_CLOSE,
+    FLOW_PURCHASE_OPEN,
+    FLOW_PURCHASE_CLOSE,
     FLOW_GAME_OVER,
 }
 
@@ -108,6 +110,12 @@ public class UIManager : MonoBehaviour {
                 case FLOW_EVENT.FLOW_CREDITS_CLOSE:
                     closeScreen("ScreenCredits");
                     break;
+                case FLOW_EVENT.FLOW_PURCHASE_OPEN:
+                    openScreen("ScreenPurchase");
+                    break;
+                case FLOW_EVENT.FLOW_PURCHASE_CLOSE:
+                    closeScreen("ScreenPurchase");
+                    break;
                 case FLOW_EVENT.FLOW_GAME_OVER:
                     destroyGame();
                     openScreen("ScreenEndGame");
@@ -152,6 +160,7 @@ public class UIManager : MonoBehaviour {
         _resources.Add("ScreenGroupPreview", Resources.Load<GameObject>("Screen/ScreenGroupPreview"));
         _resources.Add("ScreenCredits", Resources.Load<GameObject>("Screen/ScreenCredits"));
         _resources.Add("ScreenEndGame", Resources.Load<GameObject>("Screen/ScreenEndGame"));
+        _resources.Add("ScreenPurchase", Resources.Load<GameObject>("Screen/ScreenPurchase"));
 
         _resources.Add("ClientButton", Resources.Load<GameObject>("ClientButton"));
         _resources.Add("GameManager", Resources.Load<GameObject>("GameManager"));

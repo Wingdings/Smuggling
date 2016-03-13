@@ -22,6 +22,22 @@ public class ScreenGroupSelect : ScreenBase {
             getButtonByName("AddButton").interactable = false;
         }
 
+        switch (_game.transportationState)
+        {
+            case 0:
+                break;
+            case 1:
+                Show(GameObject.Find("Group1Toggle"));
+                break;
+            case 2:
+                Show(GameObject.Find("Group1Toggle"));
+                Show(GameObject.Find("Group2Toggle"));
+                break;
+            default:
+                //should not reach this
+                break;
+        }
+
         getButtonByName("AddButton").onClick.AddListener(delegate()
         {
             _game.referencedClient = null;
@@ -59,6 +75,15 @@ public class ScreenGroupSelect : ScreenBase {
         t = getTextByName("NameText");
         t.text = _client.nameData.first + "\n" + _client.nameData.last;
 
+        t = getTextByName("HintText");
+        string tString = "";
+        foreach (string hint in _client.hints.Distinct())
+        {
+            tString += hint;
+            tString += "\n";
+        }
+        t.text = tString;
+
         string gender = _client.nameData.gender;
         if (gender == "male")
         {
@@ -81,6 +106,20 @@ public class ScreenGroupSelect : ScreenBase {
     {
         base.Update();
 
+    }
+
+    void Hide(GameObject g)
+    {
+        g.GetComponent<CanvasGroup>().alpha = 0;
+        g.GetComponent<CanvasGroup>().interactable = false;
+        
+    }
+
+    void Show(GameObject g)
+    {
+        g.GetComponent<CanvasGroup>().alpha = 1;
+        g.GetComponent<CanvasGroup>().interactable = true;
+        
     }
 
     public void EnableButton()
