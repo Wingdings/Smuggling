@@ -171,4 +171,161 @@
     <attr min="1" max="2">fail-rep</attr>
     <attr min="1" max="4">deny-rep</attr>
   </person>
+  
+   <person gender="all"> <!-- Kind Old Person -->
+    <bio> Why hello there. I'm looking to travel to %destination%. Please won't you help a poor old senior?</bio>
+	<bio> My family wants to put me in a nursing home. I need to get to %destination% quickly.</bio>
+	
+    <attr min="0" max="2">suspicion</attr>
+    <attr min="0" max="2">notoriety</attr>
+    <attr min="0" max="5">sickness</attr>
+    <attr min="1" max="5">desperation</attr>
+    <attr min="1000" max="3000">money</attr>
+    <attr min="2" max="3">success-rep</attr>
+    <attr min="2" max="3">fail-rep</attr>
+    <attr min="0" max="2">deny-rep</attr>
+
+  </person>
+  
+  <person gender="all"> <!-- Most Wanted Criminal -->
+    <bio> I need to get over to %destination% no question's asked. I heard you were the person to talk to.</bio>
+	<bio> I'm running out of options here, please tell me that you know a way into %destination% inconspicuously.</bio>
+    <attr min="7">suspicion</attr>
+    <attr min="5" max="8">notoriety</attr>
+    <attr min="1" max="2">sickness</attr>
+    <attr min="8">desperation</attr>
+    <attr min="3000" max="5000">money</attr>
+    <attr min="2" max="3">success-rep</attr>
+    <attr min="4" max="5">fail-rep</attr>
+    <attr min="0" max="0">deny-rep</attr>
+	
+	 <mod>very_angry</mod>
+  </person>
+  
+   <person gender="all"> <!-- Government Agent -->
+    <bio> </bio>
+
+    <attr min="4" max="7">suspicion</attr>
+    <attr min="4" max="8">notoriety</attr>
+    <attr min="1" max="2">sickness</attr>
+    <attr min="8">desperation</attr>
+    <attr min="3000" max="5000">money</attr>
+    <attr min="2" max="3">success-rep</attr>
+    <attr min="2" max="3">fail-rep</attr>
+    <attr min="0" max="1">deny-rep</attr>
+
+  </person>
+  
+   <person gender="all"> <!-- Shady Black Market Dealer -->
+    <bio> </bio>
+
+    <attr min="5" max="8">suspicion</attr>
+    <attr min="4" max="7">notoriety</attr>
+    <attr min="1" max="2">sickness</attr>
+    <attr min="5" max="7">desperation</attr>
+    <attr min="1000" max="6000">money</attr>
+    <attr min="1" max="3">success-rep</attr>
+    <attr min="1" max="3">fail-rep</attr>
+    <attr min="0" max="0">deny-rep</attr>
+
+  </person>
+  
+  <person gender="all"> <!-- Very Poor and Desperate -->
+    <bio> </bio>
+
+    <attr min="1" max="2">suspicion</attr>
+    <attr min="1" max="2">notoriety</attr>
+    <attr min="4" max="7">sickness</attr>
+    <attr min="6" max="9">desperation</attr>
+    <attr min="1" max="500">money</attr>
+    <attr min="1" max="5">success-rep</attr>
+    <attr min="2" max="4">fail-rep</attr>
+    <attr min="0" max="1">deny-rep</attr>
+
+  </person>
+  
+  <person gender="all"> <!-- Junkie -->
+    <bio> </bio>
+
+    <attr min="1" max="2">suspicion</attr>
+    <attr min="1" max="2">notoriety</attr>
+    <attr min="4" max="7">sickness</attr>
+    <attr min="6" max="8">desperation</attr>
+    <attr min="1" max="2000">money</attr>
+    <attr min="1" max="3">success-rep</attr>
+    <attr min="1" max="3">fail-rep</attr>
+    <attr min="0" max="1">deny-rep</attr>
+
+  </person>
+  
+  <person gender="all"> <!-- Arms Dealer -->
+    <bio> </bio>
+
+    <attr min="4" max="7">suspicion</attr>
+    <attr min="4" max="7">notoriety</attr>
+    <attr min="1" max="2">sickness</attr>
+    <attr min="5" max="8">desperation</attr>
+    <attr min="4000" max="6000">money</attr>
+    <attr min="1" max="5">success-rep</attr>
+    <attr min="1" max="3">fail-rep</attr>
+    <attr min="0" max="0">deny-rep</attr>
+
+  </person>
+  
+  <person gender="all"> <!-- Undercover Border Control Agent -->
+    <bio> </bio>
+
+    <attr min="1" max="5">suspicion</attr>
+    <attr min="1" max="5">notoriety</attr>
+    <attr min="1" max="2">sickness</attr>
+    <attr min="5" max="7">desperation</attr>
+    <attr min="2000" max="3000">money</attr>
+    <attr min="-3" max="0">success-rep</attr>
+    <attr min="0" max="1">fail-rep</attr>
+    <attr min="0" max="0">deny-rep</attr>
+
+  </person>
+  
+  <person gender="all"> <!-- Loud Obnoxious Person -->
+    <bio> </bio>
+
+    <attr min="5" max="8">suspicion</attr>
+    <attr min="1" max="2">notoriety</attr>
+    <attr min="1" max="2">sickness</attr>
+    <attr min="4" max="6">desperation</attr>
+    <attr min="500" max="1000">money</attr>
+    <attr min="1" max="3">success-rep</attr>
+    <attr min="3" max="5">fail-rep</attr>
+    <attr min="0" max="1">deny-rep</attr>
+	
+	 <mod>very_angry</mod>
+  </person>
+  
+  <person gender="all"> <!-- Possible Crazy Person -->
+    <bio> </bio>
+
+    <attr min="5" max="8">suspicion</attr>
+    <attr min="1" max="2">notoriety</attr>
+    <attr min="1" max="2">sickness</attr>
+    <attr min="5" max="7">desperation</attr>
+    <attr min="1500" max="2500">money</attr>
+    <attr min="2" max="4">success-rep</attr>
+    <attr min="2" max="4">fail-rep</attr>
+    <attr min="0" max="1">deny-rep</attr>
+
+  </person>
+  
+  <person gender="all"> <!-- Insanely Rich Person -->
+    <bio> </bio>
+
+    <attr min="5" max="7">suspicion</attr>
+    <attr min="7" max="9">notoriety</attr>
+    <attr min="1" max="2">sickness</attr>
+    <attr min="4" max="7">desperation</attr>
+    <attr min="5000" max="9001">money</attr>
+    <attr min="4" max="6">success-rep</attr>
+    <attr min="4" max="5">fail-rep</attr>
+    <attr min="0" max="1">deny-rep</attr>
+
+  </person>
 </people>
