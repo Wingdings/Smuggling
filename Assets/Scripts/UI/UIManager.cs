@@ -156,13 +156,13 @@ public class UIManager : MonoBehaviour {
         _resources.Add("ClientButton", Resources.Load<GameObject>("ClientButton"));
         _resources.Add("GameManager", Resources.Load<GameObject>("GameManager"));
 
-        var eyes = Resources.LoadAll<Sprite>("Eyes");
-        _malePortraits.Add("eyes", eyes);
+        
+        _malePortraits.Add("eyes", Resources.LoadAll<Sprite>("Mens/Eyes"));
         _malePortraits.Add("faces", Resources.LoadAll <Sprite> ("Mens/Face"));
         _malePortraits.Add("hair", Resources.LoadAll<Sprite>("Mens/Hair"));
         _malePortraits.Add("mouths", Resources.LoadAll<Sprite>("Mens/Mouth"));
 
-        _femalePortraits.Add("eyes", eyes);
+        _femalePortraits.Add("eyes", Resources.LoadAll<Sprite>("Womens/Eyes"));
         _femalePortraits.Add("faces", Resources.LoadAll<Sprite>("Womens/Face"));
         _femalePortraits.Add("hair", Resources.LoadAll<Sprite>("Womens/Hair"));
         _femalePortraits.Add("mouths", Resources.LoadAll<Sprite>("Womens/Mouth"));
