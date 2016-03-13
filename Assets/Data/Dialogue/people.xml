@@ -203,7 +203,8 @@
   </person>
   
    <person gender="all"> <!-- Government Agent -->
-    <bio> </bio>
+    <bio> I need to get on over to %destination% to share top secret information with some officials, can you help me?</bio>
+     <bio> What's a rogue government official got to do to get to %destination%? ... did I say that out loud?</bio>
 
     <attr min="4" max="7">suspicion</attr>
     <attr min="4" max="8">notoriety</attr>
@@ -217,7 +218,8 @@
   </person>
   
    <person gender="all"> <!-- Shady Black Market Dealer -->
-    <bio> </bio>
+    <bio> Any chance I could get to %destination%? If you ever need any contraband, I got your back.</bio>
+    <bio> Hey, you going to %destination% any time soon? I have friends in illicit places if you ever need anything.</bio>
 
     <attr min="5" max="8">suspicion</attr>
     <attr min="4" max="7">notoriety</attr>
@@ -231,7 +233,8 @@
   </person>
   
   <person gender="all"> <!-- Very Poor and Desperate -->
-    <bio> </bio>
+    <bio> Please, you are my last hope. I don't have much to offer, but I'll give you all I've got.</bio>
+    <bio> I need transportation to %destination% badly. Please help, I've just lost my job and don't have any other options.</bio>
 
     <attr min="1" max="2">suspicion</attr>
     <attr min="1" max="2">notoriety</attr>
@@ -245,7 +248,8 @@
   </person>
   
   <person gender="all"> <!-- Junkie -->
-    <bio> </bio>
+    <bio> Yo dude, like it would be totally gnarly if you could hook me up with a ride to %destination%. Like that would be far out dude.</bio>
+    <bio> What's hangin compadre? Word on the street is you are sticking it to the man... far out dude. Can you like get me to %destination%</bio>
 
     <attr min="1" max="2">suspicion</attr>
     <attr min="1" max="2">notoriety</attr>
@@ -259,7 +263,8 @@
   </person>
   
   <person gender="all"> <!-- Arms Dealer -->
-    <bio> </bio>
+    <bio> Hey there, I'm looking to get on over to %destination%. The gun industry over there is booming and I'm hopping on that bandwagon.</bio>
+    <bio> Howdy, what's it take to get over to %destination%? Also, if you are ever in the market for some weaponry, give me a call.</bio>
 
     <attr min="4" max="7">suspicion</attr>
     <attr min="4" max="7">notoriety</attr>
@@ -273,7 +278,8 @@
   </person>
   
   <person gender="all"> <!-- Undercover Border Control Agent -->
-    <bio> </bio>
+    <bio> Hi, I was told that you can help me get across the border to %destination%, is this true and if so can you say your name out loud for me?</bio>
+    <bio> I need help getting to %destination% illegally. Can you please help me break the law?</bio>
 
     <attr min="1" max="5">suspicion</attr>
     <attr min="1" max="5">notoriety</attr>
@@ -287,7 +293,8 @@
   </person>
   
   <person gender="all"> <!-- Loud Obnoxious Person -->
-    <bio> </bio>
+    <bio> What's a person got to do to get to %destination%? Hey you with the face help me out already.</bio>
+    <bio> Hey you, %destination% ASAP. What are ya waiting for???</bio>
 
     <attr min="5" max="8">suspicion</attr>
     <attr min="1" max="2">notoriety</attr>
@@ -302,7 +309,8 @@
   </person>
   
   <person gender="all"> <!-- Possible Crazy Person -->
-    <bio> </bio>
+    <bio> He He ... Oh me, I'm looking to get on over to %destination%. I'm following crop circles trying to catch me an alien</bio>
+    <bio> Have you heard the news? Theres a talking dog out in %destination%, and I need to pet that bugger ASAP, will you help me out?</bio>
 
     <attr min="5" max="8">suspicion</attr>
     <attr min="1" max="2">notoriety</attr>
@@ -312,11 +320,14 @@
     <attr min="2" max="4">success-rep</attr>
     <attr min="2" max="4">fail-rep</attr>
     <attr min="0" max="1">deny-rep</attr>
-
+    
+  <mod chance="0.5">very_angry</mod>
+  
   </person>
   
   <person gender="all"> <!-- Insanely Rich Person -->
-    <bio> </bio>
+    <bio> %destination%, and make it snappy. Money is of no concern to me.</bio>
+    <bio> Where should I tell my butler to keep my bags? I need to get to %destination% so I can count my money in my other mansion.</bio>
 
     <attr min="5" max="7">suspicion</attr>
     <attr min="7" max="9">notoriety</attr>
