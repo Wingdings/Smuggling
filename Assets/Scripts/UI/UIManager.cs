@@ -116,6 +116,18 @@ public class UIManager : MonoBehaviour {
                 case FLOW_EVENT.FLOW_PURCHASE_CLOSE:
                     closeScreen("ScreenPurchase");
                     break;
+                case FLOW_EVENT.FLOW_NEWS_OPEN:
+                    openScreen("ScreenNews");
+                    break;
+                case FLOW_EVENT.FLOW_NEWS_CLOSE:
+                    closeScreen("ScreenNews");
+                    break;
+                case FLOW_EVENT.FLOW_MID_MISSION_OPEN:
+                    openScreen("ScreenMidMission");
+                    break;
+                case FLOW_EVENT.FLOW_MID_MISSION_CLOSE:
+                    closeScreen("ScreenMidMission");
+                    break;
                 case FLOW_EVENT.FLOW_GAME_OVER:
                     destroyGame();
                     openScreen("ScreenEndGame");

@@ -134,6 +134,8 @@ GameObject:
   - 222: {fileID: 22226486}
   - 114: {fileID: 11422392}
   - 114: {fileID: 11461906}
+  - 225: {fileID: 22559966}
+  - 114: {fileID: 11410244}
   m_Layer: 5
   m_Name: BoatGroupButton
   m_TagString: Untagged
@@ -281,6 +283,8 @@ GameObject:
   - 222: {fileID: 22251510}
   - 114: {fileID: 11499350}
   - 114: {fileID: 11495878}
+  - 225: {fileID: 22547042}
+  - 114: {fileID: 11413268}
   m_Layer: 5
   m_Name: PlaneGroupButton
   m_TagString: Untagged
@@ -392,6 +396,28 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11410244
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 138042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fd91f05495db824495dea2535fad3be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11413268
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fd91f05495db824495dea2535fad3be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11413298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1680,6 +1706,28 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 1
   m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!225 &22547042
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177876}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!225 &22559966
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 138042}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1001 &100100000
