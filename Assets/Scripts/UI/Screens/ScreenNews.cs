@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ScreenNews : ScreenBase
@@ -8,9 +9,9 @@ public class ScreenNews : ScreenBase
     public override void Start()
     {
         base.Start();
-        getButtonByName("PlayButton").onClick.AddListener(delegate() { _ui.DoFlowEvent(FLOW_EVENT.FLOW_PLAY_GAME); });
-        getButtonByName("CreditsButton").onClick.AddListener(delegate() { _ui.DoFlowEvent(FLOW_EVENT.FLOW_CREDITS_OPEN); });
-        getButtonByName("ExitButton").onClick.AddListener(delegate() { Application.Quit(); });
+        getButtonByName("CloseButton").onClick.AddListener(delegate() { _ui.DoFlowEvent(FLOW_EVENT.FLOW_NEWS_CLOSE); });
+        Text t = getTextByName("NewsText");
+        t.text = _game.currentNews;
     }
 
     // Update is called once per frame

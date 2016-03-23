@@ -17,7 +17,7 @@ public class ScreenHUD : ScreenBase {
     
 
     ScrollRect _ticker;
-
+    Text _newsText;
     float _scrollStart;
 
     bool _hidden = true;
@@ -33,6 +33,7 @@ public class ScreenHUD : ScreenBase {
         Hide(_clientWaitingButton);
 
         getButtonByName("PauseButton").onClick.AddListener(delegate () { _ui.DoFlowEvent(FLOW_EVENT.FLOW_PAUSE_MENU_OPEN); });
+        getButtonByName("NewsButton").onClick.AddListener(delegate() { _ui.DoFlowEvent(FLOW_EVENT.FLOW_NEWS_OPEN); });
         getButtonByName("ClientWaitingButton").onClick.AddListener(delegate() { _ui.DoFlowEvent(FLOW_EVENT.FLOW_DIALOG_OPEN); });
         getButtonByName("BorderGroupButton").onClick.AddListener(delegate () {
             _game.referencedGroup = _game.smugglingGroups[2];
@@ -46,8 +47,11 @@ public class ScreenHUD : ScreenBase {
             _ui.DoFlowEvent(FLOW_EVENT.FLOW_PURCHASE_OPEN);
         });
 
+
         _ticker = gameObject.GetComponentInChildren<ScrollRect>();
+        _newsText = getTextByName("NewsText");
         _scrollStart = _ticker.content.transform.position.x;
+        _newsText.text = _game.currentNews;
 
         _moneyText = getTextByName("MoneyText");
         _reputationText = getTextByName("ReputationText");
@@ -172,6 +176,7 @@ public class ScreenHUD : ScreenBase {
         if (currentPos < _scrollStart - _ticker.content.rect.width)
         {
             //reset
+            _newsText.text = _game.currentNews;
             _ticker.content.position = new Vector3(_scrollStart, 
                                     _ticker.content.position.y, 
                                     _ticker.content.position.z);

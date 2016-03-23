@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     public Client referencedClient;
     public SmugglingGroup referencedGroup;
+    public string currentNews;
 
     public Player player;
 	public Country country1;
@@ -80,7 +81,7 @@ public class GameManager : MonoBehaviour
 		player.changeMoney (50000);
 		player.changeReputation(50);
 
-        //TODO default groups
+        
 		SmugglingGroup seaTransportGroup = new SmugglingGroup();
 		SmugglingGroup trainTransportGroup = new SmugglingGroup();
 		SmugglingGroup airTransportGroup = new SmugglingGroup();
@@ -94,11 +95,13 @@ public class GameManager : MonoBehaviour
 		trainTransportGroup.SetTransportType (TransportType.TRAIN);
         trainTransportGroup.name = "Train Transport Group";
 
-		//need to add train, havent implemented yet
+		
         
         smugglingGroups.Add(seaTransportGroup);
         smugglingGroups.Add(airTransportGroup);
         smugglingGroups.Add(bribeTransportGroup);
+
+        currentNews = "The news this week involves two countries and the effects that you as the player have had on those countries. This week nothing happened because you haven't really played the game yet. We'll fill this up with interesting stuff later though.";
     }
 
 	void Update(){

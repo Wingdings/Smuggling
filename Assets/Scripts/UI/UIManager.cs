@@ -96,6 +96,7 @@ public class UIManager : MonoBehaviour {
                     openScreen("ScreenResults");
                     break;
                 case FLOW_EVENT.FLOW_RESULTS_CLOSE:
+                    openScreen("ScreenNews");
                     closeScreen("ScreenResults");
                     break;
                 case FLOW_EVENT.FLOW_GROUP_PREVIEW_OPEN:
@@ -173,6 +174,7 @@ public class UIManager : MonoBehaviour {
         _resources.Add("ScreenCredits", Resources.Load<GameObject>("Screen/ScreenCredits"));
         _resources.Add("ScreenEndGame", Resources.Load<GameObject>("Screen/ScreenEndGame"));
         _resources.Add("ScreenPurchase", Resources.Load<GameObject>("Screen/ScreenPurchase"));
+        _resources.Add("ScreenNews", Resources.Load<GameObject>("Screen/ScreenNews"));
 
         _resources.Add("ClientButton", Resources.Load<GameObject>("ClientButton"));
         _resources.Add("GameManager", Resources.Load<GameObject>("GameManager"));
