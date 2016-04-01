@@ -35,6 +35,7 @@ public struct CountryStats
 
         newPopulation += newPopulation * birthRate - newPopulation * newSickness * deathRate;
 
+        Debug.LogFormat("Tick: groupSickness = {0}, groupSize = {1}", groupSickness, groupSize);
         Debug.LogFormat("Tick: sickness = {0}, population = {1}, newSickness = {2}, newPopulation = {3}", sickness, population, newSickness, newPopulation);
 
         return new CountryStats(newSickness, newPopulation);
