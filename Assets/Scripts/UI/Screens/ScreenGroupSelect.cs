@@ -67,7 +67,7 @@ public class ScreenGroupSelect : ScreenBase {
         getButtonByName("CancelButton").onClick.AddListener(delegate()
         {
             _game.referencedClient = null;
-            _ui.DoFlowEvent(FLOW_EVENT.FLOW_GROUP_SELECT_CLOSE);
+            _ui.DoFlowEvent(FLOW_EVENT.FLOW_GROUP_SELECT_CANCEL);
         });
 
         Text t;// = getTextByName("HintText");

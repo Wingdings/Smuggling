@@ -13,6 +13,7 @@ public enum FLOW_EVENT
     FLOW_DIALOG_CLOSE,
     FLOW_GROUP_SELECT_OPEN,
     FLOW_GROUP_SELECT_CLOSE,
+    FLOW_GROUP_SELECT_CANCEL,
     FLOW_RESULTS_OPEN,
     FLOW_RESULTS_CLOSE,
     FLOW_GROUP_PREVIEW_OPEN,
@@ -91,6 +92,9 @@ public class UIManager : MonoBehaviour {
                 case FLOW_EVENT.FLOW_GROUP_SELECT_CLOSE:
                     closeScreen("ScreenGroupSelect");
                     closeScreen("ScreenDialog");
+                    break;
+                case FLOW_EVENT.FLOW_GROUP_SELECT_CANCEL:
+                    closeScreen("ScreenGroupSelect");
                     break;
                 case FLOW_EVENT.FLOW_RESULTS_OPEN:
                     openScreen("ScreenResults");
