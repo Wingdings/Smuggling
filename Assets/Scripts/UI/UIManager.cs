@@ -26,6 +26,8 @@ public enum FLOW_EVENT
     FLOW_MID_MISSION_CLOSE,
     FLOW_PURCHASE_OPEN,
     FLOW_PURCHASE_CLOSE,
+    FLOW_HELP_OPEN,
+    FLOW_HELP_CLOSE,
     FLOW_GAME_OVER,
 }
 
@@ -36,11 +38,16 @@ public class UIManager : MonoBehaviour {
     List<GameObject> _screens;
     GameObject _game;
 
+    bool _firstPlay = true;
+
     Dictionary<string, Sprite[]> _malePortraits;
     Dictionary<string, Sprite[]> _femalePortraits;
 
     // Use this for initialization
     void Start () {
+        //first play
+        _firstPlay = true;
+
         _resources = new Dictionary<string, GameObject>();
         _malePortraits = new Dictionary<string, Sprite[]>();
         _femalePortraits = new Dictionary<string, Sprite[]>();
@@ -69,6 +76,11 @@ public class UIManager : MonoBehaviour {
                 case FLOW_EVENT.FLOW_PLAY_GAME:
                     loadGame();
                     changeScreenTo("ScreenHUD");
+                    //first play
+                    if (_firstPlay)
+                    {
+                        //openScreen("ScreenHelp");
+                    }
                     break;
                 case FLOW_EVENT.FLOW_QUIT_GAME:
                     destroyGame();

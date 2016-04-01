@@ -83,7 +83,6 @@ public class GameManager : MonoBehaviour
 
         
 		SmugglingGroup seaTransportGroup = new SmugglingGroup();
-		SmugglingGroup trainTransportGroup = new SmugglingGroup();
 		SmugglingGroup airTransportGroup = new SmugglingGroup();
 		SmugglingGroup bribeTransportGroup = new SmugglingGroup();
 		seaTransportGroup.SetTransportType (TransportType.SEA);
@@ -92,8 +91,7 @@ public class GameManager : MonoBehaviour
         airTransportGroup.name = "Air Transport Group";
 		bribeTransportGroup.SetTransportType (TransportType.BRIBE);
         bribeTransportGroup.name = "Bribe Transport Group";
-		trainTransportGroup.SetTransportType (TransportType.TRAIN);
-        trainTransportGroup.name = "Train Transport Group";
+		
 
 		
         
