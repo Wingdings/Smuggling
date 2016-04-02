@@ -11,7 +11,7 @@ public class ScreenNews : ScreenBase
         base.Start();
         getButtonByName("CloseButton").onClick.AddListener(delegate() { _ui.DoFlowEvent(FLOW_EVENT.FLOW_NEWS_CLOSE); });
         Text t = getTextByName("NewsText");
-        t.text = _game.currentNews;
+        t.text = "";
     }
 
     // Update is called once per frame

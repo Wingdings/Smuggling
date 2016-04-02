@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<articles>
+  <!-- Nothing Notable -->
+  <news>
+    <attr min="0" max="0.05">delta-sickness</attr>
+    <attr min="0" max="0.05">delta-chaos</attr>
+    <article>
+      <headline>Nothing Notable Happened Today</headline>
+      <text>Just another boring day in %country%.</text>
+    </article>
+  </news>
+  
+  <news>
+    <attr min="0" max="0.2">sickness</attr>
+    <attr min="0" max="0.6">population</attr>
+    <attr min="0" max="0.2">chaos</attr>
+    <article>
+      <headline>BREAKING: %country% hits wave of stability!</headline>
+      <text>A new study shows that %country% is incredibly stable.</text>
+    </article>
+    <article>
+      <headline>Normal Day for %country%</headline>
+      <text>Things here are incredibly normal.</text>
+    </article>
+  </news>
+  
+  <news>
+    <attr min="0.1">delta-sickness</attr>
+    <article>
+      <headline>Outbreak of plague hits %country%!</headline>
+      <text>An outbreak of the plague has been blamed on immigrants being smuggled in to %country%.</text>
+    </article>
+  </news>
+
+  <news>
+    <attr min="0.1">delta-chaos</attr>
+    <article>
+      <headline>Riots in the Streets</headline>
+      <text>There are riots in the streets of the capital of %country%.</text>
+    </article>
+  </news>
+
+  <news>
+    <attr min="0.9">sickness</attr>
+    <article>
+      <headline>Officials warn to not go to %country% due to plague</headline>
+      <text>Widespread plague makes %country% incredibly dangerous to be in.</text>
+    </article>
+  </news>
+
+  <news>
+    <attr min="0.9">chaos</attr>
+    <article>
+      <headline>Chaos in the Streets!</headline>
+      <text>Officials warn that %country% is incredibly unsafe.</text>
+    </article>
+  </news>
+</articles>

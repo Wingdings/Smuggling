@@ -51,7 +51,7 @@ public class ScreenHUD : ScreenBase {
         _ticker = gameObject.GetComponentInChildren<ScrollRect>();
         _newsText = getTextByName("NewsText");
         _scrollStart = _ticker.content.transform.position.x;
-        _newsText.text = _game.currentNews;
+        _newsText.text = "";
 
         _moneyText = getTextByName("MoneyText");
         _reputationText = getTextByName("ReputationText");
@@ -176,7 +176,7 @@ public class ScreenHUD : ScreenBase {
         if (currentPos < _scrollStart - _ticker.content.rect.width)
         {
             //reset
-            _newsText.text = _game.currentNews;
+            _newsText.text = "";
             _ticker.content.position = new Vector3(_scrollStart, 
                                     _ticker.content.position.y, 
                                     _ticker.content.position.z);

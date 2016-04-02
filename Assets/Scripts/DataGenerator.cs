@@ -440,7 +440,7 @@ public class ClientGenerator
                         {
                             throw new System.Exception("min > max for " + attr.Value.ToString());
                         }
-
+                        
                         break;
 
                     case "mod":
@@ -541,5 +541,173 @@ public class ClientGenerator
         }
 
         return client;
+    }
+}
+
+public class NewsGenerator
+{
+    public class NewsArticle
+    {
+        public string headline;
+        public string text;
+    }
+
+    protected class AttributeMatch
+    {
+        public CountryAttribute attribute;
+        public double min = double.MinValue;
+        public double max = double.MaxValue;
+    }
+
+    protected class NewsGenData
+    {
+        public List<AttributeMatch> attributes = new List<AttributeMatch>();
+        public List<NewsArticle> articles = new List<NewsArticle>();
+    }
+
+    private List<NewsGenData> matchers = new List<NewsGenData>();
+
+    public NewsGenerator(TextAsset asset)
+    {
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.LoadXml(asset.text);
+        var root = xmlDoc.DocumentElement;
+        if (root.Name != "articles")
+            throw new System.Exception("Invalid news article asset");
+
+        for (var i = 0; i < root.ChildNodes.Count; ++i)
+        {
+            var node = root.ChildNodes[i];
+            if (node.NodeType != XmlNodeType.Element)
+                continue;
+
+            if (node.Name != "news")
+                throw new System.Exception("Invalid top-level node '" + node.Name + "'");
+
+            NewsGenData data = new NewsGenData();
+
+            for (var j = 0; j < node.ChildNodes.Count; ++j)
+            {
+                var child = node.ChildNodes[j];
+                if (child.NodeType != XmlNodeType.Element)
+                    continue;
+
+                switch (child.Name)
+                {
+                    case "attr":
+                    case "attribute":
+                        CountryAttribute? attr = CountryStats.StringToAttribute(child.InnerText);
+                        if (!attr.HasValue)
+                            throw new System.Exception("Invalid attribute type " + child.InnerText);
+
+                        AttributeMatch match = new AttributeMatch();
+                        match.attribute = attr.Value;
+                        if (child.Attributes["min"] != null)
+                        {
+                            match.min = double.Parse(child.Attributes["min"].Value);
+                        }
+
+                        if (child.Attributes["max"] != null)
+                        {
+                            match.max = double.Parse(child.Attributes["max"].Value);
+                        }
+
+                        if (match.min > match.max)
+                        {
+                            throw new System.Exception("min > max for " + attr.Value.ToString());
+                        }
+
+                        data.attributes.Add(match);
+
+                        break;
+
+                    case "article":
+                        NewsArticle article = new NewsArticle();
+                        article.headline = null;
+                        article.text = null;
+                        for (var k = 0; k < child.ChildNodes.Count; ++k)
+                        {
+                            var articleChild = child.ChildNodes[k];
+                            if (articleChild.NodeType != XmlNodeType.Element)
+                                continue;
+
+                            switch(articleChild.Name)
+                            {
+                                case "headline":
+                                    if (article.headline != null)
+                                        throw new System.Exception("Cannot have multiple definitions of the same 'headline' element in a single article.");
+                                    article.headline = articleChild.InnerText;
+                                    break;
+
+                                case "text":
+                                    if (article.text != null)
+                                        throw new System.Exception("Cannot have multiple definitions of the same 'text' element in a single article.");
+                                    article.text = articleChild.InnerText;
+                                    break;
+
+                                default:
+                                    throw new System.Exception("Unknown article element " + articleChild.Name);
+                            }
+                        }
+
+                        if (article.headline == null || article.text == null)
+                        {
+                            throw new System.Exception("Incomplete article element, missing either a headline or text.");
+                        }
+
+                        data.articles.Add(article);
+                        break;
+
+                    default:
+                        throw new System.Exception("Invalid article definition with node " + child.Name);
+                }
+            }
+
+            if (data.articles.Count == 0)
+                throw new System.Exception("No articles defined for an element");
+
+            matchers.Add(data);
+        }
+    }
+
+    public List<NewsArticle> GenerateArticles(Country country, int maxCount)
+    {
+        System.Random rand = GameManager.rand;
+
+        List<NewsArticle> generated = new List<NewsArticle>();
+        List<NewsGenData> options = new List<NewsGenData>();
+
+        foreach (var matcher in matchers)
+        {
+            bool ok = true;
+            foreach (var match in matcher.attributes)
+            {
+                var value = country.stats.GetAttribute(match.attribute);
+                if (value < match.min || value > match.max)
+                {
+                    ok = false;
+                    break;
+                }
+            }
+
+            if (!ok)
+                continue;
+
+            options.Add(matcher);
+        }
+
+        for (var i = 0; i < maxCount && options.Count > 0; ++i)
+        {
+            NewsGenData data = options[rand.Next(options.Count)];
+            options.Remove(data);
+            NewsArticle template = data.articles[rand.Next(data.articles.Count)];
+
+            NewsArticle article = new NewsArticle();
+            article.headline = country.ReplaceStringData(template.headline);
+            article.text = country.ReplaceStringData(template.text);
+            generated.Add(article);
+        }
+
+        return generated;
     }
 }

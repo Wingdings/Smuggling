@@ -32,6 +32,12 @@ public class GameManager : MonoBehaviour
         private set;
     }
 
+    public NewsGenerator NewsGen
+    {
+        get;
+        private set;
+    }
+
 	public float timeBetweenClients = 5;
     public bool gameOver = false;
 
@@ -39,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     public Client referencedClient;
     public SmugglingGroup referencedGroup;
-    public string currentNews;
+    public List<NewsGenerator.NewsArticle> currentNews;
 
     public Player player;
 	public Country country1;
@@ -53,6 +59,7 @@ public class GameManager : MonoBehaviour
     public TextAsset namesAsset;
     public TextAsset hintsAsset;
     public TextAsset peopleAsset;
+    public TextAsset newsAsset;
 
     public ClientModifier[] modifierList;
 
@@ -70,6 +77,7 @@ public class GameManager : MonoBehaviour
         NameGen = new NameGenerator(namesAsset);
         HintGen = new HintGenerator(hintsAsset);
         ClientGen = new ClientGenerator(peopleAsset, modifierList);
+        NewsGen = new NewsGenerator(newsAsset);
 
         player = ScriptableObject.CreateInstance<Player>();
         country1 = Country.Create();
@@ -98,8 +106,6 @@ public class GameManager : MonoBehaviour
         smugglingGroups.Add(seaTransportGroup);
         smugglingGroups.Add(airTransportGroup);
         smugglingGroups.Add(bribeTransportGroup);
-
-        currentNews = "The news this week involves two countries and the effects that you as the player have had on those countries. This week nothing happened because you haven't really played the game yet. We'll fill this up with interesting stuff later though.";
     }
 
 	void Update(){
@@ -219,5 +225,11 @@ public class GameManager : MonoBehaviour
     public void TickCountries(SmugglingResult? result)
     {
         country2.TickCountry(result);
+        currentNews = NewsGen.GenerateArticles(country2, 2);
+        foreach (var article in currentNews)
+        {
+            Debug.LogFormat("Headline: {0}", article.headline);
+            Debug.LogFormat("Text: {0}", article.text);
+        }
     }
 }
