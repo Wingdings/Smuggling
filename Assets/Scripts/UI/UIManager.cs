@@ -79,7 +79,7 @@ public class UIManager : MonoBehaviour {
                     //first play
                     if (_firstPlay)
                     {
-                        //openScreen("ScreenHelp");
+                        openScreen("ScreenHelp");
                     }
                     break;
                 case FLOW_EVENT.FLOW_QUIT_GAME:
@@ -153,7 +153,7 @@ public class UIManager : MonoBehaviour {
                     break;
                 case FLOW_EVENT.FLOW_GAME_OVER:
                     destroyGame();
-                    openScreen("ScreenEndGame");
+                    changeScreenTo("ScreenEndGame");
                     break;
                 default:
                     break;
