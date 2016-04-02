@@ -145,6 +145,12 @@ public class UIManager : MonoBehaviour {
                 case FLOW_EVENT.FLOW_MID_MISSION_CLOSE:
                     closeScreen("ScreenMidMission");
                     break;
+                case FLOW_EVENT.FLOW_HELP_OPEN:
+                    openScreen("ScreenHelp");
+                    break;
+                case FLOW_EVENT.FLOW_HELP_CLOSE:
+                    closeScreen("ScreenHelp");
+                    break;
                 case FLOW_EVENT.FLOW_GAME_OVER:
                     destroyGame();
                     openScreen("ScreenEndGame");
@@ -191,6 +197,7 @@ public class UIManager : MonoBehaviour {
         _resources.Add("ScreenEndGame", Resources.Load<GameObject>("Screen/ScreenEndGame"));
         _resources.Add("ScreenPurchase", Resources.Load<GameObject>("Screen/ScreenPurchase"));
         _resources.Add("ScreenNews", Resources.Load<GameObject>("Screen/ScreenNews"));
+        _resources.Add("ScreenHelp", Resources.Load<GameObject>("Screen/ScreenHelp"));
 
         _resources.Add("ClientButton", Resources.Load<GameObject>("ClientButton"));
         _resources.Add("GameManager", Resources.Load<GameObject>("GameManager"));
