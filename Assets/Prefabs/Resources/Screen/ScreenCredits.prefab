@@ -311,7 +311,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Team Wingdings
+  m_Text: GDD Team 1
 --- !u!114 &11416606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -395,9 +395,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'David Simkins
+  m_Text: 'Professor David Simkins
 
-    TODO ADD TEXT AND CODE'
+    Members of Text and Code Team A'
 --- !u!114 &11432030
 MonoBehaviour:
   m_ObjectHideFlags: 1

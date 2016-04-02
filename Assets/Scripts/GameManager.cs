@@ -74,6 +74,7 @@ public class GameManager : MonoBehaviour
     {
         timeBetweenClients = Time.time + 5;
 		clientsWaiting = new List<Client> ();
+        currentNews = new List<NewsGenerator.NewsArticle>();
         NameGen = new NameGenerator(namesAsset);
         HintGen = new HintGenerator(hintsAsset);
         ClientGen = new ClientGenerator(peopleAsset, modifierList);

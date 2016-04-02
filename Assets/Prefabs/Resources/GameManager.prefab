@@ -69,14 +69,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenClients: 5
+  gameOver: 0
   clientsWaiting: []
   referencedClient: {fileID: 0}
   player: {fileID: 0}
   country1: {fileID: 0}
   country2: {fileID: 0}
+  transportationState: 0
   namesAsset: {fileID: 4900000, guid: 38dbebe658bc1bd4b9c82a2d666f42ca, type: 3}
   hintsAsset: {fileID: 4900000, guid: 22162362c980c1c468c955bdb95cee88, type: 3}
   peopleAsset: {fileID: 4900000, guid: 3b98b084f52f2d647957b2302568fc26, type: 3}
+  newsAsset: {fileID: 4900000, guid: b6fadd1697c73614fb33b2e13edbd53b, type: 3}
   modifierList:
   - {fileID: 11400000, guid: 0df1f485b3ef5f74c8c769ead04435f5, type: 2}
   - {fileID: 11400000, guid: f931f985160c0024dad21df2c927e81d, type: 2}
@@ -175,6 +178,10 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: 213309303461e1b4d9d2c146dc4bc372,
         type: 2}
+    - target: {fileID: 0}
+      propertyPath: newsAsset
+      value: 
+      objectReference: {fileID: 4900000, guid: b6fadd1697c73614fb33b2e13edbd53b, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 170480}

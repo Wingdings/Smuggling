@@ -80,6 +80,7 @@ public class UIManager : MonoBehaviour {
                     if (_firstPlay)
                     {
                         openScreen("ScreenHelp");
+                        _firstPlay = false;
                     }
                     break;
                 case FLOW_EVENT.FLOW_QUIT_GAME:

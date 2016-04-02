@@ -30,6 +30,10 @@
       <headline>Population in %country% is booming!</headline>
       <text>Population growth getting close to being out of control, officials say.</text>
     </article>
+    <article>
+      <headline>Unexplained Population Growth.</headline>
+      <text>Large numbers of undocumented citizens found in %country%. Officials suspect compromised border.</text>
+    </article>
   </news>
 
   <news>

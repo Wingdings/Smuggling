@@ -15,6 +15,10 @@ public class ScreenPauseMenu : ScreenBase
         getButtonByName("QuitButton").onClick.AddListener(delegate () {
             Time.timeScale = 1;
             _ui.DoFlowEvent(FLOW_EVENT.FLOW_QUIT_GAME); });
+        getButtonByName("HelpButton").onClick.AddListener(delegate () {
+            //Time.timeScale = 1;
+            _ui.DoFlowEvent(FLOW_EVENT.FLOW_HELP_OPEN);
+        });
     }
 
     // Update is called once per frame

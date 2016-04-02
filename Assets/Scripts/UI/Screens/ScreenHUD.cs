@@ -51,7 +51,7 @@ public class ScreenHUD : ScreenBase {
         _ticker = gameObject.GetComponentInChildren<ScrollRect>();
         _newsText = getTextByName("NewsText");
         _scrollStart = _ticker.content.transform.position.x;
-        _newsText.text = "";
+        _newsText.text = "It's another quiet day in the streets here in the world of World News.";
 
         _moneyText = getTextByName("MoneyText");
         _reputationText = getTextByName("ReputationText");
@@ -176,7 +176,13 @@ public class ScreenHUD : ScreenBase {
         if (currentPos < _scrollStart - _ticker.content.rect.width)
         {
             //reset
-            _newsText.text = "";
+            if (_game.currentNews.Count > 0)
+            {
+                _newsText.text = _game.currentNews[0].headline + ": " + _game.currentNews[0].text;
+            } else {
+                _newsText.text =  "It's another quiet day in the streets here in the world of World News.";
+            }
+            
             _ticker.content.position = new Vector3(_scrollStart, 
                                     _ticker.content.position.y, 
                                     _ticker.content.position.z);
