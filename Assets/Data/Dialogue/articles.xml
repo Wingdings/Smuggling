@@ -23,9 +23,29 @@
       <text>Things here are incredibly normal.</text>
     </article>
   </news>
+
+  <news>
+    <attr min="0.7">population</attr>
+    <article>
+      <headline>Population in %country% is booming!</headline>
+      <text>Population growth getting close to being out of control, officials say.</text>
+    </article>
+  </news>
+
+  <news>
+    <attr min="0.9">population</attr>
+    <article>
+      <headline>Population at All Time High</headline>
+      <text>Borders being closed to prevent further population growth.</text>
+    </article>
+    <article>
+      <headline>Living Space Scarse in %country%</headline>
+      <text>"Simply too many people" says government official.</text>
+    </article>
+  </news>
   
   <news>
-    <attr min="0.1">delta-sickness</attr>
+    <attr min="0.13">delta-sickness</attr>
     <article>
       <headline>Outbreak of plague hits %country%!</headline>
       <text>An outbreak of the plague has been blamed on immigrants being smuggled in to %country%.</text>
@@ -33,7 +53,7 @@
   </news>
 
   <news>
-    <attr min="0.1">delta-chaos</attr>
+    <attr min="0.08">delta-chaos</attr>
     <article>
       <headline>Riots in the Streets</headline>
       <text>There are riots in the streets of the capital of %country%.</text>

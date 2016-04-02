@@ -28,7 +28,7 @@ public struct CountryStats
     public CountryStats(double sickness, double population, double chaos)
     {
         deathRate = 0.05;
-        birthRate = 0.05;
+        birthRate = 0.09;
         healRate = 0.05;
 
         this.sickness = sickness;
@@ -169,7 +169,7 @@ public class Country : ScriptableObject
     public string countryName;
 	public CountryStats stats;
 	
-	public static Country Create(double sickness = 0.1, double population = 0.5, double chaos = 0.0)
+	public static Country Create(double sickness = 0.1, double population = 0.4, double chaos = 0.0)
 	{
 		Country country = ScriptableObject.CreateInstance<Country>();
 		country.stats = new CountryStats(sickness, population, chaos);
