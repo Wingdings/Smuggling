@@ -48,10 +48,10 @@ public class UIManager : MonoBehaviour {
 
 	int arrowIndex;
 
-	private float nextArrowTime = 0.0f;
-	private float arrowPeriod = 0.2f;
+	//private float nextArrowTime = 0.0f;
+	//private float arrowPeriod = 0.2f;
 
-	bool sendingGroup;
+	//bool sendingGroup;
 
     // Use this for initialization
     void Start () {
@@ -68,16 +68,12 @@ public class UIManager : MonoBehaviour {
         openScreen("ScreenSplash");
 
 		arrowIndex = 0;
-		sendingGroup = false;
+		//sendingGroup = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        //DEBUG DELETE
-        if (Input.GetKeyDown("g"))
-        {
-            //DoFlowEvent(FLOW_EVENT.FLOW_DIALOG_OPEN);
-        }
+        
 
 	    //Clear flow queue
         while (_flowQueue.Count > 0)
