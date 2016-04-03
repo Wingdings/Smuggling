@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
 
 	void Update(){
 		if (Input.GetKeyDown ("g")) {
-			clientsWaiting.Add(GenerateNextClient());
+			//clientsWaiting.Add(GenerateNextClient());
 		}
 		if (Time.time > timeBetweenClients) {
 			timeBetweenClients += Random.Range(5,15);
