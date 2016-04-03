@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -13,8 +13,17 @@ public class ScreenGroupPreview : ScreenBase {
         _group = _game.referencedGroup;
         getButtonByName("SendButton").onClick.AddListener(delegate()
         {
-            _ui.DoFlowEvent(FLOW_EVENT.FLOW_RESULTS_OPEN);
-            _ui.DoFlowEvent(FLOW_EVENT.FLOW_GROUP_PREVIEW_CLOSE);
+			if(_group.GetTransportType() == TransportType.BRIBE){
+           		 _ui.DoFlowEvent(FLOW_EVENT.FLOW_BRIBE_ARROWS);
+			}
+
+			if(_group.GetTransportType() == TransportType.AIR){
+				_ui.DoFlowEvent(FLOW_EVENT.FLOW_AIR_ARROWS);
+			}
+
+			if(_group.GetTransportType() == TransportType.SEA){
+				_ui.DoFlowEvent(FLOW_EVENT.FLOW_BOAT_ARROWS);
+			}
         });
         getButtonByName("CloseButton").onClick.AddListener(delegate()
         {

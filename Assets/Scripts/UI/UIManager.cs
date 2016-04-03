@@ -29,6 +29,9 @@ public enum FLOW_EVENT
     FLOW_HELP_OPEN,
     FLOW_HELP_CLOSE,
     FLOW_GAME_OVER,
+	FLOW_BRIBE_ARROWS,
+	FLOW_BOAT_ARROWS,
+	FLOW_AIR_ARROWS,
 }
 
 public class UIManager : MonoBehaviour {
@@ -42,6 +45,13 @@ public class UIManager : MonoBehaviour {
 
     Dictionary<string, Sprite[]> _malePortraits;
     Dictionary<string, Sprite[]> _femalePortraits;
+
+	int arrowIndex;
+
+	private float nextArrowTime = 0.0f;
+	private float arrowPeriod = 0.2f;
+
+	bool sendingGroup;
 
     // Use this for initialization
     void Start () {
@@ -57,7 +67,8 @@ public class UIManager : MonoBehaviour {
         loadResources();
         openScreen("ScreenSplash");
 
-
+		arrowIndex = 0;
+		sendingGroup = false;
     }
 	
 	// Update is called once per frame
@@ -156,6 +167,15 @@ public class UIManager : MonoBehaviour {
                     destroyGame();
                     changeScreenTo("ScreenEndGame");
                     break;
+				case FLOW_EVENT.FLOW_BRIBE_ARROWS:
+					InvokeRepeating("DrawBribeArrows",1.0f, 0.2f);
+					break;
+				case FLOW_EVENT.FLOW_BOAT_ARROWS:
+					InvokeRepeating("DrawBoatArrows",1.0f, 0.2f);
+					break;
+				case FLOW_EVENT.FLOW_AIR_ARROWS:
+					InvokeRepeating("DrawAirArrows",1.0f, 0.2f);
+					break;
                 default:
                     break;
             }
@@ -200,6 +220,71 @@ public class UIManager : MonoBehaviour {
         _resources.Add("ScreenNews", Resources.Load<GameObject>("Screen/ScreenNews"));
         _resources.Add("ScreenHelp", Resources.Load<GameObject>("Screen/ScreenHelp"));
 
+		//Bribe Arrows
+		_resources.Add("ScreenBribeArrow1", Resources.Load<GameObject>("Screen/BribeArr/ScreenBribeArrow1"));
+		_resources.Add("ScreenBribeArrow2", Resources.Load<GameObject>("Screen/BribeArr/ScreenBribeArrow2"));
+		_resources.Add("ScreenBribeArrow3", Resources.Load<GameObject>("Screen/BribeArr/ScreenBribeArrow3"));
+		_resources.Add("ScreenBribeArrow4", Resources.Load<GameObject>("Screen/BribeArr/ScreenBribeArrow4"));
+		_resources.Add("ScreenBribeArrow5", Resources.Load<GameObject>("Screen/BribeArr/ScreenBribeArrow5"));
+		_resources.Add("ScreenBribeArrow6", Resources.Load<GameObject>("Screen/BribeArr/ScreenBribeArrow6"));
+		_resources.Add("ScreenBribeArrow7", Resources.Load<GameObject>("Screen/BribeArr/ScreenBribeArrow7"));
+		_resources.Add("ScreenBribeArrow8", Resources.Load<GameObject>("Screen/BribeArr/ScreenBribeArrow8"));
+		_resources.Add("ScreenBribeArrow9", Resources.Load<GameObject>("Screen/BribeArr/ScreenBribeArrow9"));
+		_resources.Add("ScreenBribeArrow10", Resources.Load<GameObject>("Screen/BribeArr/ScreenBribeArrow10"));
+		_resources.Add("ScreenBribeArrow11", Resources.Load<GameObject>("Screen/BribeArr/ScreenBribeArrow11"));
+		_resources.Add("ScreenBribeArrow12", Resources.Load<GameObject>("Screen/BribeArr/ScreenBribeArrow12"));
+		_resources.Add("ScreenBribeArrow13", Resources.Load<GameObject>("Screen/BribeArr/ScreenBribeArrow13"));
+		_resources.Add("ScreenBribeArrow14", Resources.Load<GameObject>("Screen/BribeArr/ScreenBribeArrow14"));
+		_resources.Add("ScreenBribeArrow15", Resources.Load<GameObject>("Screen/BribeArr/ScreenBribeArrow15"));
+		_resources.Add("ScreenBribeArrow16", Resources.Load<GameObject>("Screen/BribeArr/ScreenBribeArrow16"));
+		_resources.Add("ScreenBribeArrow17", Resources.Load<GameObject>("Screen/BribeArr/ScreenBribeArrow17"));
+
+		//Boat Arrows
+		_resources.Add("ScreenBoatArrow1", Resources.Load<GameObject>("Screen/BoatArr/ScreenBoatArrow1"));
+		_resources.Add("ScreenBoatArrow2", Resources.Load<GameObject>("Screen/BoatArr/ScreenBoatArrow2"));
+		_resources.Add("ScreenBoatArrow3", Resources.Load<GameObject>("Screen/BoatArr/ScreenBoatArrow3"));
+		_resources.Add("ScreenBoatArrow4", Resources.Load<GameObject>("Screen/BoatArr/ScreenBoatArrow4"));
+		_resources.Add("ScreenBoatArrow5", Resources.Load<GameObject>("Screen/BoatArr/ScreenBoatArrow5"));
+		_resources.Add("ScreenBoatArrow6", Resources.Load<GameObject>("Screen/BoatArr/ScreenBoatArrow6"));
+		_resources.Add("ScreenBoatArrow7", Resources.Load<GameObject>("Screen/BoatArr/ScreenBoatArrow7"));
+		_resources.Add("ScreenBoatArrow8", Resources.Load<GameObject>("Screen/BoatArr/ScreenBoatArrow8"));
+		_resources.Add("ScreenBoatArrow9", Resources.Load<GameObject>("Screen/BoatArr/ScreenBoatArrow9"));
+		_resources.Add("ScreenBoatArrow10", Resources.Load<GameObject>("Screen/BoatArr/ScreenBoatArrow10"));
+		_resources.Add("ScreenBoatArrow11", Resources.Load<GameObject>("Screen/BoatArr/ScreenBoatArrow11"));
+		_resources.Add("ScreenBoatArrow12", Resources.Load<GameObject>("Screen/BoatArr/ScreenBoatArrow12"));
+		_resources.Add("ScreenBoatArrow13", Resources.Load<GameObject>("Screen/BoatArr/ScreenBoatArrow13"));
+		_resources.Add("ScreenBoatArrow14", Resources.Load<GameObject>("Screen/BoatArr/ScreenBoatArrow14"));
+		_resources.Add("ScreenBoatArrow15", Resources.Load<GameObject>("Screen/BoatArr/ScreenBoatArrow15"));
+		_resources.Add("ScreenBoatArrow16", Resources.Load<GameObject>("Screen/BoatArr/ScreenBoatArrow16"));
+		_resources.Add("ScreenBoatArrow17", Resources.Load<GameObject>("Screen/BoatArr/ScreenBoatArrow17"));
+		_resources.Add("ScreenBoatArrow18", Resources.Load<GameObject>("Screen/BoatArr/ScreenBoatArrow18"));
+
+		//Ariplane Arrows
+		_resources.Add("ScreenAirArrow1", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow1"));
+		_resources.Add("ScreenAirArrow2", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow2"));
+		_resources.Add("ScreenAirArrow3", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow3"));
+		_resources.Add("ScreenAirArrow4", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow4"));
+		_resources.Add("ScreenAirArrow5", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow5"));
+		_resources.Add("ScreenAirArrow6", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow6"));
+		_resources.Add("ScreenAirArrow7", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow7"));
+		_resources.Add("ScreenAirArrow8", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow8"));
+		_resources.Add("ScreenAirArrow9", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow9"));
+		_resources.Add("ScreenAirArrow10", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow10"));
+		_resources.Add("ScreenAirArrow11", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow11"));
+		_resources.Add("ScreenAirArrow12", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow12"));
+		_resources.Add("ScreenAirArrow13", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow13"));
+		_resources.Add("ScreenAirArrow14", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow14"));
+		_resources.Add("ScreenAirArrow15", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow15"));
+		_resources.Add("ScreenAirArrow16", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow16"));
+		_resources.Add("ScreenAirArrow17", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow17"));
+		_resources.Add("ScreenAirArrow18", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow18"));
+		_resources.Add("ScreenAirArrow19", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow19"));
+		_resources.Add("ScreenAirArrow20", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow20"));
+		_resources.Add("ScreenAirArrow21", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow21"));
+		_resources.Add("ScreenAirArrow22", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow22"));
+		_resources.Add("ScreenAirArrow23", Resources.Load<GameObject>("Screen/AirArr/ScreenAirArrow23"));
+
+
         _resources.Add("ClientButton", Resources.Load<GameObject>("ClientButton"));
         _resources.Add("GameManager", Resources.Load<GameObject>("GameManager"));
 
@@ -243,6 +328,114 @@ public class UIManager : MonoBehaviour {
         _game = null;
     }
 
+	public void DrawBribeArrows(){
+		string tempString = "ScreenBribeArrow";
+		arrowIndex++;
+		if(arrowIndex >= 17){
+			CancelInvoke();
+			CloseBribeArrows();
+			DoFlowEvent(FLOW_EVENT.FLOW_RESULTS_OPEN);	
+			DoFlowEvent(FLOW_EVENT.FLOW_GROUP_PREVIEW_CLOSE);
+			arrowIndex = 0;
+		}
+		Debug.Log(tempString + arrowIndex);
+		openScreen(tempString + (arrowIndex));
+	}
+
+	public void DrawBoatArrows(){
+		string tempString = "ScreenBoatArrow";
+		arrowIndex++;
+		if(arrowIndex >= 18){
+			CancelInvoke();
+			CloseBoatArrows();
+			DoFlowEvent(FLOW_EVENT.FLOW_RESULTS_OPEN);	
+			DoFlowEvent(FLOW_EVENT.FLOW_GROUP_PREVIEW_CLOSE);
+			arrowIndex = 0;
+		}
+		Debug.Log(tempString + arrowIndex);
+		openScreen(tempString + (arrowIndex));
+	}
+
+	public void DrawAirArrows(){
+		string tempString = "ScreenAirArrow";
+		arrowIndex++;
+		if(arrowIndex >= 23){
+			CancelInvoke();
+			CloseAirArrows();
+			DoFlowEvent(FLOW_EVENT.FLOW_RESULTS_OPEN);	
+			DoFlowEvent(FLOW_EVENT.FLOW_GROUP_PREVIEW_CLOSE);
+			arrowIndex = 0;
+		}
+		Debug.Log(tempString + arrowIndex);
+		openScreen(tempString + (arrowIndex));
+	}
+
+	public void CloseBribeArrows(){
+		closeScreen ("ScreenBribeArrow1");
+		closeScreen ("ScreenBribeArrow2");
+		closeScreen ("ScreenBribeArrow3");
+		closeScreen ("ScreenBribeArrow4");
+		closeScreen ("ScreenBribeArrow5");
+		closeScreen ("ScreenBribeArrow6");
+		closeScreen ("ScreenBribeArrow7");
+		closeScreen ("ScreenBribeArrow8");
+		closeScreen ("ScreenBribeArrow9");
+		closeScreen ("ScreenBribeArrow10");
+		closeScreen ("ScreenBribeArrow11");
+		closeScreen ("ScreenBribeArrow12");
+		closeScreen ("ScreenBribeArrow13");
+		closeScreen ("ScreenBribeArrow14");
+		closeScreen ("ScreenBribeArrow15");
+		closeScreen ("ScreenBribeArrow16");
+		closeScreen ("ScreenBribeArrow17");
+	}
+
+	public void CloseBoatArrows(){
+		closeScreen ("ScreenBoatArrow1");
+		closeScreen ("ScreenBoatArrow2");
+		closeScreen ("ScreenBoatArrow3");
+		closeScreen ("ScreenBoatArrow4");
+		closeScreen ("ScreenBoatArrow5");
+		closeScreen ("ScreenBoatArrow6");
+		closeScreen ("ScreenBoatArrow7");
+		closeScreen ("ScreenBoatArrow8");
+		closeScreen ("ScreenBoatArrow9");
+		closeScreen ("ScreenBoatArrow10");
+		closeScreen ("ScreenBoatArrow11");
+		closeScreen ("ScreenBoatArrow12");
+		closeScreen ("ScreenBoatArrow13");
+		closeScreen ("ScreenBoatArrow14");
+		closeScreen ("ScreenBoatArrow15");
+		closeScreen ("ScreenBoatArrow16");
+		closeScreen ("ScreenBoatArrow17");
+		closeScreen ("ScreenBoatArrow18");
+	}
+
+	public void CloseAirArrows(){
+		closeScreen ("ScreenAirArrow1");
+		closeScreen ("ScreenAirArrow2");
+		closeScreen ("ScreenAirArrow3");
+		closeScreen ("ScreenAirArrow4");
+		closeScreen ("ScreenAirArrow5");
+		closeScreen ("ScreenAirArrow6");
+		closeScreen ("ScreenAirArrow7");
+		closeScreen ("ScreenAirArrow8");
+		closeScreen ("ScreenAirArrow9");
+		closeScreen ("ScreenAirArrow10");
+		closeScreen ("ScreenAirArrow11");
+		closeScreen ("ScreenAirArrow12");
+		closeScreen ("ScreenAirArrow13");
+		closeScreen ("ScreenAirArrow14");
+		closeScreen ("ScreenAirArrow15");
+		closeScreen ("ScreenAirArrow16");
+		closeScreen ("ScreenAirArrow17");
+		closeScreen ("ScreenAirArrow18");
+		closeScreen ("ScreenAirArrow19");
+		closeScreen ("ScreenAirArrow20");
+		closeScreen ("ScreenAirArrow21");
+		closeScreen ("ScreenAirArrow22");
+		closeScreen ("ScreenAirArrow23");
+	}
 
     public void DoFlowEvent(FLOW_EVENT f)
     {
