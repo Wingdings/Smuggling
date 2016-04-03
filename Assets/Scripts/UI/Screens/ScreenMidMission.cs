@@ -12,6 +12,7 @@ public class ScreenMidMission : ScreenBase
         var group = _game.referencedGroup;
         getButtonByName("AbandonButton").onClick.AddListener(delegate() {
             _game.player.changeMoney(-1 * _game.player.calculateTransportCosts(group.GetTransportType(), 1));
+            _game.player.changeReputation(-5 * group.clients.Count); //big rep lost
             group.clients.Clear();
             _ui.DoFlowEvent(FLOW_EVENT.FLOW_MID_MISSION_ABANDON); });
         getButtonByName("ContinueButton").onClick.AddListener(delegate() {
