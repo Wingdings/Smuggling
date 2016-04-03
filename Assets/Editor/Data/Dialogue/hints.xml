@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hints>
+  <!--
+  You can now specify summaries with the <success> and <failure> tags! These will appear after a smuggling run. They do not have to
+  always be defined, as they can come from many places. In the off chance there are no summaries that are generated, that's fine too!
+  
+  As always, you can use %constructs% just like in hints and bio.
+  -->
+  
+  <!-- Basic Suspicion -->
+  <hint>
+    <!--
+    Multiple attributes can be specified for a single set of hints. Specifying multiple attributes will make it so the hints
+    will only appear if all of the specified attributes match. If you don't specify a min or max, then that side of the
+    randomization is unbounded (well, clamped to 0 and 10).
+    
+    All matches are >= or <=
+    -->
+    <attr min="0" max="4">suspicion</attr>
+    
+    <!-- hint text supports the same replacement constructs as what you find in a bio field in people.xml -->
+    <text>They seem pretty normal.</text>
+  </hint>
+  <hint>
+    <attr min="4" max="6">suspicion</attr>
+    <text>They seem a bit weird.</text>
+    <text>They seem to be acting a little off.</text>
+  </hint>
+  <hint>
+    <attr min="6" max="8">suspicion</attr>
+    <text>They're kinda shady.</text>
+    <text>Something is off about them.</text>
+  </hint>
+  <hint>
+    <attr min="8">suspicion</attr>
+    <text>They're acting very suspicious.</text>
+    <text>They're incredibly suspicious.</text>
+    <text>You're having second thoughts about talking to them.</text>
+
+    <failure>One of your clients was so suspicious that they gave themselves away!</failure>
+  </hint>
+  <!-- End Basic Suspicion -->
+
+  <!-- Basic Notoriety -->
+  <hint>
+    <attr min="4" max="5">notoriety</attr>
+    <text>You feel like you've seen their face before, but the feeling passes.</text>
+    <text>They're barely familiar to you.</text>
+  </hint>
+  <hint>
+    <attr min="5" max="8">notoriety</attr>
+    <text>You recognize them from somewhere, but you can't place just where.</text>
+    <text>They seem familiar, maybe from last night's news?</text>
+  </hint>
+  <hint>
+    <attr min="8">notoriety</attr>
+    <text>You've definitely seen this person before.</text>
+    <text>This person was on television last night!</text>
+    <text>Aren't they a celebrity?</text>
+
+    <failure>One of your clients was found and recognized by a customs official!</failure>
+  </hint>
+  <!-- End Basic Notoriety -->
+  
+  <!-- Basic Sickness -->
+  <hint>
+    <attr min="4" max="6">sickness</attr>
+    <text>They look a bit under the weather.</text>
+    <text>They mention that they are getting over a cold.</text>
+    <text>They ask you for a tissue.</text>
+    <text>They can't stop sniffling.</text>
+  </hint>
+  <hint>
+    <attr min="6" max="8">sickness</attr>
+    <text>They're coughing and sputtering all over the place.</text>
+    <text>They don't look too good.</text>
+    <text>They look positively green.</text>
+    <text>They look as if they are about to vomit.</text>
+  </hint>
+  <hint>
+    <attr min="8">sickness</attr>
+    <text>They really don't look well.</text>
+    <text>They look like they could use a doctor.</text>
+    <text>They look as if they are about to keel over.</text>
+
+    <failure>One of your clients was found after they coughed too much.</failure>
+  </hint>
+  <hint>
+    <attr min="9">sickness</attr>
+    <text>They throw up on the floor.</text>
+
+    <failure>One of your clients died in transit, and caused a commotion as a result!</failure>
+  </hint>
+  <!-- End Basic Sickness -->
+
+  <!-- Basic Desperation -->
+  <hint>
+    <attr min="4" max="5">desperation</attr>
+    <text>They're acting a bit nervous.</text>
+  </hint>
+  <hint>
+    <attr min="5" max="7">desperation</attr>
+    <text>They're a bit jittery.</text>
+    <text>They seem to have a nervous tic.</text>
+  </hint>
+  <hint>
+    <attr min="7" max="9">desperation</attr>
+    <text>They plead with you to accept them.</text>
+  </hint>
+  <hint>
+    <attr min="9">desperation</attr>
+    <text>They implore you to take them to %destination%.</text>
+
+    <failure>A client was so desperate to get to %destination% that they gave themselves away!</failure>
+  </hint>
+  <!-- End Basic Desperation -->
+  
+  <!-- Basic Money -->
+  <hint>
+    <attr max="-1">money</attr>
+    <text>They look a bit shifty.</text>
+    <text>Something tells you not to trust them.</text>
+
+    <success>%name% stole some of your money!</success>
+  </hint>
+  <hint>
+    <!-- Because this overlaps with another hint, we need to specify the hints again. The generator won't accept a hint definition without any text entries either! -->
+    <attr min="0" max="100">money</attr>
+    <text>They seem poor.</text>
+    <text>They don't seem to have much money.</text>
+    
+    <success>One of your clients skipped out on paying you!</success>
+  </hint>
+  <hint>
+    <attr max="800">money</attr>
+    <text>They seem poor.</text>
+    <text>They don't seem to have much money.</text>
+  </hint>
+  <hint>
+    <attr min="3000">money</attr>
+    <text>They flash some money in front of your face.</text>
+    <text>They promise you quite a bit of money.</text>
+
+    <success>You are handsomely rewarded for a successful operation by %name%.</success>
+  </hint>
+  <!-- End Basic Money-->
+  
+  <!-- Basic Reputation -->
+  <hint>
+    <attr min="-9999" max="-1">success-rep</attr>
+    <text>You have a feeling they might be dangerous.</text>
+  </hint>
+  <hint>
+    <attr min="3">success-rep</attr>
+    <text>They claim they are very influential.</text>
+    <text>They say they have some influential friends.</text>
+
+    <success>Your reputation is greatly improved.</success>
+  </hint>
+  <hint>
+    <attr min="3">fail-rep</attr>
+    <failure>Your reputation took a big hit!</failure>
+  </hint>
+  <hint>
+    <attr max="0">deny-rep</attr>
+    <text>Something tells you that telling them to leave won't cause any issues.</text>
+  </hint>
+  <hint>
+    <attr min="3">deny-rep</attr>
+    <text>Something tells you that you don't want to turn them away.</text>
+  </hint>
+  <!-- End Basic Reputation -->
+  
+  <!-- Basic Modifiers -->
+  <hint>
+    <!--
+    You can match on modifiers by specifying their id. Feel free to combine modifiers and attributes.
+    -->
+    <mod>very_angry</mod>
+    <text>They are incredibly angry for some reason, though the anger doesn't seem to be directed at you.</text>
+    <text>They look really angry.</text>
+
+    <failure>Some of the clients ended up giving themselves away when they had a heated argument.</failure>
+  </hint>
+  <hint>
+    <mod>prefer-air</mod>
+    <text>They tell you they want to take a plane.</text>
+    <text>They tell you that airplanes are their favorite mode of transportation.</text>
+    <text>They say that air travel is their preferred transit method.</text>
+  </hint>
+  <hint>
+    <mod>prefer-sea</mod>
+    <text>They tell you they want to take a boat.</text>
+    <text>They tell you that boats are their favorite mode of transportation.</text>
+    <text>They say that sea travel is their preferred transit method.</text>
+  </hint>
+  <hint>
+    <mod>prefer-bribe</mod>
+    <text>They tell you they need to take a land route.</text>
+    <text>They say that land travel is their preferred transit method.</text>
+  </hint>
+  <hint>
+    <mod>dislike-air</mod>
+    <text>They tell you they really don't like planes.</text>
+     <text>They say that they have a fear of flying.</text>
+      <text>They tell you that they always get sick traveling by air.</text>
+  </hint>
+  <hint>
+    <mod>dislike-sea</mod>
+    <text>They tell you they get really seasick.</text>
+    <text>They say that they have a fear of the ocean.</text>
+    <text>They tell you they just watched Titanic and don't want to even look at a boat.</text>
+  </hint>
+  <hint>
+    <mod>dislike-bribe</mod>
+    <text>They tell you the border patrol knows them too well.</text>
+    <text>They tell you that they are afraid of getting randomly searched.</text>
+    <text>They say that they've had bad experiences with customs.</text>
+  </hint>
+  <!-- End Basic Modifiers -->
+  
+  <!-- Combinations -->
+  <hint>
+    <attr max="3">desperation</attr>
+    <attr max="3">suspicion</attr>
+    <text>They seem calm and collected.</text>
+  </hint>
+  <hint>
+    <attr min="3000">money</attr>
+    <attr min="7">notoriety</attr>
+    <text>You recognize them! They were on a reality show!</text>
+    <text>You recognize them, they're from an affluent family.</text>
+  </hint>
+  <hint>
+    <attr min="3000">money</attr>
+    <attr min="9">notoriety</attr>
+    <text>You recognize them as political outcasts.</text>
+  </hint>
+  <!-- End Combinations -->
+</hints>

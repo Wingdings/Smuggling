@@ -168,13 +168,16 @@ public class UIManager : MonoBehaviour {
                     changeScreenTo("ScreenEndGame");
                     break;
 				case FLOW_EVENT.FLOW_BRIBE_ARROWS:
+                    closeScreen("ScreenGroupPreview");
 					InvokeRepeating("DrawBribeArrows",1.0f, 0.2f);
 					break;
 				case FLOW_EVENT.FLOW_BOAT_ARROWS:
-					InvokeRepeating("DrawBoatArrows",1.0f, 0.2f);
+                    closeScreen("ScreenGroupPreview");
+                    InvokeRepeating("DrawBoatArrows",1.0f, 0.2f);
 					break;
 				case FLOW_EVENT.FLOW_AIR_ARROWS:
-					InvokeRepeating("DrawAirArrows",1.0f, 0.2f);
+                    closeScreen("ScreenGroupPreview");
+                    InvokeRepeating("DrawAirArrows",1.0f, 0.2f);
 					break;
                 default:
                     break;
