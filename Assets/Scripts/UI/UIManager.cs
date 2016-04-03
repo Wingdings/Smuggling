@@ -24,6 +24,7 @@ public enum FLOW_EVENT
     FLOW_NEWS_CLOSE,
     FLOW_MID_MISSION_OPEN,
     FLOW_MID_MISSION_CLOSE,
+    FLOW_MID_MISSION_ABANDON,
     FLOW_PURCHASE_OPEN,
     FLOW_PURCHASE_CLOSE,
     FLOW_HELP_OPEN,
@@ -159,6 +160,12 @@ public class UIManager : MonoBehaviour {
                 case FLOW_EVENT.FLOW_MID_MISSION_CLOSE:
                     closeScreen("ScreenMidMission");
                     break;
+                case FLOW_EVENT.FLOW_MID_MISSION_ABANDON:
+                    closeScreen("ScreenMidMission");
+                    CloseAirArrows();
+                    CloseBoatArrows();
+                    CloseBribeArrows();
+                    break;
                 case FLOW_EVENT.FLOW_HELP_OPEN:
                     openScreen("ScreenHelp");
                     break;
@@ -237,9 +244,10 @@ public class UIManager : MonoBehaviour {
         _resources.Add("ScreenPurchase", Resources.Load<GameObject>("Screen/ScreenPurchase"));
         _resources.Add("ScreenNews", Resources.Load<GameObject>("Screen/ScreenNews"));
         _resources.Add("ScreenHelp", Resources.Load<GameObject>("Screen/ScreenHelp"));
+        _resources.Add("ScreenMidMission", Resources.Load<GameObject>("Screen/ScreenMidMission"));
 
-		//Bribe Arrows
-		_resources.Add("ScreenBribeArrow1", Resources.Load<GameObject>("Screen/BribeArr/ScreenBribeArrow1"));
+        //Bribe Arrows
+        _resources.Add("ScreenBribeArrow1", Resources.Load<GameObject>("Screen/BribeArr/ScreenBribeArrow1"));
 		_resources.Add("ScreenBribeArrow2", Resources.Load<GameObject>("Screen/BribeArr/ScreenBribeArrow2"));
 		_resources.Add("ScreenBribeArrow3", Resources.Load<GameObject>("Screen/BribeArr/ScreenBribeArrow3"));
 		_resources.Add("ScreenBribeArrow4", Resources.Load<GameObject>("Screen/BribeArr/ScreenBribeArrow4"));
@@ -358,10 +366,10 @@ public class UIManager : MonoBehaviour {
         if(arrowIndex == 11)
         {
             int tempNum = GameManager.rand.Next(10);
-            if(tempNum <= 9)
+            if(tempNum <= 5)
             {
-               // CancelInvoke();
-                //DoFlowEvent(FLOW_EVENT.FLOW_MID_MISSION_OPEN);
+                CancelInvoke();
+                DoFlowEvent(FLOW_EVENT.FLOW_MID_MISSION_OPEN);
             }
         }
         //end arrows
@@ -388,10 +396,10 @@ public class UIManager : MonoBehaviour {
         if (arrowIndex == 11)
         {
             int tempNum = GameManager.rand.Next(10);
-            if (tempNum <= 9)
+            if (tempNum <= 5)
             {
-                // CancelInvoke();
-                //DoFlowEvent(FLOW_EVENT.FLOW_MID_MISSION_OPEN);
+                CancelInvoke();
+                DoFlowEvent(FLOW_EVENT.FLOW_MID_MISSION_OPEN);
             }
         }
         if (arrowIndex > 18)
@@ -417,10 +425,10 @@ public class UIManager : MonoBehaviour {
         if (arrowIndex == 11)
         {
             int tempNum = GameManager.rand.Next(10);
-            if (tempNum <= 9)
+            if (tempNum <= 5)
             {
-                // CancelInvoke();
-                //DoFlowEvent(FLOW_EVENT.FLOW_MID_MISSION_OPEN);
+                CancelInvoke();
+                DoFlowEvent(FLOW_EVENT.FLOW_MID_MISSION_OPEN);
             }
         }
         if (arrowIndex > 23)
@@ -437,7 +445,8 @@ public class UIManager : MonoBehaviour {
 	}
 
 	public void CloseBribeArrows(){
-		closeScreen ("ScreenBribeArrow1");
+        arrowIndex = 0;
+        closeScreen ("ScreenBribeArrow1");
 		closeScreen ("ScreenBribeArrow2");
 		closeScreen ("ScreenBribeArrow3");
 		closeScreen ("ScreenBribeArrow4");
@@ -457,7 +466,8 @@ public class UIManager : MonoBehaviour {
 	}
 
 	public void CloseBoatArrows(){
-		closeScreen ("ScreenBoatArrow1");
+        arrowIndex = 0;
+        closeScreen ("ScreenBoatArrow1");
 		closeScreen ("ScreenBoatArrow2");
 		closeScreen ("ScreenBoatArrow3");
 		closeScreen ("ScreenBoatArrow4");
@@ -478,7 +488,8 @@ public class UIManager : MonoBehaviour {
 	}
 
 	public void CloseAirArrows(){
-		closeScreen ("ScreenAirArrow1");
+        arrowIndex = 0;
+        closeScreen ("ScreenAirArrow1");
 		closeScreen ("ScreenAirArrow2");
 		closeScreen ("ScreenAirArrow3");
 		closeScreen ("ScreenAirArrow4");

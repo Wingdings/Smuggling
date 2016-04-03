@@ -75,19 +75,20 @@ MonoBehaviour:
   player: {fileID: 0}
   country1: {fileID: 0}
   country2: {fileID: 0}
+  midMissionContinued: 0
   transportationState: 0
-  namesAsset: {fileID: 4900000, guid: 38dbebe658bc1bd4b9c82a2d666f42ca, type: 3}
-  hintsAsset: {fileID: 4900000, guid: 22162362c980c1c468c955bdb95cee88, type: 3}
-  peopleAsset: {fileID: 4900000, guid: 3b98b084f52f2d647957b2302568fc26, type: 3}
-  newsAsset: {fileID: 4900000, guid: b6fadd1697c73614fb33b2e13edbd53b, type: 3}
+  namesAsset: {fileID: 4900000, guid: cbef26482d09e154696709ebb5aa1a5a, type: 3}
+  hintsAsset: {fileID: 4900000, guid: d3ef3132a26cd9047b2ccab2363e508d, type: 3}
+  peopleAsset: {fileID: 4900000, guid: fca53df579a5d5b48ad2720de7113aaa, type: 3}
+  newsAsset: {fileID: 4900000, guid: b1d5f9b7bf5edf444bb654c3a81ab01f, type: 3}
   modifierList:
-  - {fileID: 11400000, guid: 0df1f485b3ef5f74c8c769ead04435f5, type: 2}
-  - {fileID: 11400000, guid: f931f985160c0024dad21df2c927e81d, type: 2}
-  - {fileID: 11400000, guid: 3dc8564d5e67be946b7dc973c26da371, type: 2}
-  - {fileID: 11400000, guid: fa330741c67779341a6547909d66551b, type: 2}
-  - {fileID: 11400000, guid: 21a5e4bad9da5324f9dbcf06f7c4fcdf, type: 2}
-  - {fileID: 11400000, guid: bb6c4bd6fc125ed46b25c3c75f4e583d, type: 2}
-  - {fileID: 11400000, guid: 213309303461e1b4d9d2c146dc4bc372, type: 2}
+  - {fileID: 11400000, guid: ece128ce4fe9c364a950783888933b99, type: 2}
+  - {fileID: 11400000, guid: fdbf3cca5b6520a4f85b17f9ae3f059b, type: 2}
+  - {fileID: 11400000, guid: 57d80d1d249eb044696dfe6ac70bef43, type: 2}
+  - {fileID: 11400000, guid: 6baffda3bafa9fe4b81397609177d809, type: 2}
+  - {fileID: 11400000, guid: 558ce84fb237a274b8b2dc96be265379, type: 2}
+  - {fileID: 11400000, guid: da2a1aeb582d5e8469b486a9747104d3, type: 2}
+  - {fileID: 11400000, guid: a56723fd17b34cd478f135d081431c6c, type: 2}
 --- !u!212 &21263422
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -138,50 +139,54 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: namesAsset
       value: 
-      objectReference: {fileID: 4900000, guid: 38dbebe658bc1bd4b9c82a2d666f42ca, type: 3}
+      objectReference: {fileID: 4900000, guid: cbef26482d09e154696709ebb5aa1a5a, type: 3}
     - target: {fileID: 0}
       propertyPath: hintsAsset
       value: 
-      objectReference: {fileID: 4900000, guid: 22162362c980c1c468c955bdb95cee88, type: 3}
+      objectReference: {fileID: 4900000, guid: d3ef3132a26cd9047b2ccab2363e508d, type: 3}
     - target: {fileID: 0}
       propertyPath: modifierList.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 0df1f485b3ef5f74c8c769ead04435f5,
+      objectReference: {fileID: 11400000, guid: ece128ce4fe9c364a950783888933b99,
         type: 2}
     - target: {fileID: 0}
       propertyPath: modifierList.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: f931f985160c0024dad21df2c927e81d,
+      objectReference: {fileID: 11400000, guid: fdbf3cca5b6520a4f85b17f9ae3f059b,
         type: 2}
     - target: {fileID: 0}
       propertyPath: modifierList.Array.data[2]
       value: 
-      objectReference: {fileID: 11400000, guid: 3dc8564d5e67be946b7dc973c26da371,
+      objectReference: {fileID: 11400000, guid: 57d80d1d249eb044696dfe6ac70bef43,
         type: 2}
     - target: {fileID: 0}
       propertyPath: modifierList.Array.data[3]
       value: 
-      objectReference: {fileID: 11400000, guid: fa330741c67779341a6547909d66551b,
+      objectReference: {fileID: 11400000, guid: 6baffda3bafa9fe4b81397609177d809,
         type: 2}
     - target: {fileID: 0}
       propertyPath: modifierList.Array.data[4]
       value: 
-      objectReference: {fileID: 11400000, guid: 21a5e4bad9da5324f9dbcf06f7c4fcdf,
+      objectReference: {fileID: 11400000, guid: 558ce84fb237a274b8b2dc96be265379,
         type: 2}
     - target: {fileID: 0}
       propertyPath: modifierList.Array.data[5]
       value: 
-      objectReference: {fileID: 11400000, guid: bb6c4bd6fc125ed46b25c3c75f4e583d,
+      objectReference: {fileID: 11400000, guid: da2a1aeb582d5e8469b486a9747104d3,
         type: 2}
     - target: {fileID: 0}
       propertyPath: modifierList.Array.data[6]
       value: 
-      objectReference: {fileID: 11400000, guid: 213309303461e1b4d9d2c146dc4bc372,
+      objectReference: {fileID: 11400000, guid: a56723fd17b34cd478f135d081431c6c,
         type: 2}
     - target: {fileID: 0}
       propertyPath: newsAsset
       value: 
-      objectReference: {fileID: 4900000, guid: b6fadd1697c73614fb33b2e13edbd53b, type: 3}
+      objectReference: {fileID: 4900000, guid: b1d5f9b7bf5edf444bb654c3a81ab01f, type: 3}
+    - target: {fileID: 0}
+      propertyPath: peopleAsset
+      value: 
+      objectReference: {fileID: 4900000, guid: fca53df579a5d5b48ad2720de7113aaa, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 170480}

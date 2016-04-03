@@ -51,6 +51,9 @@ public class GameManager : MonoBehaviour
 	public Country country1;
 	public Country country2;
 
+    //mid mission
+    public bool midMissionContinued = false;
+
     //progression of smuggling options
     public int transportationState = 0;
 
@@ -135,7 +138,15 @@ public class GameManager : MonoBehaviour
         result.summary = new List<string>();
 
         result.roll = rand.NextDouble();
-        if (result.roll > result.chance)
+
+        double modifier = 0;
+        if (midMissionContinued)
+        {
+            modifier = 0.3;
+            midMissionContinued = false;
+        }
+
+        if (result.roll > result.chance + modifier)
         {
             foreach (var client in group.clients)
             {
