@@ -118,10 +118,7 @@ public class GameManager : MonoBehaviour
 			clientsWaiting.Add(GenerateNextClient());
 			//Debug.Log(clientsWaiting.Count);
 		}
-        if (player.stats.money <= 4000 || player.stats.reputation <= 0)
-        {
-            gameOver = true;
-        }
+        
 	}
 
 	public List<Client> GetClientsWaiting(){

@@ -150,6 +150,8 @@ public class UIManager : MonoBehaviour {
                     break;
                 case FLOW_EVENT.FLOW_NEWS_CLOSE:
                     closeScreen("ScreenNews");
+                    //gameover check
+                    checkGameOverConditions();
                     break;
                 case FLOW_EVENT.FLOW_MID_MISSION_OPEN:
                     openScreen("ScreenMidMission");
@@ -206,6 +208,19 @@ public class UIManager : MonoBehaviour {
             }
         }
 	}
+
+    void checkGameOverConditions()
+    {
+        var tManager = _game.GetComponent<GameManager>();
+        if (tManager.GetComponent<GameManager>().player.stats.money <= 4000 ||
+            tManager.player.stats.reputation <= 0 ||
+            tManager.country2.stats.chaos >= 0.9 ||
+            tManager.country2.stats.population >= 0.9 ||
+            tManager.country2.stats.sickness >= 0.9 )
+        {
+            tManager.gameOver = true;
+        }
+    }
 
     void loadResources()
     {
