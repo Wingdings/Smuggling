@@ -169,15 +169,15 @@ public class UIManager : MonoBehaviour {
                     break;
 				case FLOW_EVENT.FLOW_BRIBE_ARROWS:
                     closeScreen("ScreenGroupPreview");
-					InvokeRepeating("DrawBribeArrows",1.0f, 0.2f);
+					InvokeRepeating("DrawBribeArrows",0.1f, 0.2f);
 					break;
 				case FLOW_EVENT.FLOW_BOAT_ARROWS:
                     closeScreen("ScreenGroupPreview");
-                    InvokeRepeating("DrawBoatArrows",1.0f, 0.2f);
+                    InvokeRepeating("DrawBoatArrows",0.1f, 0.2f);
 					break;
 				case FLOW_EVENT.FLOW_AIR_ARROWS:
                     closeScreen("ScreenGroupPreview");
-                    InvokeRepeating("DrawAirArrows",1.0f, 0.2f);
+                    InvokeRepeating("DrawAirArrows",0.1f, 0.2f);
 					break;
                 default:
                     break;
@@ -334,43 +334,91 @@ public class UIManager : MonoBehaviour {
 	public void DrawBribeArrows(){
 		string tempString = "ScreenBribeArrow";
 		arrowIndex++;
-		if(arrowIndex >= 17){
-			CancelInvoke();
-			CloseBribeArrows();
-			DoFlowEvent(FLOW_EVENT.FLOW_RESULTS_OPEN);	
-			DoFlowEvent(FLOW_EVENT.FLOW_GROUP_PREVIEW_CLOSE);
-			arrowIndex = 0;
-		}
-		Debug.Log(tempString + arrowIndex);
-		openScreen(tempString + (arrowIndex));
+        //delete old screen
+        if (arrowIndex >= 2)
+        {
+            closeScreen(tempString + (arrowIndex - 1));
+        }
+        //mid mission events
+        if(arrowIndex == 11)
+        {
+            int tempNum = GameManager.rand.Next(10);
+            if(tempNum <= 9)
+            {
+               // CancelInvoke();
+                //DoFlowEvent(FLOW_EVENT.FLOW_MID_MISSION_OPEN);
+            }
+        }
+        //end arrows
+        if (arrowIndex > 17)
+        {
+            CancelInvoke();
+            CloseBribeArrows();
+            DoFlowEvent(FLOW_EVENT.FLOW_RESULTS_OPEN);
+            DoFlowEvent(FLOW_EVENT.FLOW_GROUP_PREVIEW_CLOSE);
+            arrowIndex = 0;
+        }else {
+            openScreen(tempString + (arrowIndex));
+        }
 	}
 
 	public void DrawBoatArrows(){
 		string tempString = "ScreenBoatArrow";
 		arrowIndex++;
-		if(arrowIndex >= 18){
-			CancelInvoke();
-			CloseBoatArrows();
-			DoFlowEvent(FLOW_EVENT.FLOW_RESULTS_OPEN);	
-			DoFlowEvent(FLOW_EVENT.FLOW_GROUP_PREVIEW_CLOSE);
-			arrowIndex = 0;
-		}
-		Debug.Log(tempString + arrowIndex);
-		openScreen(tempString + (arrowIndex));
+        if (arrowIndex >= 2)
+        {
+            closeScreen(tempString + (arrowIndex - 1));
+        }
+        //mid mission events
+        if (arrowIndex == 11)
+        {
+            int tempNum = GameManager.rand.Next(10);
+            if (tempNum <= 9)
+            {
+                // CancelInvoke();
+                //DoFlowEvent(FLOW_EVENT.FLOW_MID_MISSION_OPEN);
+            }
+        }
+        if (arrowIndex > 18)
+        {
+            CancelInvoke();
+            CloseBoatArrows();
+            DoFlowEvent(FLOW_EVENT.FLOW_RESULTS_OPEN);
+            DoFlowEvent(FLOW_EVENT.FLOW_GROUP_PREVIEW_CLOSE);
+            arrowIndex = 0;
+        }else {
+            openScreen(tempString + (arrowIndex));
+        }
 	}
 
-	public void DrawAirArrows(){
-		string tempString = "ScreenAirArrow";
-		arrowIndex++;
-		if(arrowIndex >= 23){
-			CancelInvoke();
-			CloseAirArrows();
-			DoFlowEvent(FLOW_EVENT.FLOW_RESULTS_OPEN);	
-			DoFlowEvent(FLOW_EVENT.FLOW_GROUP_PREVIEW_CLOSE);
-			arrowIndex = 0;
-		}
-		Debug.Log(tempString + arrowIndex);
-		openScreen(tempString + (arrowIndex));
+    public void DrawAirArrows() {
+        string tempString = "ScreenAirArrow";
+        arrowIndex++;
+        if (arrowIndex >= 2)
+        {
+            closeScreen(tempString + (arrowIndex - 1));
+        }
+        //mid mission events
+        if (arrowIndex == 11)
+        {
+            int tempNum = GameManager.rand.Next(10);
+            if (tempNum <= 9)
+            {
+                // CancelInvoke();
+                //DoFlowEvent(FLOW_EVENT.FLOW_MID_MISSION_OPEN);
+            }
+        }
+        if (arrowIndex > 23)
+        {
+            CancelInvoke();
+            CloseAirArrows();
+            DoFlowEvent(FLOW_EVENT.FLOW_RESULTS_OPEN);
+            DoFlowEvent(FLOW_EVENT.FLOW_GROUP_PREVIEW_CLOSE);
+            arrowIndex = 0;
+        }
+        else {
+            openScreen(tempString + (arrowIndex));
+        }
 	}
 
 	public void CloseBribeArrows(){
