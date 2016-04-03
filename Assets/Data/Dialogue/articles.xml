@@ -22,6 +22,24 @@
       <headline>Normal Day for %country%</headline>
       <text>Things here are incredibly normal.</text>
     </article>
+    <article>
+      <headline>Peaceful times for %country%</headline>
+      <text>Business as usual in %country%, nothing out of the ordinary.</text>
+    </article>
+    
+    <!--Joke Articles can keep or throw out!-->
+    <article>
+      <headline>Piano playing monkey goes on tour!</headline>
+      <text>Nothing much else is happening, but we promised you riveting stories.</text>
+    </article>
+    <article>
+      <headline>Man breaks world record of hot dogs consumed in an hour!</headline>
+      <text>155 if you were wondering. Yes, this is just about the most exciting thing that is happening worldwide.</text>
+    </article>
+    <article>
+      <headline>Women finds potato chip that looks like her great-grandfather!</headline>
+      <text>Everything else seems relatively normal.</text>
+    </article>
   </news>
 
   <news>
@@ -33,6 +51,10 @@
     <article>
       <headline>Unexplained Population Growth.</headline>
       <text>Large numbers of undocumented citizens found in %country%. Officials suspect compromised border.</text>
+    </article>
+    <article>
+      <headline>Recession in %country%.</headline>
+      <text>Not enough jobs to go around, millions left unemployed.</text>
     </article>
   </news>
 
@@ -46,6 +68,10 @@
       <headline>Living Space Scarse in %country%</headline>
       <text>"Simply too many people" says government official.</text>
     </article>
+    <article>
+      <headline>Overpopulation is starting to become a real problem.</headline>
+      <text>%country% is running out of essential resources for it's citizens.</text>
+    </article>
   </news>
   
   <news>
@@ -53,6 +79,10 @@
     <article>
       <headline>Outbreak of plague hits %country%!</headline>
       <text>An outbreak of the plague has been blamed on immigrants being smuggled in to %country%.</text>
+    </article>
+    <article>
+      <headline>Sudden spike in number of infected!</headline>
+      <text>%country% announces that they are putting more funding towards finding a cure.</text>
     </article>
   </news>
 
@@ -62,13 +92,37 @@
       <headline>Riots in the Streets</headline>
       <text>There are riots in the streets of the capital of %country%.</text>
     </article>
+    <article>
+      <headline>Chaos in %country%</headline>
+      <text>Local police forces struggle to contain mass commotion.</text>
+    </article>
   </news>
 
+  <news>
+    <attr min="0.6">sickness</attr>
+    <article>
+      <headline>Sickness affecting wildlife as well as humans!</headline>
+      <text>This could lead to problems if %country%'s livestock start taking a toll.</text>
+    </article>
+    <article>
+      <headline>Sickness starting to become a global issue!</headline>
+      <text>%country% has started taking more elaborate measures to fight infection.</text>
+    </article>
+    <article>
+      <headline>Hospitals are starting to run out of room!</headline>
+      <text>Healthcare workers are stretched thin and struggling to provide their usual level of care.</text>
+    </article>
+  </news>
+	
   <news>
     <attr min="0.9">sickness</attr>
     <article>
       <headline>Officials warn to not go to %country% due to plague</headline>
       <text>Widespread plague makes %country% incredibly dangerous to be in.</text>
+    </article>
+    <article>
+      <headline>Is anybody safe from the plague?</headline>
+      <text>Doctors recommend taking extreme precautionary protective measures before leaving home.</text>
     </article>
   </news>
 
@@ -77,6 +131,10 @@
     <article>
       <headline>Chaos in the Streets!</headline>
       <text>Officials warn that %country% is incredibly unsafe.</text>
+    </article>
+    <article>
+      <headline>Danger in %country%!</headline>
+      <text>All order is lost, anarchy is spreading like wildfire.</text>
     </article>
   </news>
 </articles>

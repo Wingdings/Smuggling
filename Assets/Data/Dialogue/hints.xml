@@ -68,11 +68,13 @@
     <text>They look a bit under the weather.</text>
     <text>They mention that they are getting over a cold.</text>
     <text>They ask you for a tissue.</text>
+    <text>They can't stop sniffling.</text>
   </hint>
   <hint>
     <attr min="6" max="8">sickness</attr>
     <text>They're coughing and sputtering all over the place.</text>
     <text>They don't look too good.</text>
+    <text>They look positively green.</text>
     <text>They look as if they are about to vomit.</text>
   </hint>
   <hint>
@@ -183,26 +185,37 @@
   <hint>
     <mod>prefer-air</mod>
     <text>They tell you they want to take a plane.</text>
+    <text>They tell you that airplanes are their favorite mode of transportation.</text>
+    <text>They say that air travel is their preferred transit method.</text>
   </hint>
   <hint>
     <mod>prefer-sea</mod>
     <text>They tell you they want to take a boat.</text>
+    <text>They tell you that boats are their favorite mode of transportation.</text>
+    <text>They say that sea travel is their preferred transit method.</text>
   </hint>
   <hint>
     <mod>prefer-bribe</mod>
     <text>They tell you they need to take a land route.</text>
+    <text>They say that land travel is their preferred transit method.</text>
   </hint>
   <hint>
     <mod>dislike-air</mod>
     <text>They tell you they really don't like planes.</text>
+     <text>They say that they have a fear of flying.</text>
+      <text>They tell you that they always get sick traveling by air.</text>
   </hint>
   <hint>
     <mod>dislike-sea</mod>
     <text>They tell you they get really seasick.</text>
+    <text>They say that they have a fear of the ocean.</text>
+    <text>They tell you they just watched Titanic and don't want to even look at a boat.</text>
   </hint>
   <hint>
     <mod>dislike-bribe</mod>
     <text>They tell you the border patrol knows them too well.</text>
+    <text>They tell you that they are afraid of getting randomly searched.</text>
+    <text>They say that they've had bad experiences with customs.</text>
   </hint>
   <!-- End Basic Modifiers -->
   

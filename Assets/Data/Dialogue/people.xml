@@ -175,6 +175,7 @@
    <person gender="all"> <!-- Kind Old Person -->
     <bio> Why hello there. I'm looking to travel to %destination%. Please won't you help a poor old senior?</bio>
 	<bio> My family wants to put me in a nursing home. I need to get to %destination% quickly.</bio>
+	<bio> Im looking to write my memoirs somewhere beautiful. Could you get me to %destination%?</bio>
 	
     <attr min="0" max="2">suspicion</attr>
     <attr min="0" max="2">notoriety</attr>
