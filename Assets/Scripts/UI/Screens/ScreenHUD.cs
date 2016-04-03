@@ -152,7 +152,7 @@ public class ScreenHUD : ScreenBase {
             Show(_boatGroupButton);
         }
 
-        if (_game.transportationState == 1 && _game.player.getTotalRuns() == 15)
+        if (_game.transportationState == 1 && _game.player.getTotalRuns() == 12)
         {
             Show(_planeGroupButton);
         }
