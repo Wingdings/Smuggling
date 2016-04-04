@@ -310,7 +310,7 @@
   </person>
   
   <person gender="all"> <!-- Possible Crazy Person -->
-    <bio> He He ... Oh me, I'm looking to get on over to %destination%. I'm following crop circles trying to catch me an alien</bio>
+    <bio> He He ... Oh me, I'm looking to get on over to %destination%. I'm following crop circles trying to catch me an alien.</bio>
     <bio> Have you heard the news? Theres a talking dog out in %destination%, and I need to pet that bugger ASAP, will you help me out?</bio>
 
     <attr min="5" max="8">suspicion</attr>

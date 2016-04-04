@@ -145,7 +145,7 @@
   <news>
     <attr min="0.9">sickness</attr>
     <article>
-      <headline>Officials warn to not go to %country% due to plague</headline>
+      <headline>Officials warn to not go to %country% due to plague.</headline>
       <text>Widespread plague makes %country% incredibly dangerous to be in.</text>
     </article>
     <article>
