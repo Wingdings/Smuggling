@@ -40,6 +40,18 @@
       <headline>Women finds potato chip that looks like her great-grandfather!</headline>
       <text>Everything else seems relatively normal.</text>
     </article>
+    <article>
+      <headline>Sun rises in the east and sets in the west as usual!</headline>
+      <text>Nothing much else is going on.</text>
+    </article>
+    <article>
+      <headline>Very patient man starts counting to infinity!</headline>
+      <text>Says he hopes to get there ASAP.</text>
+    </article>
+    <article>
+      <headline>%country% continues on as usual!</headline>
+      <text>Nothing too notable is occuring.</text>
+    </article>
   </news>
 
   <news>
@@ -56,6 +68,10 @@
       <headline>Recession in %country%.</headline>
       <text>Not enough jobs to go around, millions left unemployed.</text>
     </article>
+    <article>
+      <headline>%country% starts thinking about building a wall around it's borders.</headline>
+      <text>Too many undocumented citizens are being discovered study says.</text>
+    </article>
   </news>
 
   <news>
@@ -71,6 +87,10 @@
     <article>
       <headline>Overpopulation is starting to become a real problem.</headline>
       <text>%country% is running out of essential resources for its citizens.</text>
+    </article>
+    <article>
+      <headline>Government officials having a hard time containing explosive population growth.</headline>
+      <text>%country% needs to come up with a solution fast, or face it's downfall.</text>
     </article>
   </news>
   
@@ -96,6 +116,10 @@
       <headline>Chaos in %country%</headline>
       <text>Local police forces struggle to contain mass commotion.</text>
     </article>
+    <article>
+      <headline>Outbreaks in %country%</headline>
+      <text>Government starts upping police task forces as a precautionary measure.</text>
+    </article>
   </news>
 
   <news>
@@ -112,6 +136,10 @@
       <headline>Hospitals are starting to run out of room!</headline>
       <text>Healthcare workers are stretched thin and struggling to provide their usual level of care.</text>
     </article>
+    <article>
+      <headline>Feeling a little funky?</headline>
+      <text>Don't wait until it's too late before you get a medical examination.</text>
+    </article>
   </news>
 	
   <news>
@@ -124,6 +152,10 @@
       <headline>Is anybody safe from the plague?</headline>
       <text>Doctors recommend taking extreme precautionary protective measures before leaving home.</text>
     </article>
+    <article>
+      <headline>%country% is deperately searching for a miracle cure</headline>
+      <text>Are you in the medical field? Get payed by %country% to help speed up the process!</text>
+    </article>
   </news>
 
   <news>
@@ -135,6 +167,18 @@
     <article>
       <headline>Danger in %country%!</headline>
       <text>All order is lost, anarchy is spreading like wildfire.</text>
+    </article>
+  </news>
+  
+  <news>
+    <attr min="0.6">chaos</attr>
+    <article>
+      <headline>Turmoil in %country%!</headline>
+      <text>Current conditions are causing the start of a revolution in %country%.</text>
+    </article>
+    <article>
+      <headline>General public uneasy!</headline>
+      <text>World affairs have left the citizens of %country% in an agitated state.</text>
     </article>
   </news>
 </articles>
